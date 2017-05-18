@@ -1,0 +1,30 @@
+#Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
+        #    using base file:///Users/Katelijne/Documents/Hans/IT/ST/machineReasoning/N3_rules_rdfs-owl_model/owl_cardinality/
+        
+#  Notation3 generation by
+#       notation3.py,v 1.200 2007/12/11 21:18:08 syosi Exp
+
+#   Base was: file:///Users/Katelijne/Documents/Hans/IT/ST/machineReasoning/N3_rules_rdfs-owl_model/owl_cardinality/
+     @prefix : <http://www.knora.org/ontology/knora-base#> .
+    
+    <http://data.knora.org/0cb8286054d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/20cf644a55d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/34e6a03456d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/48fddc1e57d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/691e7e2244d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/82ac0aeb53d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/96c346d554d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/aada82bf55d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/bef1bea956d5>     a :StillImageRepresentation .
+    
+    <http://data.knora.org/d208fb9357d5>     a :StillImageRepresentation .
+    
+#ENDS
