@@ -33,8 +33,8 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/0cb8286054d5/values/7d9e429c-4ef4-4708-bef1-e89c842f5f55> ;
 	rdfs:label "1 Alpinismus" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/0cb8286054d5/reps/073ce085942f01> , <http://data.knora.org/0cb8286054d5/reps/c66133bf942f01> ; # owl:minCardinality "1"^^xsd:nonNegativeInteger
-																																							# INCONSISTENCY
+#	knora-base:hasStillImageFileValue <http://data.knora.org/0cb8286054d5/reps/073ce085942f01> , <http://data.knora.org/0cb8286054d5/reps/c66133bf942f01> ; # owl:minCardinality "1"^^xsd:nonNegativeInteger
+																																							# INCONSISTENCY IF commented
 	knora-base:creationDate "2016-03-02T15:05:57Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -52,7 +52,6 @@
 	knora-base:dimX 200 ;
 	knora-base:dimY 273 ;																		# owl:cardinality "1"^^xsd:nonNegativeInteger
 #	knora-base:dimY 274 ;																		# INCONSISTENCY
-#	knora-base:dimY 278 ;																		# INCONSISTENCY
 	knora-base:qualityLevel 10 ;
 	knora-base:isPreview true ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
