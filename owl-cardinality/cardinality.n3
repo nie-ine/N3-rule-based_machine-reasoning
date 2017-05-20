@@ -27,17 +27,17 @@
 
 {
 	?s a [owl:onProperty ?p; owl:cardinality "1"^^xsd:nonNegativeInteger].	# detect an instance of a class with a property restricted to have exactly 1 occurence OR an instance can have only one value for this property; 'a' is syntactic sugar, built-in in EYE, for rdf:type
-	?s ?p ?o1, ?o2.								# detect if there are more than one object for the same subject-predicate
-	?o1 log:notEqualTo ?o2}							# if so the objects have to be the same (owl:sameAs), if not the conclusion is that the cardinality restriction is not fulfilled, i.e. false
+	?s ?p ?o1, ?o2.					# detect if there are more than one object for the same subject-predicate
+	?o1 log:notEqualTo ?o2}			# if so the objects have to be the same (owl:sameAs), if not the conclusion is that the cardinality restriction is not fulfilled, i.e. false
 	
-=> false.									# '=>' is syntactic sugar for log:implies representing a logical implicator as the relation between the antecedent (subject) and conclusion (object) of a rule
+=> false.							# '=>' is syntactic sugar for log:implies representing a logical implicator as the relation between the antecedent (subject) and conclusion (object) of a rule
 
 
 {
 	?s a [owl:onProperty ?p; owl:cardinality "1"^^xsd:nonNegativeInteger].	# detect an instance of a class with a property restriction of exactly 1
-	?SCOPE e:findall (?o {?s ?p ?o} ?list).					# find all triples with a certain subject-predicate with the restriction and return a list with the respective objects
-	?list math:memberCount ?memberCount.					# count the number of objects
-	?memberCount math:equalTo 0.}						# if there is no object, the conclusion is that the cardinality restriction is not fulfilled, i.e. false
+	?SCOPE e:findall (?o {?s ?p ?o} ?list).			# find all triples with a certain subject-predicate with the restriction and return a list with the respective objects
+	?list math:memberCount ?memberCount.			# count the number of objects
+	?memberCount math:equalTo 0.}					# if there is no object, the conclusion is that the cardinality restriction is not fulfilled, i.e. false
 
 => false.
 
