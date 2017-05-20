@@ -12,7 +12,6 @@
 
 # TEST DATA SET
 
-
 <http://data.knora.org/0cb8286054d5> a images:bild ;
 	knora-base:isDeleted false ;
 	knora-base:attachedToUser <http://data.knora.org/users/c266a56709> ;
