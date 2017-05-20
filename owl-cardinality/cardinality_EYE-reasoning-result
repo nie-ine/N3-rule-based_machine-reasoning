@@ -9,7 +9,7 @@
 # In the antecedent of the rule checking on owl:minCardinality the above condition is not fulfilled (cardinality.n3)
 # i.e. the e:findall built-in returned an empty list (member count 0).
 
-# Note: a full logical proof is given in the the result file if the option --nope is removed
+# Note: a full logical proof is given in the result file if the option --nope is removed
 
 hans@hans-HP-EliteBook-850-G3:~/programs/eye$ . cardinality.sh
 eye --nope --traditional /home/hans/Documents/change/rules_NIE/owl-cardinality/images-demo-data.ttl /home/hans/Documents/change/rules_NIE/owl-cardinality/knora-base.ttl /home/hans/Documents/change/rules_NIE/owl-cardinality/images.ttl http://eulersharp.sourceforge.net/2003/03swap/rdfs-subClassOf http://eulersharp.sourceforge.net/2003/03swap/rdfs-subPropertyOf /home/hans/Documents/change/rules_NIE/owl-cardinality/cardinality.n3 --query /home/hans/Documents/change/rules_NIE/owl-cardinality/cardinalityQuery.n3
