@@ -30,7 +30,6 @@
 <http://www.knora.org/ontology/knora-base> rdf:type owl:Ontology .
 
 
-
 #################################################################
 #
 #    Properties
