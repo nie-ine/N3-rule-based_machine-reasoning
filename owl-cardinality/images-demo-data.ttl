@@ -33,25 +33,24 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/0cb8286054d5/values/7d9e429c-4ef4-4708-bef1-e89c842f5f55> ;
 	rdfs:label "1 Alpinismus" ;
-#	knora-base:hasStillImageFileValue <http://data.knora.org/0cb8286054d5/reps/073ce085942f01> , <http://data.knora.org/0cb8286054d5/reps/c66133bf942f01> ; # owl:minCardinality "1"^^xsd:nonNegativeInteger
-																																							# INCONSISTENCY IF commented
+#	knora-base:hasStillImageFileValue <http://data.knora.org/0cb8286054d5/reps/073ce085942f01> ;	# owl:minCardinality "1"^^xsd:nonNegativeInteger # INCONSISTENCY IF commented
 	knora-base:creationDate "2016-03-02T15:05:57Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
 <http://data.knora.org/0cb8286054d5/reps/073ce085942f01> a knora-base:StillImageFileValue ;
 	knora-base:valueHasString "9SPO_8_1_013540.tif" ;
 	knora-base:originalFilename "9SPO_8_1_013540.tif" ;
-	knora-base:originalMimeType "image/tiff" ;													# owl:maxCardinality "1"^^xsd:nonNegativeInteger
-#	knora-base:originalMimeType "image/tifff" ;													# INCONSISTENCY
-#	knora-base:originalMimeType "image/zifff" ;													# INCONSISTENCY # when more than one in one run (data set) only the first given
+	knora-base:originalMimeType "image/tiff" ;		# owl:maxCardinality "1"^^xsd:nonNegativeInteger
+#	knora-base:originalMimeType "image/tifff" ;		# INCONSISTENCY when uncommented
+#	knora-base:originalMimeType "image/zifff" ;		# INCONSISTENCY # when more than one in one run (data set) only the first is given
 	knora-base:internalFilename "images_0000238748.jpg" ;
 	knora-base:internalMimeType "image/jpeg" ;
 	knora-base:valueCreationDate "2015-05-19T22:39:12Z"^^xsd:dateTimeStamp ;
 	knora-base:isDeleted false ;
 	knora-base:attachedToUser <http://data.knora.org/users/c266a56709> ;
 	knora-base:dimX 200 ;
-	knora-base:dimY 273 ;																		# owl:cardinality "1"^^xsd:nonNegativeInteger
-#	knora-base:dimY 274 ;																		# INCONSISTENCY
+	knora-base:dimY 273 ;		# owl:cardinality "1"^^xsd:nonNegativeInteger
+#	knora-base:dimY 274 ;		# INCONSISTENCY when uncommented
 	knora-base:qualityLevel 10 ;
 	knora-base:isPreview true ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
