@@ -1,0 +1,37 @@
+# Note: this comment is manually added
+# Result after running the EYE machine reasoner command
+# Inferred 'false' because:
+# an image representation <http://data.knora.org/0cb8286054d5> (in images-demo-data.ttl)
+# is an instance of the class images:bild,
+# which is a subclass of knora-base:StillImageRepresentation (declared in images.ttl; EYE using the rule rdfs-subClassOf)
+# The latter has to have at least 1 instance of the class knora-base:StillImageFileValue
+# as stated in the cardinality restriction of minimum 1 on the property knora-base:hasStillImageFileValue (declared in knora-base.ttl; EYE using the rule rdfs-subClassOf)
+# In the antecedent of the rule checking on owl:minCardinality the above condition is not fulfilled (cardinality.n3)
+# i.e. the e:findall built-in returned an empty list (member count 0).
+
+# Note: a full logical proof is given in the result file if the option --nope is removed
+
+hans@hans-HP-EliteBook-850-G3:~/programs/eye$ . cardinality.sh
+eye --nope --traditional /home/hans/Documents/change/rules_NIE/owl-cardinality/images-demo-data.ttl /home/hans/Documents/change/rules_NIE/owl-cardinality/knora-base.ttl /home/hans/Documents/change/rules_NIE/owl-cardinality/images.ttl http://eulersharp.sourceforge.net/2003/03swap/rdfs-subClassOf http://eulersharp.sourceforge.net/2003/03swap/rdfs-subPropertyOf /home/hans/Documents/change/rules_NIE/owl-cardinality/cardinality.n3 --query /home/hans/Documents/change/rules_NIE/owl-cardinality/cardinalityQuery.n3
+EYE rel. v17.0222.1246 josd
+SWI-Prolog 7.4.2 (amd64): , 08:54
+** WARNING ** EYE depends on cturtle which can be installed from https://github.com/melgi/cturtle/releases/ **
+starting 59 [msec cputime] 59 [msec walltime]
+GET file:///home/hans/Documents/change/rules_NIE/owl-cardinality/images-demo-data.ttl SC=4773
+GET file:///home/hans/Documents/change/rules_NIE/owl-cardinality/knora-base.ttl SC=1198
+GET file:///home/hans/Documents/change/rules_NIE/owl-cardinality/images.ttl SC=583
+GET http://eulersharp.sourceforge.net/2003/03swap/rdfs-subClassOf SC=4
+GET http://eulersharp.sourceforge.net/2003/03swap/rdfs-subPropertyOf SC=4
+GET file:///home/hans/Documents/change/rules_NIE/owl-cardinality/cardinality.n3 SC=12
+GET file:///home/hans/Documents/change/rules_NIE/owl-cardinality/cardinalityQuery.n3 SC=2
+networking 506 [msec cputime] 1405 [msec walltime]
+
+** ERROR ** eam ** inference_fuse({<http://data.knora.org/0cb8286054d5> a <http://eulersharp.sourceforge.net/.well-known/genid/8CpQUJNZjVgeEr:UgptKl1sXpSw#bn_81>.
+  <http://eulersharp.sourceforge.net/.well-known/genid/8CpQUJNZjVgeEr:UgptKl1sXpSw#bn_81> owl:onProperty knora-base:hasStillImageFileValue.
+  <http://eulersharp.sourceforge.net/.well-known/genid/8CpQUJNZjVgeEr:UgptKl1sXpSw#bn_81> owl:minCardinality "1"^^xsd:nonNegativeInteger.
+  ((<file:///home/hans/Documents/change/rules_NIE/owl-cardinality/images-demo-data.ttl> <file:///home/hans/Documents/change/rules_NIE/owl-cardinality/knora-base.ttl> <file:///home/hans/Documents/change/rules_NIE/owl-cardinality/images.ttl> <http://eulersharp.sourceforge.net/2003/03swap/rdfs-subClassOf> <http://eulersharp.sourceforge.net/2003/03swap/rdfs-subPropertyOf> <file:///home/hans/Documents/change/rules_NIE/owl-cardinality/cardinality.n3>) 1) e:findall (?_19528 {<http://data.knora.org/0cb8286054d5> knora-base:hasStillImageFileValue ?_19528} ()).
+  () math:memberCount 0 .
+  0 math:equalTo 0} => false)
+
+reasoning 421 [msec cputime] 421 [msec walltime]
+2017-05-20T12:12:37.327Z in=6576 out=0 ent=11257 step=59344 brake=4 inf=9395042 sec=0.986 inf/sec=9528440
