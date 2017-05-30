@@ -9,7 +9,7 @@ http://eulersharp.sourceforge.net/2003/03swap/rdfs-subPropertyOf # N3 rules expr
 --query .../owl-cardinality/cardinalityQuery.n3 # The cardinality N3 rules have a boolean as conclusion, thus no need for a query or pass, but added here as example
 |cwm > .../owl-cardinality/cardinalityResult.n3  
   
-[1] [Knora Base Ontology](https://github.com/dhlab-basel/Knora/blob/develop/knora-ontologies/knora-base.ttl)  
-[2] [Images Ontology](https://github.com/dhlab-basel/Knora/blob/develop/webapi/_test_data/ontologies/images-onto.ttl)  
-[3] [rdfs-subClassOf](http://eulersharp.sourceforge.net/2003/03swap/rdfs-subClassOf)  
-[4] [rdfs-subPropertyOf](http://eulersharp.sourceforge.net/2003/03swap/rdfs-subPropertyOf)
+# [1] https://github.com/dhlab-basel/Knora/blob/develop/knora-ontologies/knora-base.ttl  
+# [2] https://github.com/dhlab-basel/Knora/blob/develop/webapi/_test_data/ontologies/images-onto.ttl  
+# [3] http://eulersharp.sourceforge.net/2003/03swap/rdfs-subClassOf  
+# [4] http://eulersharp.sourceforge.net/2003/03swap/rdfs-subPropertyOf
