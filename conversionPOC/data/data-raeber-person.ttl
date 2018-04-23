@@ -1,0 +1,30 @@
+@prefix ns0: <http://www.knora.org/ontology/human#> .
+@prefix ns1: <http://www.knora.org/ontology/knora-base#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g>
+  ns0:hasBirthDate <http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g/values/BX9mtrlpR7KVFtIWZpzgGg> ;
+  ns0:hasDeathDate <http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g/values/Nm5LZydIRO25LzX0551u8Q> ;
+  ns0:hasFamilyName <http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g/values/LQqOWLLUQhO_WApRoSrGzw> ;
+  ns0:hasGivenName <http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g/values/jVvlUUN4RWWHQoLRX5hfUw> ;
+  ns1:hasPermissions "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser"^^xsd:string .
+
+<http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g/values/BX9mtrlpR7KVFtIWZpzgGg>
+  ns1:hasPermissions "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser"^^xsd:string ;
+  ns1:valueHasString "1922-01-01 CE - 1922-12-31 CE"^^xsd:string ;
+  a ns1:DateValue .
+
+<http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g/values/LQqOWLLUQhO_WApRoSrGzw>
+  ns1:hasPermissions "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser"^^xsd:string ;
+  ns1:valueHasString "Raeber"^^xsd:string ;
+  a ns1:TextValue .
+
+<http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g/values/Nm5LZydIRO25LzX0551u8Q>
+  ns1:hasPermissions "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser"^^xsd:string ;
+  ns1:valueHasString "1992-01-01 CE - 1992-12-31 CE"^^xsd:string ;
+  a ns1:DateValue .
+
+<http://rdfh.ch/human/5a5DRKXdTPSAsIVXu-fP3g/values/jVvlUUN4RWWHQoLRX5hfUw>
+  ns1:hasPermissions "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser"^^xsd:string ;
+  ns1:valueHasString "Kuno"^^xsd:string ;
+  a ns1:TextValue .
