@@ -1,2 +1,0 @@
-#!/bin/bash
-./eye.sh --nope --traditional /home/hans/NIE_conversion_POC/data/data-raeber-person.ttl /home/hans/NIE_conversion_POC/rules/NIE_conversion-rule_person.n3 --query /home/hans/NIE_conversion_POC/N3-query/N3-query_person.n3 |cwm > /home/hans/NIE_conversion_POC/conversionResult.ttl
