@@ -1,0 +1,75 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix unicore: <http://purl.uniprot.org/core/>.
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix event: <http://www.knora.org/ontology/event#>.
+@prefix physical: <http://www.knora.org/ontology/physical-resource#>.
+@prefix agent: <http://www.knora.org/ontology/agent#>.
+@prefix text: <http://www.knora.org/ontology/text#>.
+@prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
+@prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
+@prefix human: <http://www.knora.org/ontology/human#>.
+
+
+#
+# Conversion from Knora semantics to the rest of the world semantics
+#
+
+{?person
+#	a human:Person;
+	human:hasFamilyName ?familyNameValue;
+	human:hasGivenName ?givenNameValue;
+#	human:hasBirthDate
+#	human:hasDeathDate
+	knora-base:hasPermissions ?personPermissions.
+
+?familyNameValue
+	a knora-base:TextValue;
+	knora-base:valueHasString ?familyName;
+	knora-base:hasPermissions ?familyNamePermissions.
+
+?givenNameValue
+	a knora-base:TextValue;
+	knora-base:valueHasString ?givenName;
+	knora-base:hasPermissions ?givenNamePermissions.
+
+# 	?birthDate to be converted to ""^^xsd:date: "1922-01-01 CE - 1922-12-31 CE"^^xsd:string
+#	?deathDate to be converted to ""^^xsd:date
+	}
+
+=>
+
+{?person
+	human:hasFamilyName ?familyName;
+	human:hasGivenName ?givenName.
+
+?familyName a xsd:string.
+
+?givenName a xsd:string}.
+
+
+#
+# OR with blank nodes, ignoring permissions
+#
+
+#{?person
+# 	human:hasFamilyName [knora-base:valueHasString ?familyName];
+#	human:hasGivenName [knora-base:valueHasString ?givenName]
+#	human:hasBirthDate [knora-base:valueHasString ?birthDate];
+#	human:hasDeathDate [knora-base:valueHasString ?deathDate].
+ 	
+# 	?birthDate -> ""^^xsd:date
+#	?deathDate -> ""^^xsd:date}
+
+#=>
+
+#{?person
+#	foaf:familyName ?familyName;
+#	foaf:givenName ?givenName;
+#	foaf:hasBirthDate ?birthDate;
+#	foaf:hasDaethDate ?deathDate}
