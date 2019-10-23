@@ -1,0 +1,16 @@
+Number of triples:
+
+dataset: 63 triples
+
+inferred:
+NNI: 9
+literal: 4
+person: 20
+role: 4
+strophe: 140
+verse: 390
+verse poem: 120
+verse section: 54
+sum: 741 = x30
+
+Note: without external ontologies and knora, and own rules

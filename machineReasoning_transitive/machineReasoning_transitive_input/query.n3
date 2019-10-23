@@ -1,0 +1,42 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix concept: <http://www.nie.org/ontology/concept#>.
+@prefix prosodic-structure: <http://www.nie.org/ontology/prosodic-structure#>.
+@prefix litera: <http://www.nie.org/ontology/literature#>.
+
+@prefix dataTransitive: <http://www.nie.org/data/transitive#>.
+
+@prefix queryTransitive: <http://www.nie.org/query/transitive#>.
+
+{
+	?SCOPE e:findall (?ClassA {?ClassA rdfs:isDefinedBy litera:} ?ClassList1).
+	?SCOPE e:findall (?ClassB {?ClassB rdfs:isDefinedBy prosodic-structure:} ?ClassList2).
+	(?ClassList1 ?ClassList2) list:append ?ClassList.
+	?ClassList list:member ?ClassInList1, ?ClassInList2.
+#	?isPartOf rdfs:subPropertyOf concept:isPartOf.
+#	?poemPart
+#		a ?ClassInList1;
+#		concept:isPartOf ?biggerPart;
+#		?isPartOf ?biggerPart;
+#		?p ?o. # To show the deductive closure for SPARQL query possibilities.
+#	?biggerPart
+	?prosodicEntity
+		a ?ClassInList1; 
+		?p ?o. # To show the deductive closure for SPARQL query possibilities.
+#	?SCOPE e:optional {?biggerPart litera:hasPoet ?poet.}
+#	?biggerPart litera:hasPoet ?poet.
+}
+=>
+{
+#	?poemPart
+#		a ?ClassInList1;
+#		concept:isPartOf ?biggerPart;
+#		?p ?o.
+	?prosodicEntity
+		a ?ClassInList1;
+#		litera:hasPoet ?poet;
+		?p ?o.
+}.

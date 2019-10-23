@@ -17,6 +17,23 @@ Examples: rdfs:subClassOf, rdfs:SubPropertyOf, owl:TransitiveProperty, owl:oneOf
 ### Consistency checking:
 User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of certain property of a certain subject class instance.
 
+
+human:Human     a :Class;
+         <http://purl.uniprot.org/core/rank> <http://purl.uniprot.org/core/Subspecies>;
+         <http://purl.uniprot.org/core/scientificName> "Homo sapiens sapiens"@en;
+         :comment "Member of the subspecies Homo sapiens sapiens."@en;
+         :isDefinedBy human:;
+         :label "Mensch"@de,
+                "homme"@fr,
+                "human"@en,
+                "huomo"@it;
+         :subClassOf <http://purl.uniprot.org/taxonomy/9606>,
+                human:Agent,
+                 [
+             a owl:Restriction;
+             owl:maxCardinality "1"^^xsd:nonNegativeInteger;
+             owl:onProperty human:hasBiologicalSex ];
+
 ### Temporal reasoning:
 Time indicators are uniformly converted to intervals to calculate with. Sets of built-ins and plug-ins in the machine reasoner support several ontologies and the usage of xsd datatyped literals (e.g. xsd:dateTime, xsd:duration).
 
@@ -36,6 +53,6 @@ Download site: https://sourceforge.net/projects/eulersharp/files/eulersharp/
     		          # output as a pass OR an N3-query:  
     --pass		          # output deductive closure: all the stated and inferred triples except the rules 
     --pass-all		  # output deductive closure plus rules  
-    --query		          # output filtered with filter rules  
+    --query		          # output filtered with N3-query  
     >			  # output can be written to a file
     .../result.n3		  # result file

@@ -1,0 +1,70 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix agent: <http://eulersharp.sourceforge.net/2003/03swap/agent#>.
+@prefix org: <http://eulersharp.sourceforge.net/2003/03swap/organism#>.
+@prefix pet: <http://www.pet.net/pet#>.
+@prefix petin: <http://www.pet.net/petInstances#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+#
+# CLASSES
+#
+
+pet:DomesticCat
+#	a rdfs:Class;
+	rdfs:subClassOf org:Organism. # , [a owl:Restriction; owl:onProperty pet:likesForDinner; owl:someValuesFrom pet:Mouse].
+
+pet:Gull
+#	a rdfs:Class;
+	rdfs:subClassOf org:Organism.
+
+pet:Goldfish
+#	a rdfs:Class;
+	rdfs:subClassOf org:Organism.
+
+pet:Mouse
+#	a rdfs:Class;
+	rdfs:subClassOf org:Organism.
+
+pet:Pet
+#	a rdfs:Class;
+	rdfs:subClassOf agent:Role.
+
+pet:CatBall
+#	a rdfs:Class;
+	rdfs:subClassOf pet:Toy.
+
+pet:Toy owl:disjointWith org:Organism.
+
+#
+# PROPERTIES
+#
+
+pet:likesForDinner
+	a owl:ObjectProperty;
+	rdfs:domain org:Organism;
+	rdfs:range org:Organism.
+
+pet:keptSeparateFrom
+	a owl:ObjectProperty;
+  	rdfs:domain org:Organism;
+	rdfs:range org:Organism.
+
+pet:hasNumberOfLegs
+	a owl:ObjectProperty;
+  	rdfs:domain org:Organism;
+	rdfs:range xsd:nonNegativeInteger.
+
+
+
+
+
+
+
+#	, [
+#	    a owl:Restriction; owl:onProperty pet:likesForDinner; owl:someValuesFrom pet:Goldfish], [
+#	    a owl:Restriction; owl:onProperty pet:likesForDinner; owl:someValuesFrom pet:Mouse].
+
+#	, [
+#	    a owl:Restriction; owl:onProperty pet:likesForDinner; owl:someValuesFrom pet:Goldfish].

@@ -7,10 +7,11 @@
 @prefix dc: <http://www.knora.org/ontology/dc#> .
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#> .
 @prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#> .
-@prefix images: <http://www.knora.org/ontology/images#> .
+@prefix images: <http://www.knora.org/ontology/00FF/images#> .
 
 
 # TEST DATA SET
+
 
 <http://data.knora.org/0cb8286054d5> a images:bild ;
 	knora-base:isDeleted false ;
@@ -20,7 +21,7 @@
 	images:signatur <http://data.knora.org/0cb8286054d5/values/aab421c4eb0f04> ;
 	images:bildnr <http://data.knora.org/0cb8286054d5/values/6dde74fdeb0f04> ;
 	images:description <http://data.knora.org/0cb8286054d5/values/3caf141ced0f04> ;
-	images:jahreszeit <http://data.knora.org/0cb8286054d5/values/f3311b70ec0f04> ;
+	images:jahreszeit <http://data.knora.org/0cb8286054d5/values/f3311b70ec0f04> ;	#  Restriction on property of owl:minCardinality "1"^^xsd:nonNegativeInteger => INCONSISTENCY IF triple is commented
 	images:jahrzehnt <http://data.knora.org/0cb8286054d5/values/852c0ec8ed0f04> ;
 	images:jahr_exakt <http://data.knora.org/0cb8286054d5/values/48566101ee0f04> ;
 	images:bildformat <http://data.knora.org/47b2992554d5> ;
@@ -28,29 +29,26 @@
 	images:erfassungsdatum <http://data.knora.org/0cb8286054d5/values/3008c836ec0f04> ;
 	images:mutationsdatum <http://data.knora.org/0cb8286054d5/values/b65b6ea9ec0f04> ;
 	images:bearbeiter <http://data.knora.org/0cb8286054d5/values/0b80b43aee0f04> ;
-	images:urheber <http://data.knora.org/df1260ad43d5> ;
+	images:urheber <http://data.knora.org/df1260ad43d5> ;	#  Restriction on property of owl:maxCardinality "1"^^xsd:nonNegativeInteger => INCONSISTENCY IF there is more than 1 different value
 	images:urheberValue <http://data.knora.org/0cb8286054d5/values/e346ff38-6b03-4a27-a11b-b0818a2e5ee3> ;
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/0cb8286054d5/values/7d9e429c-4ef4-4708-bef1-e89c842f5f55> ;
 	rdfs:label "1 Alpinismus" ;
-#	knora-base:hasStillImageFileValue <http://data.knora.org/0cb8286054d5/reps/073ce085942f01> ;	# owl:minCardinality "1"^^xsd:nonNegativeInteger # INCONSISTENCY IF commented
+	knora-base:hasStillImageFileValue <http://data.knora.org/0cb8286054d5/reps/073ce085942f01> ;	#  Restriction on property of owl:cardinality "1"^^xsd:nonNegativeInteger => INCONSISTENCY IF triple is commented OR IF there are 2 different values
 	knora-base:creationDate "2016-03-02T15:05:57Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
 <http://data.knora.org/0cb8286054d5/reps/073ce085942f01> a knora-base:StillImageFileValue ;
 	knora-base:valueHasString "9SPO_8_1_013540.tif" ;
 	knora-base:originalFilename "9SPO_8_1_013540.tif" ;
-	knora-base:originalMimeType "image/tiff" ;		# owl:maxCardinality "1"^^xsd:nonNegativeInteger
-#	knora-base:originalMimeType "image/tifff" ;		# INCONSISTENCY when uncommented
-#	knora-base:originalMimeType "image/zifff" ;		# INCONSISTENCY # when more than one in one run (data set) only the first is given
+	knora-base:originalMimeType "image/tiff" ;
 	knora-base:internalFilename "images_0000238748.jpg" ;
 	knora-base:internalMimeType "image/jpeg" ;
 	knora-base:valueCreationDate "2015-05-19T22:39:12Z"^^xsd:dateTimeStamp ;
 	knora-base:isDeleted false ;
 	knora-base:attachedToUser <http://data.knora.org/users/c266a56709> ;
 	knora-base:dimX 200 ;
-	knora-base:dimY 273 ;		# owl:cardinality "1"^^xsd:nonNegativeInteger
-#	knora-base:dimY 274 ;		# INCONSISTENCY when uncommented
+	knora-base:dimY 273 ;
 	knora-base:qualityLevel 10 ;
 	knora-base:isPreview true ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
@@ -65,9 +63,8 @@
 	knora-base:isDeleted false ;
 	knora-base:attachedToUser <http://data.knora.org/users/c266a56709> ;
 	knora-base:dimX 4740 ;
-	knora-base:dimY 3273 ;																		# owl:cardinality "1"^^xsd:nonNegativeInteger
-#	knora-base:dimY 3272 ;																		# INCONSISTENCY
-	knora-base:dimY 3273 ;																		# doubling is no inconsistency but redundancy
+	knora-base:dimY 3273 ;	# Restriction on property of owl:cardinality "1"^^xsd:nonNegativeInteger
+	knora-base:dimY 3273 ;	# Doubling is no inconsistency but redundancy
 	knora-base:qualityLevel 100 ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -274,7 +271,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/20cf644a55d5/values/35e52652-459f-4d19-8913-4e57c5f9d805> ;
 	rdfs:label "5 Spazieren" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/20cf644a55d5/reps/03d32c6b952f01> , <http://data.knora.org/20cf644a55d5/reps/c2f87fa4952f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/20cf644a55d5/reps/03d32c6b952f01>;
 	knora-base:creationDate "2016-03-02T15:05:57Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -458,7 +455,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/34e6a03456d5/values/d48adffa-cfd8-4104-8ec3-a53b1482e98f> ;
 	rdfs:label "1 Ballon" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/34e6a03456d5/reps/ff697950962f01> , <http://data.knora.org/34e6a03456d5/reps/be8fcc89962f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/34e6a03456d5/reps/ff697950962f01>;
 	knora-base:creationDate "2016-03-02T15:05:56Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -734,7 +731,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/48fddc1e57d5/values/b8eafae2-78ca-4576-8d9c-6c5f915ac250> ;
 	rdfs:label "2 Delta" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/48fddc1e57d5/reps/fb00c635972f01> , <http://data.knora.org/48fddc1e57d5/reps/ba26196f972f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/48fddc1e57d5/reps/fb00c635972f01>;
 	knora-base:creationDate "2016-03-02T15:05:56Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -992,7 +989,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/691e7e2244d5/values/34990a93-26fd-4b78-a650-92523d48e442> ;
 	rdfs:label "6 Skikjöring" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/691e7e2244d5/reps/47cc1631862f01> , <http://data.knora.org/691e7e2244d5/reps/06f2696a862f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/691e7e2244d5/reps/47cc1631862f01>;
 	knora-base:creationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -1250,7 +1247,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/82ac0aeb53d5/values/70f35e46-6835-404c-9a64-be1829f10f64> ;
 	rdfs:label "3 Trecking mit Tieren" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/82ac0aeb53d5/reps/89f03913942f01> , <http://data.knora.org/82ac0aeb53d5/reps/48168d4c942f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/82ac0aeb53d5/reps/89f03913942f01>;
 	knora-base:creationDate "2016-03-02T15:05:57Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -1508,7 +1505,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/96c346d554d5/values/88b8df0c-52d8-4e7c-a939-4d40b4e10ec9> ;
 	rdfs:label "1 Alpinismus" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/96c346d554d5/reps/858786f8942f01> , <http://data.knora.org/96c346d554d5/reps/44add931952f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/96c346d554d5/reps/858786f8942f01>;
 	knora-base:creationDate "2016-03-02T15:05:57Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -1766,7 +1763,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/aada82bf55d5/values/92a8e7d3-2e8f-4442-8b0b-1a5f044989e1> ;
 	rdfs:label "1 Ballon" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/aada82bf55d5/reps/811ed3dd952f01> , <http://data.knora.org/aada82bf55d5/reps/40442617962f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/aada82bf55d5/reps/811ed3dd952f01>;
 	knora-base:creationDate "2016-03-02T15:05:56Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -2000,7 +1997,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/bef1bea956d5/values/2af7867e-9466-433e-8902-8231f23df5f4> ;
 	rdfs:label "2 Delta" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/bef1bea956d5/reps/7db51fc3962f01> , <http://data.knora.org/bef1bea956d5/reps/3cdb72fc962f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/bef1bea956d5/reps/7db51fc3962f01>;
 	knora-base:creationDate "2016-03-02T15:05:56Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
@@ -2258,7 +2255,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/d208fb9357d5/values/0b57e340-6a0d-47a6-bd74-a0f57aafd0ac> ;
 	rdfs:label "3 Flugzeuge" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/d208fb9357d5/reps/794c6ca8972f01> , <http://data.knora.org/d208fb9357d5/reps/3872bfe1972f01> ;
+	knora-base:hasStillImageFileValue <http://data.knora.org/d208fb9357d5/reps/794c6ca8972f01>;
 	knora-base:creationDate "2016-03-02T15:05:56Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 

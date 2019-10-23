@@ -1,0 +1,76 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. # created by Tim Berners-Lee
+@prefix math: <http://www.w3.org/2000/10/swap/math#>. # created by Tim Berners-Lee
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix event: <http://www.nie.org/ontology/event#>.
+@prefix time: <http://www.nie.org/ontology/time#>.
+@prefix human: <http://www.nie.org/ontology/human#>.
+
+# Rule to calculate a 'latest death date' for a person, hence a 'latest end date' of the life of a person, hence a certainty interval for the life, based on the birthdate and a set maximum duration of a person's life, in absence of the death date:
+{
+	?person
+		# Get data:
+		human:hasLife ?personLife; 
+		human:hasBirthdate ?birthdate;
+		# Combination of a property chain axiom declared in the human-ontology for :hasMaxLifeSpan and an invoked backward rule to get the maximum lifespan:
+		human:hasMaxLifeSpan ?maxLifeSpan. # See also propertyChainAxiom-rule, and maxLifeDuration-rule.
+	# Check the absence of the death date:
+	?SCOPE e:findall (?deathDate {?person human:hasDeathDate ?deathDate} ()). # Search returns an empty list for death date.
+	# Add the maximum life span to the birthdate:
+	(?birthdate ?maxLifeSpan) math:sum ?latestDeathDateSeconds. # Reasoning produces time in seconds.
+	# Convert seconds to a date time:
+	(?lexical xsd:dateTime) log:dtlit ?latestDeathDateSeconds, ?latestDeathDate
+}
+=>
+{
+	?person
+		human:hasLatestDeathDate ?latestDeathDate;
+		human:hasLife ?personLife.
+	?personLife
+		time:hasStartDateTime ?birthdate;
+		time:hasLatestEndDateTime ?latestDeathDate
+}.
+
+# Rule to calculate an 'earliest birth date' for a person, hence an 'earliest start date' of the life of a person, hence a certainty interval for the life, based on the death date and a set maximum duration of a person's life, in absence of the birthdate:
+{
+	?person
+		human:hasLife ?personLife;
+		human:hasDeathDate ?deathDate;
+		# Combination of a property chain axiom declared in the human-ontology for :hasMaxLifeSpan and an invoked backward rule to get the maximum life span:
+		human:hasMaxLifeSpan ?maxLifeSpan.
+	# Check the absence of the birthdate:
+	?SCOPE e:findall (?birthdate {?person human:hasBirthdate ?birthdate} ()). # Search returns an empty list for death date.
+	# Subtract the maximum life span from the death date:
+	(?deathDate ?maxLifeSpan) math:difference ?earliestBirthdateSeconds.
+	# Convert seconds to a date time:
+	(?lexical xsd:dateTime) log:dtlit ?earliestBirthdateSeconds, ?earliestBirthdate
+}
+=>
+{
+	?person
+		human:hasEarliestBirthdate ?earliestBirthdate;
+		human:hasLife ?personLife.
+	?personLife
+		time:hasEarliestStartDateTime ?earliestBirthdate;
+		time:hasEndDateTime ?deathDate
+}.
+
+# To do: generalize to event
+# Rule to calculate certainty interval for an event if start or end is missing, based on a set time difference between start and end:
+# {
+#	?event time:hasStartDateTime ?startDateTime.
+		# Check absence of end date:
+#		?SCOPE e:findall (?endDateTime {?event time:hasEndDateTime ?endDateTime} ()). # Search returns an empty list for end date time.
+		# Add maximum event duration to start date time:
+#		(?startDateTime ?maxEventDuration) math:sum ?hasLatestEndDateTimeSeconds.
+#		(?lexical xsd:dateTime) log:dtlit ?hasLatestEndDateTimeSeconds, ?hasLatestEndDateTime
+# }
+# =>
+# {
+#	?event
+#		time:hasStartDateTime ?startDateTime;
+#		time:hasLatestEndDateTime ?hasLatestEndDateTime
+# }.

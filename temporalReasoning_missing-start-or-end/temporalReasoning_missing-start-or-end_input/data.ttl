@@ -1,0 +1,42 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. # Created by Tim Berners-Lee
+@prefix math: <http://www.w3.org/2000/10/swap/math#>. # Created by Tim Berners-Lee
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix event: <http://www.nie.org/ontology/event#>.
+@prefix time: <http://www.nie.org/ontology/time#>.
+@prefix human: <http://www.nie.org/ontology/human#>.
+@prefix data1: <data1#>. # Mock-up RDF data
+
+
+# Note: calender conversions (e.g. in 1582 Julian calender changed to Gregorian) to be implemented.
+
+
+# This case will generate a latest death date, hence a latest end date of the life certainty interval.
+data1:person1
+#	a human:Person; # This can be derived from the domain of a property with the domain-rule.
+	human:hasBirthdate "1686-09-08T00:00:00+01:00"^^xsd:dateTime; # To be done: reification of a birth time.
+	human:hasLife data1:personLife1.
+
+# :personLife1 a human:PersonLife. # This can be derived from the range of the human:hasLife property with the range-rule.
+
+data1:person2
+	human:hasBirthdate "1988-09-08T00:00:00+01:00"^^xsd:dateTime;
+	human:hasLife data1:personLife2.
+
+# This case will generate an earliest birthdate, hence an earliest start date of the life certainty interval.
+data1:person3
+	human:hasDeathDate "1732-09-08T00:00:00+01:00"^^xsd:dateTime; # To be done: reification of a death time.
+	human:hasLife data1:personLife3.
+
+data1:person4
+	human:hasDeathDate "1599-09-08T00:00:00+01:00"^^xsd:dateTime;
+	human:hasLife data1:personLife4.
+
+# This case will not generate a certainty interval.
+data1:person5
+	human:hasBirthdate "1644-09-08T00:00:00+01:00"^^xsd:dateTime;
+	human:hasDeathDate "1701-09-08T00:00:00+01:00"^^xsd:dateTime;
+	human:hasLife data1:personLife5.

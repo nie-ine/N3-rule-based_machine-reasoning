@@ -1,0 +1,70 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+	
+#	@prefix cardinality: <http:///cardinality>.
+
+<http:///cardinality>
+	dct:issued "2017-05-18"^^xsd:date;
+	dct:title """OWL cardinality rules"""@en;
+	dct:creator """Hans Cools"""@en;
+	dct:publisher """NIE-INE"""@en;
+	dct:description """Rules to check on the OWL cardinality model theory."""@en;
+	rdfs:seeAlso <http://www.w3.org/TR/owl-semantics/rdfs.html#owl_cardinality_rdf>.
+
+
+# Note: 'a' is syntactic sugar for rdf:type (built-in in EYE)
+
+
+# CHECK owl:cardinality 1:
+	# IF A SUBJECT-PREDICATE DOES NOT HAVE EXACTLY 1 OBJECT THE TRIPLES ARE STATED TO BE FALSE
+	# IF A SUBJECT-PREDICATE DOES HAVE EXACTLY 1 OBJECT THE TRIPLE HOLDS
+
+{
+	# Detect an instance of a class with a property restricted to have exactly 1 occurence, IOW an instance can have only one value for this property.
+	?s a [owl:onProperty ?p; owl:cardinality "1"^^xsd:nonNegativeInteger].
+	# detect if there are more than one object for the same subject-predicate
+	?s ?p ?o1, ?o2.
+	# if so the objects have to be the same (owl:sameAs), if not the conclusion is that the cardinality restriction is not fulfilled, i.e. false
+	?o1 log:notEqualTo ?o2}
+	
+=> false. # '=>' is syntactic sugar for log:implies representing a logical implicator as the relation between the antecedent (subject) and conclusion (object) of a rule
+
+
+{
+	# detect an instance of a class with a property restriction of exactly 1
+	?s a [owl:onProperty ?p; owl:cardinality "1"^^xsd:nonNegativeInteger].
+	# find all triples with a certain subject-predicate with the restriction and return a list with the respective objects
+	?SCOPE e:findall (?o {?s ?p ?o} ?list).
+	# count the number of objects
+	?list math:memberCount ?memberCount.
+	# if there is no object, the conclusion is that the cardinality restriction is not fulfilled, i.e. false
+	?memberCount math:equalTo 0.}
+
+=> false.
+
+
+## CHECK owl:maxCardinality 1:
+
+{
+	?s a [owl:onProperty ?p; owl:maxCardinality "1"^^xsd:nonNegativeInteger].
+	?s ?p ?o1, ?o2.
+	?o1 log:notEqualTo ?o2.}
+	
+=> false.
+
+
+## CHECK owl:minCardinality 1:
+
+{
+	?s a [owl:onProperty ?p; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+	?SCOPE e:findall (?o {?s ?p ?o} ?list). # or empty list
+	?list math:memberCount ?memberCount.
+	?memberCount math:equalTo 0.}
+
+=> false.

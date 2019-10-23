@@ -1,0 +1,39 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix agent: <http://eulersharp.sourceforge.net/2003/03swap/agent#>.
+@prefix pet: <http://www.pet.net/pet#>.
+@prefix petin: <http://www.pet.net/petInstances#>.
+
+
+petin:myCat
+	a pet:DomesticCat;
+	agent:playsRole petin:myPet1;
+	foaf:name "Fidel";
+	pet:hasNumberOfLegs "004"^^xsd:nonNegativeInteger.
+
+petin:myPet1 a pet:Pet.
+
+petin:myGoldfish
+	a pet:Goldfish;
+	agent:playsRole petin:myPet2;
+	foaf:name "Oscar".
+	
+petin:myPet2 a pet:Pet.
+
+petin:myMouse
+	a pet:Mouse;
+	agent:playsRole petin:myPet3;
+	foaf:name "Leo".
+	
+petin:myPet3 a pet:Pet.
+
+petin:myGull
+	a pet:Gull;
+	agent:playsRole petin:myPet4;
+	foaf:name "Peter".
+
+petin:myPet4 a pet:Pet.
+
+petin:myCatBall
+	a pet:CatBall. #;
+#	pet:likesForDinner petin:myMouse.

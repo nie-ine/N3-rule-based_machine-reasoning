@@ -1,0 +1,55 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. # created by Tim Berners-Lee
+@prefix math: <http://www.w3.org/2000/10/swap/math#>. # created by Tim Berners-Lee
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix event: <http://www.nie.org/ontology/event#>.
+@prefix time: <http://www.nie.org/ontology/time#>.
+@prefix human: <http://www.nie.org/ontology/human#>.
+@prefix : <#>.
+
+
+# N3-query for passing a filtered part of the deductive closure or reasoning result:
+
+{
+	?person
+		human:hasBirthdate ?birthdate; # An N3-query can take any triple from the store.
+		human:hasLatestDeathDate ?latestDeathDate;
+		human:hasLife ?personLife.
+	?personLife
+		time:hasStartDateTime ?birthdate;
+		time:hasLatestEndDateTime ?latestDeathDate
+}
+=>
+{
+	?person
+		human:hasBirthdate ?birthdate;
+		human:hasLatestDeathDate ?latestDeathDate;
+		human:hasLife ?personLife.
+	?personLife
+		time:hasStartDateTime ?birthdate;
+		time:hasLatestEndDateTime ?latestDeathDate
+}.
+
+
+{
+	?person
+		human:hasEarliestBirthdate ?earliestBirthdate;
+		human:hasDeathDate ?deathDate;
+		human:hasLife ?personLife.
+	?personLife
+		time:hasEarliestStartDateTime ?earliestBirthdate;
+		time:hasEndDateTime ?deathDate
+}
+=>
+{
+	?person
+		human:hasEarliestBirthdate ?earliestBirthdate;
+		human:hasDeathDate ?deathDate;
+		human:hasLife ?personLife.
+	?personLife
+		time:hasEarliestStartDateTime ?earliestBirthdate;
+		time:hasEndDateTime ?deathDate
+}.

@@ -1,0 +1,31 @@
+# Execution date Do Okt 24 01:07:21 CEST 2019
+#Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
+        #    using base file:///home/changeme/programs/eye/
+        
+#  Notation3 generation by
+#       notation3.py,v 1.200 2007/12/11 21:18:08 syosi Exp
+
+#   Base was: file:///home/changeme/programs/eye/
+     @prefix : <http://www.knora.org/ontology/knora-base#> .
+    
+    <http://rdfh.ch/00FF/0cb8286054d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/20cf644a55d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/34e6a03456d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/48fddc1e57d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/691e7e2244d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/82ac0aeb53d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/96c346d554d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/aada82bf55d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/bef1bea956d5>     a :StillImageRepresentation .
+    
+    <http://rdfh.ch/00FF/d208fb9357d5>     a :StillImageRepresentation .
+    
+#ENDS
