@@ -23,11 +23,13 @@
 #		?isPartOf ?biggerPart;
 #		?p ?o. # To show the deductive closure for SPARQL query possibilities.
 #	?biggerPart
-	?prosodicEntity
+#		a ?ClassInList2;
+#		?p ?o. # To show the deductive closure for SPARQL query possibilities.
+#		litera:hasPoet ?poet.
+#	?SCOPE e:optional {?biggerPart litera:hasPoet ?poet.}
+	?prosodicEntity # Generalizes ?poemPart and  ?biggerPart.
 		a ?ClassInList1; 
 		?p ?o. # To show the deductive closure for SPARQL query possibilities.
-#	?SCOPE e:optional {?biggerPart litera:hasPoet ?poet.}
-#	?biggerPart litera:hasPoet ?poet.
 }
 =>
 {
