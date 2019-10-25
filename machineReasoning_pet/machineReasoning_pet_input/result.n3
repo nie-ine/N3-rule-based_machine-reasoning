@@ -1,4 +1,4 @@
-# Execution date Mo Okt 21 23:39:38 CEST 2019
+# Execution date Fr Okt 25 23:14:52 CEST 2019
 #Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
         #    using base file:///home/changeme/programs/eye/
         
@@ -6,46 +6,5 @@
 #       notation3.py,v 1.200 2007/12/11 21:18:08 syosi Exp
 
 #   Base was: file:///home/changeme/programs/eye/
-     @prefix : <http://www.pet.net/petInstances#> .
-    @prefix agent: <http://eulersharp.sourceforge.net/2003/03swap/agent#> .
-    @prefix org: <http://eulersharp.sourceforge.net/2003/03swap/organism#> .
-    @prefix pet: <http://www.pet.net/pet#> .
-    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-    
-    pet:DomesticCat     rdfs:subClassOf org:Organism .
-    
-    pet:Goldfish     rdfs:subClassOf org:Organism .
-    
-    pet:Gull     rdfs:subClassOf org:Organism .
-    
-    pet:Mouse     rdfs:subClassOf org:Organism .
-    
-    :myCat     a pet:DomesticCat;
-         agent:playsRole :myPet1;
-         pet:keptSeparateFrom :myGoldfish,
-                :myMouse;
-         <http://xmlns.com/foaf/0.1/name> "Fidel" .
-    
-    :myGoldfish     a pet:Goldfish;
-         agent:playsRole :myPet2;
-         <http://xmlns.com/foaf/0.1/name> "Oscar" .
-    
-    :myGull     a pet:Gull;
-         agent:playsRole :myPet4;
-         pet:keptSeparateFrom :myGoldfish,
-                :myMouse;
-         <http://xmlns.com/foaf/0.1/name> "Peter" .
-    
-    :myMouse     a pet:Mouse;
-         agent:playsRole :myPet3;
-         <http://xmlns.com/foaf/0.1/name> "Leo" .
-    
-    :myPet1     a pet:Pet .
-    
-    :myPet2     a pet:Pet .
-    
-    :myPet3     a pet:Pet .
-    
-    :myPet4     a pet:Pet .
     
 #ENDS

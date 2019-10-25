@@ -12,52 +12,5 @@
 
 {	?animal1 a pet:Gull. ?animal2 a pet:Mouse} => {?animal1 pet:likesForDinner ?animal2}.
 
-# {	?animal1 pet:likesForDinner ?animal2. ?animal2 a pet:Goldfish} => {?animal1 a pet:DomesticCat}.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#{	?pet1 a pet:DomesticCat. ?pet2 a [owl:disjointUnionOf (pet:Goldfish pet:Mouse)]} => {?pet1 pet:likesForDinner ?pet2}.
+# {	?pet1 a pet:DomesticCat. ?pet2 a [owl:disjointUnionOf (pet:Goldfish pet:Mouse)]} => {?pet1 pet:likesForDinner ?pet2}.
