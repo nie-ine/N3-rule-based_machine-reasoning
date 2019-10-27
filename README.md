@@ -12,12 +12,17 @@ N3-rules serve different purposes.
 
 ### Implementation of the RDF model theory:
 A first one is the [implementation of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo). This set of N3-rules permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
-Examples: <rdfs:subClassOf, rdfs:SubPropertyOf, owl:TransitiveProperty, owl:oneOf, owl:unionOf, owl:disjointUnionOf, owl:propertyChainAxiom>
+Examples are: <rdfs:subClassOf, rdfs:SubPropertyOf, owl:TransitiveProperty, owl:oneOf, owl:unionOf, owl:disjointUnionOf, owl:propertyChainAxiom>
 
 ### Consistency checking:
 User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows the 'human' class declaration with a cardinality restriction of 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual.
 
-	<human:Human rdfs:subClassOf [a owl:Restriction; owl:onProperty human:hasBiologicalSex; owl:maxCardinality "1"^^xsd:nonNegativeInteger].>
+	human:Human rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty human:hasBiologicalSex;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger].
+
+
 
 ### Temporal reasoning:
 Time indicators are uniformly converted to intervals to calculate with. Sets of built-ins and plug-ins in the machine reasoner support several ontologies and the usage of xsd datatyped literals (e.g. xsd:dateTime, xsd:duration).
