@@ -17,7 +17,7 @@
 	?person
 		human:hasBirthdate ?birthdate; # An N3-query can take any triple from the store.
 		human:hasLatestDeathDate ?latestDeathDate;
-		human:hasLife ?personLife.
+		human:hasLife ?personLife. # An N3-query can take any triple from the store.
 	?personLife
 		time:hasStartDateTime ?birthdate;
 		time:hasLatestEndDateTime ?latestDeathDate

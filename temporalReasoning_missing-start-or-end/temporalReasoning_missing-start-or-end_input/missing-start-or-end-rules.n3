@@ -15,8 +15,8 @@
 		# Get data:
 		human:hasLife ?personLife; 
 		human:hasBirthdate ?birthdate;
-		# Combination of a property chain axiom declared in the human-ontology for :hasMaxLifeSpan and an invoked backward rule to get the maximum lifespan:
-		human:hasMaxLifeSpan ?maxLifeSpan. # See also propertyChainAxiom-rule, and maxLifeDuration-rule.
+		# Combination of a property chain axiom declared in the human-ontology for :hasMaxLifeSpan and an invoked backward rule to get the maximum duration of a person life:
+		human:hasMaxLifeSpan ?maxLifeSpan. # See owl-propertyChainAxiom.n3-rule, and maxLifeDuration-rule.
 	# Check the absence of the death date:
 	?SCOPE e:findall (?deathDate {?person human:hasDeathDate ?deathDate} ()). # Search returns an empty list for death date.
 	# Add the maximum life span to the birthdate:
@@ -26,9 +26,7 @@
 }
 =>
 {
-	?person
-		human:hasLatestDeathDate ?latestDeathDate;
-		human:hasLife ?personLife.
+	?person human:hasLatestDeathDate ?latestDeathDate.
 	?personLife
 		time:hasStartDateTime ?birthdate;
 		time:hasLatestEndDateTime ?latestDeathDate
@@ -50,9 +48,7 @@
 }
 =>
 {
-	?person
-		human:hasEarliestBirthdate ?earliestBirthdate;
-		human:hasLife ?personLife.
+	?person human:hasEarliestBirthdate ?earliestBirthdate.
 	?personLife
 		time:hasEarliestStartDateTime ?earliestBirthdate;
 		time:hasEndDateTime ?deathDate

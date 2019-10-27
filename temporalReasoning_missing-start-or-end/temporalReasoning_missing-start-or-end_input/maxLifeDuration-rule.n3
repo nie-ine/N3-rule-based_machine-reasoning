@@ -3,8 +3,8 @@
 @prefix human: <http://www.nie.org/ontology/human#>.
 
 # Rule setting an arbitrary though realistic maximum of a person's life duration.
-# https://en.wikipedia.org/wiki/Maximum_life_span
-# Backward rule, triggered when premise is fulfilled, or from within any other rule needing this knowledge.
+# To have an idea: https://en.wikipedia.org/wiki/Maximum_life_span
+# Backward rule, triggered with the predicate of the conclusion (upper formula), from within any other rule needing this knowledge, and completed when the premise is fulfilled.
 
 {
 	?personLife time:hasMaxDuration "P125Y"^^xsd:duration. # If another value is wanted, it only has to be changed here.
@@ -13,3 +13,14 @@
 {
 	?person human:hasLife ?personLife.
 }.
+
+
+# OR a shortcut, but then without knowledge about the life as an event:
+
+# {
+#	?person human:hasMaxLifeSpan "P125Y"^^xsd:duration. # If another value is wanted, it only has to be changed here.
+# }
+# <= # backward rule
+# {
+#	?person a human:Person.
+# }.

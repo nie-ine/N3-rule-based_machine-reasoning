@@ -11,34 +11,50 @@
 
 @prefix queryTransitive: <http://www.nie.org/query/transitive#>.
 
+# Note: using different combinations of the triples in the premise permits filtering for different parts of the deductive closure, needed for GUI-representation. The current query filters a maximum inference for prosodic entities, i.e. verse, strophe, verse section, and poem.
+
 {
+	# Make a list of all classes found to be defined in the literature-ontology, to reduce :
 	?SCOPE e:findall (?ClassA {?ClassA rdfs:isDefinedBy litera:} ?ClassList1).
+	# Make a list of all classes found to be defined in the prosodic-structure-ontology:
 	?SCOPE e:findall (?ClassB {?ClassB rdfs:isDefinedBy prosodic-structure:} ?ClassList2).
+	# Merge the 2 lists:
 	(?ClassList1 ?ClassList2) list:append ?ClassList.
+	# Check whether certain classes are in the list, up-front differentiating in*:
 	?ClassList list:member ?ClassInList1, ?ClassInList2.
+	# Select all subproperties of the 'is part of' property declared in the concept-ontology:
 #	?isPartOf rdfs:subPropertyOf concept:isPartOf.
-#	?poemPart
+#	?poemPart # *prosodic part
 #		a ?ClassInList1;
-#		concept:isPartOf ?biggerPart;
-#		?isPartOf ?biggerPart;
-#		?p ?o. # To show the deductive closure for SPARQL query possibilities.
+##		concept:isPartOf ?biggerPart. # *bigger prosodic or more general part
+		# OR
+##		?isPartOf ?biggerPart. # Showing the subproperties.
+		# OR
+##		?p1 ?o1. # To infer the maximum inference for prosodic entities.
 #	?biggerPart
 #		a ?ClassInList2;
-#		?p ?o. # To show the deductive closure for SPARQL query possibilities.
-#		litera:hasPoet ?poet.
-#	?SCOPE e:optional {?biggerPart litera:hasPoet ?poet.}
+##		?p2 ?o2. # To infer the maximum inference for prosodic entities.
+		# OR
+##		litera:hasPoet ?poet. # Infers as bigger prosodic part only a poem.
+		# OR
+##	?SCOPE e:optional {?biggerPart litera:hasPoet ?poet.} # Allows to infer also another bigger prosodic part than poem.
 	?prosodicEntity # Generalizes ?poemPart and  ?biggerPart.
-		a ?ClassInList1; 
+		a ?ClassInList1; # Using 1 instead of 2 variables and outcommenting the 'isPartOf' triples, lifts the differentiation.
 		?p ?o. # To show the deductive closure for SPARQL query possibilities.
 }
 =>
 {
 #	?poemPart
 #		a ?ClassInList1;
-#		concept:isPartOf ?biggerPart;
-#		?p ?o.
+##		concept:isPartOf ?biggerPart.
+		# OR
+##		?p1 ?o1.
+#	?biggerPart
+#		a ?ClassInList2;
+#		litera:hasPoet ?poet.
+		# OR
+##		?p2 ?o2.
 	?prosodicEntity
 		a ?ClassInList1;
-#		litera:hasPoet ?poet;
 		?p ?o.
 }.

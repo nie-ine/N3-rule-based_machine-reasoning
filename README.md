@@ -1,4 +1,4 @@
-# N3-rules for machine reasoning
+# N3-rules based machine reasoning
 In the [NIE-INE](http://www.nie-ine.ch)-project we develop an infrastructure to enable scholarly edition projects in the Humanities to express their data in an enriched format, adhering to the FAIR-principles, and ensuring long-term storage of the data.  
 The project runs at the Swiss Universities of Basel, Bern, Zürich, and Geneva until end of 2020.
 
@@ -12,25 +12,32 @@ N3-rules serve different purposes.
 
 ### Implementation of the RDF model theory:
 A first one is the [implementation of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo). This set of N3-rules permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
-Examples are: <rdfs:subClassOf, rdfs:SubPropertyOf, owl:TransitiveProperty, owl:oneOf, owl:unionOf, owl:disjointUnionOf, owl:propertyChainAxiom>
+Examples are:
+	rdfs:subClassOf, rdfs:subPropertyOf, owl:TransitiveProperty, owl:disjointWith, owl:oneOf, owl:unionOf, owl:disjointUnionOf, owl:propertyChainAxiom
+
+A complete reasoning example on transitivity for the 'is part of'property for text and text structures as prosodic entities is given in the repository, also involving a series of other RDFS- and OWL-rules. The data and query files are commented.
 
 ### Consistency checking:
-User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows the 'human' class declaration with a cardinality restriction of 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual.
+User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows the 'human' class declaration in Turtle with a cardinality restriction of maximum 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual (see [human-ontology](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/human-ontology.ttl)). 
 
 	human:Human rdfs:subClassOf [
 		a owl:Restriction;
 		owl:onProperty human:hasBiologicalSex;
 		owl:maxCardinality "1"^^xsd:nonNegativeInteger].
+##### Figure 1: Class declaration with a cardinality restriction of maximum 1
 
-
+A complete reasoning example on cardinality is given in the repository, using 2 external ontologies and an RDF data set on images of the [Knora server application](https://www.knora.org/), developed by the [DHLab (DHL)](https://dhlab.philhist.unibas.ch/en/home/) at the University of Basel and the [Data and Service Center for humanities (DaSCH)](https://dasch.swiss/).
 
 ### Temporal reasoning:
-Time indicators are uniformly converted to intervals to calculate with. Sets of built-ins and plug-ins in the machine reasoner support several ontologies and the usage of xsd datatyped literals (e.g. xsd:dateTime, xsd:duration).
+Generally, time indicators are uniformly converted to intervals to calculate with. Sets of built-ins in the machine reasoner support several ontologies for N3-rule declaration, and the usage of xsd datatyped literals (e.g. xsd:dateTime, xsd:duration).
+
+A complete temporal reasoning example is given in the repository, considering an event without a start or end date, with specific example of missing birth- or death date.
 
 ## Machine Reasoning: e.g. the EYE reasoner:  
 Development: https://github.com/josd/eye  
-Older resource with extra information: http://eulersharp.sourceforge.net/  
 Download site: https://sourceforge.net/projects/eulersharp/files/eulersharp/  
+EYE comes with intrinsic functionality provided by [built-ins](https://github.com/josd/eye/blob/master/eye-builtins.n3). All other reasoning material has to be input: OWL-ontologies, RDF-data, N3-rules.
+ 
 ### Basic command example for EYE:
     eye			  # call the machine reasoner  
     			  # one or more options can be used, e.g.  

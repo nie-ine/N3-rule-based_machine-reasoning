@@ -14,28 +14,29 @@
 # Note: calender conversions (e.g. in 1582 Julian calender changed to Gregorian) to be implemented.
 
 
-# This case will generate a latest death date, hence a latest end date of the life certainty interval.
+# This case will generate a latest death date, hence a latest end date of the life certainty interval; see missing-start-or-end-rules.n3 file.
 data1:person1
-#	a human:Person; # This can be derived from the domain of a property with the domain-rule.
-	human:hasBirthdate "1686-09-08T00:00:00+01:00"^^xsd:dateTime; # To be done: reification of a birth time.
+#	a human:Person; # This can be inferred with the rdfs-domain.n3-rule from the declaration of a property with human:Person as domain, e.g. human:hasBirthdate.
+	human:hasBirthdate "1686-09-08T00:00:00+01:00"^^xsd:dateTime; # Note: to do: reification of a birth time.
 	human:hasLife data1:personLife1.
 
-# :personLife1 a human:PersonLife. # This can be derived from the range of the human:hasLife property with the range-rule.
+# Note:
+# :personLife1 a human:PersonLife. # Similarly this can be inferred with the rdfs-range.n3-rule from the declaration of a property with human:PersonLife as range, e.g. human:hasLife.
 
 data1:person2
 	human:hasBirthdate "1988-09-08T00:00:00+01:00"^^xsd:dateTime;
 	human:hasLife data1:personLife2.
 
-# This case will generate an earliest birthdate, hence an earliest start date of the life certainty interval.
+# This case will generate an earliest birthdate, hence an earliest start date of the life certainty interval; see missing-start-or-end-rules.n3 file.
 data1:person3
-	human:hasDeathDate "1732-09-08T00:00:00+01:00"^^xsd:dateTime; # To be done: reification of a death time.
+	human:hasDeathDate "1732-09-08T00:00:00+01:00"^^xsd:dateTime; # Note: to do: reification of a death time.
 	human:hasLife data1:personLife3.
 
 data1:person4
 	human:hasDeathDate "1599-09-08T00:00:00+01:00"^^xsd:dateTime;
 	human:hasLife data1:personLife4.
 
-# This case will not generate a certainty interval.
+# This case will not generate a certainty interval, because birthdate and death date are present; see missing-start-or-end-rules.n3 file.
 data1:person5
 	human:hasBirthdate "1644-09-08T00:00:00+01:00"^^xsd:dateTime;
 	human:hasDeathDate "1701-09-08T00:00:00+01:00"^^xsd:dateTime;
