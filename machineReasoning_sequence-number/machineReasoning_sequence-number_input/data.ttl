@@ -1,0 +1,138 @@
+@prefix concept: <http://www.nie.org/ontology/concept#>.
+@prefix document: <http://www.nie.org/ontology/document#>.
+@prefix text-expression: <http://www.nie.org/ontology/text-expression#>.
+@prefix prosodic-structure: <http://www.nie.org/ontology/prosodic-structure#>.
+@prefix literature: <http://www.nie.org/ontology/literature#>.
+
+# Mock-up data:
+
+@prefix data: <http://www.nie.org/data/sequence-number#>.
+
+data:verse111a
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier111a;
+	prosodic-structure:isVerseOfStrophe data:strophe111.
+data:verseIdentifier111a concept:hasLiteral "AZ1.1.1a".
+
+data:verse111b
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier111b;
+	prosodic-structure:isVerseOfStrophe data:strophe111.
+data:verseIdentifier111b concept:hasLiteral "AZ1.1.1b".
+
+data:verse111c
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier111c;
+	prosodic-structure:isVerseOfStrophe data:strophe111.
+data:verseIdentifier111c concept:hasLiteral "AZ1.1.1c".
+
+data:strophe111
+	a prosodic-structure:Strophe;
+	prosodic-structure:stropheHasIdentifier data:stropheIdentifier111;
+	prosodic-structure:isStropheOfPoem data:versePoem11.
+data:stropheIdentifier111 concept:hasLiteral "AZ1.1.1".
+
+data:verse112a
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier112a;
+	prosodic-structure:isVerseOfStrophe data:strophe112.
+data:verseIdentifier112a concept:hasLiteral "AZ1.1.2a".
+
+data:verse112b
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier112b;
+	prosodic-structure:isVerseOfStrophe data:strophe112.
+data:verseIdentifier112b concept:hasLiteral "AZ1.1.2b".
+
+data:verse112c
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier112c;
+	prosodic-structure:isVerseOfStrophe data:strophe112.
+data:verseIdentifier112c concept:hasLiteral "AZ1.1.2c".
+
+data:strophe112
+	a prosodic-structure:Strophe;
+	prosodic-structure:stropheHasIdentifier data:stropheIdentifier112;
+	prosodic-structure:isStropheOfPoem data:versePoem11.
+data:stropheIdentifier112 concept:hasLiteral "AZ1.1.2".
+
+data:versePoem11
+	a literature:VersePoem;
+	text-expression:hasIdentifier data:versePoemIdentifier11;
+	document:expressionHasTitle "Tree";
+	document:isInCollection data:versePoemCollection1;
+	literature:hasPoet data:person1.
+data:versePoemIdentifier11 concept:hasLiteral "AZ1.1".
+
+data:verse121a
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier121a;
+	prosodic-structure:isVerseOfStrophe data:strophe121.
+data:verseIdentifier121a concept:hasLiteral "AZ1.2.1a".
+
+data:verse121b
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier121b;
+	prosodic-structure:isVerseOfStrophe data:strophe121.
+data:verseIdentifier121b concept:hasLiteral "AZ1.2.1b".
+
+data:verse121c
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier121c;
+	prosodic-structure:isVerseOfStrophe data:strophe121.
+data:verseIdentifier121c concept:hasLiteral "AZ1.2.1c".
+
+data:verse121d
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier121d;
+	prosodic-structure:isVerseOfStrophe data:strophe121.
+data:verseIdentifier121d concept:hasLiteral "AZ1.2.1d".
+
+data:strophe121
+	a prosodic-structure:Strophe;
+	prosodic-structure:stropheHasIdentifier data:stropheIdentifier121;
+	prosodic-structure:isStropheOfPoem data:versePoem12.
+data:stropheIdentifier121 concept:hasLiteral "AZ1.2.1".
+
+data:versePoem12
+	a literature:VersePoem;
+	text-expression:hasIdentifier data:versePoemIdentifier12;
+	document:expressionHasTitle "Flower";
+	document:isInCollection data:versePoemCollection1;
+	literature:hasPoet data:person1.
+data:versePoemIdentifier12 concept:hasLiteral "AZ1.2".
+
+data:versePoemCollection1
+	a literature:Collection;
+	document:hasIdentifier data:versePoemCollectionIdentifier1.
+data:versePoemCollectionIdentifier1 concept:hasLiteral "AZ1".
+
+data:verse2101a
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier2101a;
+	prosodic-structure:isVerseOfStrophe data:strophe2101.
+data:verseIdentifier2101a concept:hasLiteral "az20.10.1a".
+
+data:verse2101b
+	a prosodic-structure:Verse;
+	prosodic-structure:verseHasIdentifier data:verseIdentifier2101b;
+	prosodic-structure:isVerseOfStrophe data:strophe2101.
+data:verseIdentifier2101b concept:hasLiteral "az20.10.1b".
+
+data:strophe2101
+	a prosodic-structure:Strophe;
+	prosodic-structure:stropheHasIdentifier data:stropheIdentifier2101;
+	prosodic-structure:isStropheOfPoem data:versePoem210.
+data:stropheIdentifier2101 concept:hasLiteral "az20.10.1".
+
+data:versePoem210
+	a literature:VersePoem;
+	text-expression:hasIdentifier data:versePoemIdentifier210;
+	document:expressionHasTitle "Fruit";
+	literature:hasPoet data:person1.
+data:versePoemIdentifier210 concept:hasLiteral "az20.10".
+
+data:versePoemCollection20
+	a literature:Collection;
+	document:hasIdentifier data:versePoemCollectionIdentifier20.
+data:versePoemCollectionIdentifier20 concept:hasLiteral "az20".

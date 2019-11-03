@@ -18,8 +18,8 @@
 	dct:publisher """Basel University, Switzerland"""@en;
 	rdfs:seeAlso <http://www.w3.org/TR/owl-semantics/rdfs.html#owl_cardinality_rdf>.
 
-# CHECK owl:cardinality 1: IF A SUBJECT-PREDICATE DOES NOT HAVE EXACTLY 1 OBJECT THE TRIPLES ARE STATED TO BE FALSE
 
+# CHECK owl:cardinality 1: IF A SUBJECT-PREDICATE DOES NOT HAVE EXACTLY 1 OBJECT THE TRIPLES ARE STATED TO BE FALSE
 {
 	# Detect an instance of a subject class having a cardinality of exactly one for an object value for a property:
 	?subject a [owl:onProperty ?property; owl:cardinality "1"^^xsd:nonNegativeInteger].
@@ -28,14 +28,16 @@
 	# Count the number of objects in the list:
 	?list math:memberCount ?memberCount.
 	# If there is a number of objects different from 1, the cardinality restriction is not fulfilled, i.e. false:
-	?memberCount math:notEqualTo 1.}
+	?memberCount math:notEqualTo 1
+}
 => false.
 
 ## CHECK owl:maxCardinality 1:
 {
 	?s a [owl:onProperty ?p; owl:maxCardinality "1"^^xsd:nonNegativeInteger].
 	?s ?p ?o1, ?o2.
-	?o1 log:notEqualTo ?o2.}
+	?o1 log:notEqualTo ?o2
+}
 => false.
 
 ## CHECK owl:minCardinality 1:
@@ -43,6 +45,6 @@
 	?s a [owl:onProperty ?p; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 	?SCOPE e:findall (?o {?s ?p ?o} ()). # empty list
 #	?list math:memberCount ?memberCount.
-#	?memberCount math:equalTo 0.
+#	?memberCount math:equalTo 0
 }
 => false.

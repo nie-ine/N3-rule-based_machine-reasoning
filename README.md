@@ -1,4 +1,4 @@
-# N3-rules based machine reasoning
+# N3-rule based machine reasoning
 In the [NIE-INE](http://www.nie-ine.ch)-project we develop an infrastructure to enable scholarly edition projects in the Humanities to express their data in an enriched format, adhering to the FAIR-principles, and ensuring long-term storage of the data.  
 The project runs at the Swiss Universities of Basel, Bern, Zürich, and Geneva until end of 2020.
 
@@ -13,9 +13,10 @@ N3-rules serve different purposes.
 ### Implementation of the RDF model theory:
 A first one is the [implementation of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo). This set of N3-rules permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
 Examples are:
+
 	rdfs:subClassOf, rdfs:subPropertyOf, owl:TransitiveProperty, owl:disjointWith, owl:oneOf, owl:unionOf, owl:disjointUnionOf, owl:propertyChainAxiom
 
-A complete reasoning example on transitivity for the 'is part of'property for text and text structures as prosodic entities is given in the repository, also involving a series of other RDFS- and OWL-rules. The data and query files are commented.
+A complete reasoning example on transitivity for the 'is part of' property for text and text structures as prosodic entities is given in the repository, also involving a series of other RDFS- and OWL-rules. The data and query files are commented.
 
 ### Consistency checking:
 User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows the 'human' class declaration in Turtle with a cardinality restriction of maximum 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual (see [human-ontology](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/human-ontology.ttl)). 
@@ -24,8 +25,9 @@ User-defined restrictions can be checked upon, e.g. a cardinality restriction fo
 		a owl:Restriction;
 		owl:onProperty human:hasBiologicalSex;
 		owl:maxCardinality "1"^^xsd:nonNegativeInteger].
+<div align="center">
 ##### Figure 1: Class declaration with a cardinality restriction of maximum 1
-
+</div>
 A complete reasoning example on cardinality is given in the repository, using 2 external ontologies and an RDF data set on images of the [Knora server application](https://www.knora.org/), developed by the [DHLab (DHL)](https://dhlab.philhist.unibas.ch/en/home/) at the University of Basel and the [Data and Service Center for humanities (DaSCH)](https://dasch.swiss/).
 
 ### Temporal reasoning:
@@ -43,7 +45,7 @@ EYE comes with intrinsic functionality provided by [built-ins](https://github.co
     			  # one or more options can be used, e.g.  
     --nope		          # option for output without a proof
     --traditional	          # option for N3 syntax, e.g. @prefix instead of PREFIX  
-    			  # data references can be added:  
+    			  # local or remote references can be added to assert ontology-, data, or rule graphs:  
     .../rdf-data.ttl	  # ref. to one or more RDF data sets expressed in Turtle syntax (.ttl, subset of N3); .ttl can be replaced by .n3  
     .../owl-ontology.ttl      # ref. to one or more OWL ontologies expressed in OWL Full or lesser sublanguage, using all possible elements of RDF/S-OWL ontologies  
     .../rule.n3		  # ref. to one or more N3-rules; EYE is a 'stateless' reasoner, meaning that all inferencing formalisms have to be fed to it  
