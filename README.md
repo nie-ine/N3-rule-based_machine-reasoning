@@ -21,12 +21,13 @@ A complete reasoning example on transitivity for the 'is part of' property for t
 ### Consistency checking:
 User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows the 'human' class declaration in Turtle with a cardinality restriction of maximum 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual (see [human-ontology](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/human-ontology.ttl)).
 
-<div align="center">
-
 	human:Human rdfs:subClassOf [
 		a owl:Restriction;
 		owl:onProperty human:hasBiologicalSex;
 		owl:maxCardinality "1"^^xsd:nonNegativeInteger].
+
+<div align="center">
+
 ##### Figure 1: Class declaration with a cardinality restriction of maximum 1
 &nbsp;  
 </div>
@@ -42,12 +43,10 @@ A complete temporal reasoning example is given in the repository, considering an
 Also string manipulation, e.g. parsing using regular expressions, is possible with formal expressions, offering the advantage of staying in the formal RDF/N3 environment until an fully reasoned upon data set or deductive closure is obtained, which can be stored in an RDF database and queried with SPARQL, or which can be transformed to JSON(-LD) for GUI application.
 
 The repository contains a reasoning example on sequence numbers derived from entity identifiers, using following properties declared in the respective ontology
-
 <div align="center">
 
 	concept:hasSequenceNumeral  
 	concept:hasSequenceLiteral  
-&nbsp;  
 </div>
 and a set of rules that can be made as general as possible, but very likely only within a certain project, considering the numerous possible combinations in creating alphanumeric identifiers.
 
