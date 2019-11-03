@@ -29,7 +29,6 @@ User-defined restrictions can be checked upon, e.g. a cardinality restriction fo
 <div align="center">
 
 ##### Figure 1: Class declaration with a cardinality restriction of maximum 1
-&nbsp;  
 </div>
 
 A complete reasoning example on cardinality is given in the repository, using 2 external ontologies and an RDF data set on images of the [Knora server application](https://www.knora.org/), developed by the [DHLab (DHL)](https://dhlab.philhist.unibas.ch/en/home/) at the University of Basel and the [Data and Service Center for humanities (DaSCH)](https://dasch.swiss/).
