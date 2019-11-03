@@ -5,7 +5,7 @@ The project runs at the Swiss Universities of Basel, Bern, Zürich, and Geneva u
 The essence of the infrastructure is that data, stored in e.g. a MySQL relational database, are converted to a different machine-readable format, i.e. one that makes the semantics of the data explicit.  
 To enable data expression in this new format a series of vocabularies or [ontologies](https://github.com/nie-ine/Ontologies) are created, representing [Semantic Web technology](https://github.com/nie-ine/Ontologies/wiki/1.-Introduction-to-Semantic-Web-technology).  
 
-Besides these ontologies, rules for machine resoning are developed. They are expressed in the [Notation 3 language](https://www.w3.org/TeamSubmission/n3/), also using elements of NIE and other ontologies. 
+Besides these ontologies, rules for machine resoning are developed. They are expressed in the [Notation 3 language](https://www.w3.org/TeamSubmission/n3/), also using elements of NIE and external ontologies. 
 Notation 3 is an assertion and logic language which is a superset of RDF. N3 extends the RDF datamodel by adding formulae (literals which are graphs themselves), variables, logical implication, and functional predicates, as well as providing a textual syntax (alternative to RDF/XML). In this way Turtle is a subset of N3.  
 
 The external ontologies for N3-rule declaration are in following namespaces:  
@@ -16,7 +16,14 @@ The external ontologies for N3-rule declaration are in following namespaces:
 	<http://www.w3.org/2000/10/swap/crypto#>  
 	<http://eulersharp.sourceforge.net/2003/03swap/log-rules#>  
 
-They provide class and property declarations for built-ins providing an extensive variety of functionalities.
+They provide class and property declarations for built-ins representing an extensive variety of functionalities.  
+
+## Machine Reasoner EYE (Euler Yet another proof Engine):
+Development: https://github.com/josd/eye  
+Download site: https://sourceforge.net/projects/eulersharp/files/eulersharp/  
+EYE comes with syntax check and intrinsic functionality provided by [built-ins](https://github.com/josd/eye/blob/master/eye-builtins.n3), 
+All other reasoning material has to be input, i.e. OWL-ontologies, RDF-data, N3-rules.
+
 
 N3-rules serve different purposes.  
 
@@ -36,12 +43,12 @@ Examples are:
 A complete reasoning example on transitivity for the 'is part of' property for text and text structures as prosodic entities is given in the repository, also involving a series of other RDFS- and OWL-rules. The data and query files are commented.
 
 ### Consistency checking:
-User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows the 'human' class declaration in Turtle with a cardinality restriction of maximum 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual (see [human-ontology](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/human-ontology.ttl)).
+User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows part of the 'human' class declaration in Turtle with a cardinality restriction of maximum 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual (see [human-ontology](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/human-ontology.ttl)).
 
 	human:Human rdfs:subClassOf [
 		a owl:Restriction;
 		owl:onProperty human:hasBiologicalSex;
-		owl:maxCardinality "1"^^xsd:nonNegativeInteger].
+		owl:maxCardinality "1"^^xs:nonNegativeInteger].
 
 <div align="center">
 
@@ -51,9 +58,8 @@ User-defined restrictions can be checked upon, e.g. a cardinality restriction fo
 A reasoning example on cardinality is given in the repository, using 2 external ontologies and an RDF data set on images of the [Knora server application](https://www.knora.org/), developed by the [DHLab (DHL)](https://dhlab.philhist.unibas.ch/en/home/) at the University of Basel and the [Data and Service Center for humanities (DaSCH)](https://dasch.swiss/).
 
 ### Temporal reasoning:
-Generally, time indicators are uniformly converted to intervals to calculate with.
+Generally, time indicators are uniformly converted to intervals to calculate with, using for instance datatyped literals, e.g. xs:dateTime, xs:duration.
 For this process the machine reasoner provides an extensive set of [Time and RIF Built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3) based on W3C standards [RIF Datatypes and Built-Ins 1.0](https://www.w3.org/TR/2013/REC-rif-dtb-20130205/).
-Sets of built-ins in the machine reasoner support several ontologies for N3-rule declaration, and the usage of xsd datatyped literals (e.g. xsd:dateTime, xsd:duration).
 
 A temporal reasoning example is given in the repository, considering an event without a start or end date, with specific example of missing birth- or death date.
 
@@ -68,12 +74,6 @@ The repository contains a reasoning example on sequence numbers derived from ent
 	concept:hasSequenceLiteral  
 </div>
 and a set of rules that can be made as general as possible, but very likely only within a certain project, considering the numerous possible combinations in creating alphanumeric identifiers.
-
-## Machine Reasoner EYE (Euler Yet another proof Engine):
-Development: https://github.com/josd/eye  
-Download site: https://sourceforge.net/projects/eulersharp/files/eulersharp/  
-EYE comes with syntax check and intrinsic functionality provided by [built-ins](https://github.com/josd/eye/blob/master/eye-builtins.n3), 
-All other reasoning material has to be input, i.e. OWL-ontologies, RDF-data, N3-rules.
  
 ### Basic command example for EYE:
     eye			  # call the machine reasoner  
