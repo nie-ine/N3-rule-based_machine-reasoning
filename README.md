@@ -27,6 +27,7 @@ User-defined restrictions can be checked upon, e.g. a cardinality restriction fo
 		owl:maxCardinality "1"^^xsd:nonNegativeInteger].
 <div align="center">
 ##### Figure 1: Class declaration with a cardinality restriction of maximum 1
+&nbsp;  
 </div>
 A complete reasoning example on cardinality is given in the repository, using 2 external ontologies and an RDF data set on images of the [Knora server application](https://www.knora.org/), developed by the [DHLab (DHL)](https://dhlab.philhist.unibas.ch/en/home/) at the University of Basel and the [Data and Service Center for humanities (DaSCH)](https://dasch.swiss/).
 
@@ -34,6 +35,11 @@ A complete reasoning example on cardinality is given in the repository, using 2 
 Generally, time indicators are uniformly converted to intervals to calculate with. Sets of built-ins in the machine reasoner support several ontologies for N3-rule declaration, and the usage of xsd datatyped literals (e.g. xsd:dateTime, xsd:duration).
 
 A complete temporal reasoning example is given in the repository, considering an event without a start or end date, with specific example of missing birth- or death date.
+
+### Various functionalities and calculations:
+Also string manipulation, e.g. parsing using regular expressions, is possible with formal expressions, offering the advantage of staying in the formal RDF/N3 environment until an fully reasoned upon data set or deductive closure is obtained, which can be stored in an RDF database and queried with SPARQL, or which can be transformed to JSON(-LD) for GUI application.
+
+The repository contains a reasoning example on sequence numbers derived from entity identifiers, using <concept:hasSequenceNumeral> and <concept:hasSequenceLiteral> declared in the respective ontology, and a set of rules that can be made as general as possible, but very likely only within a certain project, considering the numerous possible combinations in creating alphanumeric identifiers.
 
 ## Machine Reasoning: e.g. the EYE reasoner:  
 Development: https://github.com/josd/eye  

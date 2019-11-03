@@ -67,7 +67,7 @@
 }.
 
 
-# Cut the tail letter of a compound verse-identifier and use it to order:
+# Cut the tail letter(s) of a compound verse-identifier and use it to order:
 {
 	?verse
 		prosodic-structure:verseHasIdentifier ?verseIdentifier.
