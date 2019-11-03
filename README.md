@@ -14,7 +14,14 @@ N3-rules serve different purposes.
 A first one is the [implementation of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo). This set of N3-rules permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
 Examples are:
 
-	rdfs:subClassOf, rdfs:subPropertyOf, owl:TransitiveProperty, owl:disjointWith, owl:oneOf, owl:unionOf, owl:disjointUnionOf, owl:propertyChainAxiom
+					rdfs:subClassOf
+					rdfs:subPropertyOf
+					owl:TransitiveProperty
+					owl:disjointWith
+					owl:oneOf
+					owl:unionOf
+					owl:disjointUnionOf
+					owl:propertyChainAxiom
 
 A complete reasoning example on transitivity for the 'is part of' property for text and text structures as prosodic entities is given in the repository, also involving a series of other RDFS- and OWL-rules. The data and query files are commented.
 
@@ -31,15 +38,15 @@ User-defined restrictions can be checked upon, e.g. a cardinality restriction fo
 ##### Figure 1: Class declaration with a cardinality restriction of maximum 1
 </div>
 
-A complete reasoning example on cardinality is given in the repository, using 2 external ontologies and an RDF data set on images of the [Knora server application](https://www.knora.org/), developed by the [DHLab (DHL)](https://dhlab.philhist.unibas.ch/en/home/) at the University of Basel and the [Data and Service Center for humanities (DaSCH)](https://dasch.swiss/).
+A reasoning example on cardinality is given in the repository, using 2 external ontologies and an RDF data set on images of the [Knora server application](https://www.knora.org/), developed by the [DHLab (DHL)](https://dhlab.philhist.unibas.ch/en/home/) at the University of Basel and the [Data and Service Center for humanities (DaSCH)](https://dasch.swiss/).
 
 ### Temporal reasoning:
 Generally, time indicators are uniformly converted to intervals to calculate with. Sets of built-ins in the machine reasoner support several ontologies for N3-rule declaration, and the usage of xsd datatyped literals (e.g. xsd:dateTime, xsd:duration).
 
-A complete temporal reasoning example is given in the repository, considering an event without a start or end date, with specific example of missing birth- or death date.
+A temporal reasoning example is given in the repository, considering an event without a start or end date, with specific example of missing birth- or death date.
 
 ### Various functionalities and calculations:
-Also string manipulation, e.g. parsing using regular expressions, is possible with formal expressions, offering the advantage of staying in the formal RDF/N3 environment until an fully reasoned upon data set or deductive closure is obtained, which can be stored in an RDF database and queried with SPARQL, or which can be transformed to JSON(-LD) for GUI application.
+Also string manipulation, e.g. parsing using regular expressions, is possible with formal expressions, offering the advantage of staying in the formal RDF/N3 environment until a fully reasoned upon data set or deductive closure is obtained, which can be stored in an RDF database and queried with SPARQL, or which can be transformed to JSON(-LD) for GUI application.
 
 The repository contains a reasoning example on sequence numbers derived from entity identifiers, using following properties declared in the respective ontology
 <div align="center">
