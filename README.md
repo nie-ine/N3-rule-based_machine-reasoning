@@ -9,12 +9,12 @@ Besides these ontologies, rules for machine resoning are developed. They are exp
 Notation 3 is an assertion and logic language which is a superset of RDF. N3 extends the RDF datamodel by adding formulae (literals which are graphs themselves), variables, logical implication, and functional predicates, as well as providing a textual syntax (alternative to RDF/XML). In this way Turtle is a subset of N3.  
 
 The external ontologies for N3-rule declaration are in following namespaces:  
-	<http://www.w3.org/2000/10/swap/string#>
-	<http://www.w3.org/2000/10/swap/list#>
-	<http://www.w3.org/2000/10/swap/log#>
-	<http://www.w3.org/2000/10/swap/math#>
-	<http://www.w3.org/2000/10/swap/crypto#>
-	<http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+	<http://www.w3.org/2000/10/swap/string#>  
+	<http://www.w3.org/2000/10/swap/list#>  
+	<http://www.w3.org/2000/10/swap/log#>  
+	<http://www.w3.org/2000/10/swap/math#>  
+	<http://www.w3.org/2000/10/swap/crypto#>  
+	<http://eulersharp.sourceforge.net/2003/03swap/log-rules#>  
 
 They provide class and property declarations for built-ins providing an extensive variety of functionalities.
 
