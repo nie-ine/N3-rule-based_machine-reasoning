@@ -18,18 +18,11 @@ The external ontologies for N3-rule declaration are in following namespaces:
 
 They provide class and property declarations for built-ins representing an extensive variety of functionalities.  
 
-## Machine Reasoner EYE (Euler Yet another proof Engine):
-Development: https://github.com/josd/eye  
-Download site: https://sourceforge.net/projects/eulersharp/files/eulersharp/  
-EYE comes with syntax check and intrinsic functionality provided by [built-ins](https://github.com/josd/eye/blob/master/eye-builtins.n3), 
-All other reasoning material has to be input, i.e. OWL-ontologies, RDF-data, N3-rules.
-
-
-N3-rules serve different purposes.  
+## N3-rules serve different purposes: 
 
 ### Implementation of the RDF model theory:
-A first one is the [implementation of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo). This set of N3-rules permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
-Examples are:
+A set of [N3-rules implementation of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo) permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
+Examples are rules for the implementation of:
 
 					rdfs:subClassOf
 					rdfs:subPropertyOf
@@ -74,7 +67,13 @@ The repository contains a reasoning example on sequence numbers derived from ent
 	concept:hasSequenceLiteral  
 </div>
 and a set of rules that can be made as general as possible, but very likely only within a certain project, considering the numerous possible combinations in creating alphanumeric identifiers.
- 
+
+## Machine Reasoner EYE (Euler Yet another proof Engine):
+Development: https://github.com/josd/eye  
+Download site: https://sourceforge.net/projects/eulersharp/files/eulersharp/  
+EYE comes with syntax check and intrinsic functionality provided by [built-ins](https://github.com/josd/eye/blob/master/eye-builtins.n3), 
+All other reasoning material has to be input, i.e. OWL-ontologies, RDF-data, N3-rules.  
+
 ### Basic command example for EYE:
     eye			  # call the machine reasoner  
     			  # one or more options can be used, e.g.  
