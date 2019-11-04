@@ -107,30 +107,30 @@ data:versePoemCollection1
 	document:hasIdentifier data:versePoemCollectionIdentifier1.
 data:versePoemCollectionIdentifier1 concept:hasLiteral "AZ1".
 
-data:verse2101a
+data:verse20101a
 	a prosodic-structure:Verse;
-	prosodic-structure:verseHasIdentifier data:verseIdentifier2101a;
-	prosodic-structure:isVerseOfStrophe data:strophe2101.
-data:verseIdentifier2101a concept:hasLiteral "az20.10.1a".
+	prosodic-structure:verseHasIdentifier data:verseIdentifier20101a;
+	prosodic-structure:isVerseOfStrophe data:strophe20101.
+data:verseIdentifier20101a concept:hasLiteral "az20.10.1a".
 
-data:verse2101b
+data:verse20101b
 	a prosodic-structure:Verse;
-	prosodic-structure:verseHasIdentifier data:verseIdentifier2101b;
-	prosodic-structure:isVerseOfStrophe data:strophe2101.
-data:verseIdentifier2101b concept:hasLiteral "az20.10.1b".
+	prosodic-structure:verseHasIdentifier data:verseIdentifier20101b;
+	prosodic-structure:isVerseOfStrophe data:strophe20101.
+data:verseIdentifier20101b concept:hasLiteral "az20.10.1b".
 
-data:strophe2101
+data:strophe20101
 	a prosodic-structure:Strophe;
-	prosodic-structure:stropheHasIdentifier data:stropheIdentifier2101;
-	prosodic-structure:isStropheOfPoem data:versePoem210.
-data:stropheIdentifier2101 concept:hasLiteral "az20.10.1".
+	prosodic-structure:stropheHasIdentifier data:stropheIdentifier20101;
+	prosodic-structure:isStropheOfPoem data:versePoem2010.
+data:stropheIdentifier20101 concept:hasLiteral "az20.10.1".
 
-data:versePoem210
+data:versePoem2010
 	a literature:VersePoem;
-	text-expression:hasIdentifier data:versePoemIdentifier210;
+	text-expression:hasIdentifier data:versePoemIdentifier2010;
 	document:expressionHasTitle "Fruit";
 	literature:hasPoet data:person1.
-data:versePoemIdentifier210 concept:hasLiteral "az20.10".
+data:versePoemIdentifier2010 concept:hasLiteral "az20.10".
 
 data:versePoemCollection20
 	a literature:Collection;

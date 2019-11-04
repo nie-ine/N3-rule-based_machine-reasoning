@@ -1,4 +1,4 @@
-# Execution date So Nov 3 17:46:40 CET 2019
+# Execution date Mo Nov 4 23:04:00 CET 2019
 #Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
         #    using base file:///home/changeme/programs/eye/
         
@@ -7,71 +7,71 @@
 
 #   Base was: file:///home/changeme/programs/eye/
      @prefix : <http://www.nie.org/data/sequence-number#> .
-    @prefix concept: <http://www.nie.org/ontology/concept#> .
     @prefix literature: <http://www.nie.org/ontology/literature#> .
+    @prefix math: <http://www.nie.org/ontology/mathematics#> .
     @prefix prosodic-structure: <http://www.nie.org/ontology/prosodic-structure#> .
     
     :strophe111     a prosodic-structure:Strophe;
-         concept:hasSequenceNumeral "1" .
+         math:hasSequenceNumeral "1" .
     
     :strophe112     a prosodic-structure:Strophe;
-         concept:hasSequenceNumeral "2" .
+         math:hasSequenceNumeral "2" .
     
     :strophe121     a prosodic-structure:Strophe;
-         concept:hasSequenceNumeral "1" .
+         math:hasSequenceNumeral "1" .
     
-    :strophe2101     a prosodic-structure:Strophe;
-         concept:hasSequenceNumeral "1" .
+    :strophe20101     a prosodic-structure:Strophe;
+         math:hasSequenceNumeral "1" .
     
     :verse111a     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "a" .
+         math:hasSequenceLiteral "a" .
     
     :verse111b     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "b" .
+         math:hasSequenceLiteral "b" .
     
     :verse111c     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "c" .
+         math:hasSequenceLiteral "c" .
     
     :verse112a     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "a" .
+         math:hasSequenceLiteral "a" .
     
     :verse112b     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "b" .
+         math:hasSequenceLiteral "b" .
     
     :verse112c     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "c" .
+         math:hasSequenceLiteral "c" .
     
     :verse121a     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "a" .
+         math:hasSequenceLiteral "a" .
     
     :verse121b     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "b" .
+         math:hasSequenceLiteral "b" .
     
     :verse121c     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "c" .
+         math:hasSequenceLiteral "c" .
     
     :verse121d     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "d" .
+         math:hasSequenceLiteral "d" .
     
-    :verse2101a     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "a" .
+    :verse20101a     a prosodic-structure:Verse;
+         math:hasSequenceLiteral "a" .
     
-    :verse2101b     a prosodic-structure:Verse;
-         concept:hasSequenceLiteral "b" .
+    :verse20101b     a prosodic-structure:Verse;
+         math:hasSequenceLiteral "b" .
     
     :versePoem11     a literature:VersePoem;
-         concept:hasSequenceNumeral "1" .
+         math:hasSequenceNumeral "1" .
     
     :versePoem12     a literature:VersePoem;
-         concept:hasSequenceNumeral "2" .
+         math:hasSequenceNumeral "2" .
     
-    :versePoem210     a literature:VersePoem;
-         concept:hasSequenceNumeral "10" .
+    :versePoem2010     a literature:VersePoem;
+         math:hasSequenceNumeral "10" .
     
     :versePoemCollection1     a literature:Collection;
-         concept:hasSequenceNumeral "1" .
+         math:hasSequenceNumeral "1" .
     
     :versePoemCollection20     a literature:Collection;
-         concept:hasSequenceNumeral "20" .
+         math:hasSequenceNumeral "20" .
     
 #ENDS

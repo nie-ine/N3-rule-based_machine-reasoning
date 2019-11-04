@@ -4,6 +4,7 @@
 @prefix string: <http://www.w3.org/2000/10/swap/string#>.
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
 @prefix concept: <http://www.nie.org/ontology/concept#>.
+@prefix math: <http://www.nie.org/ontology/mathematics#>.
 @prefix document: <http://www.nie.org/ontology/document#>.
 @prefix text-expression: <http://www.nie.org/ontology/text-expression#>.
 @prefix prosodic-structure: <http://www.nie.org/ontology/prosodic-structure#>.
@@ -31,7 +32,7 @@
 }
 =>
 {
-	?poemCollection concept:hasSequenceNumeral ?scrape
+	?poemCollection math:hasSequenceNumeral ?scrape
 }.
 
 
@@ -50,7 +51,7 @@
 }
 =>
 {
-	?versePoem concept:hasSequenceNumeral ?scrape
+	?versePoem math:hasSequenceNumeral ?scrape
 }.
 
 
@@ -63,7 +64,7 @@
 }
 =>
 {
-	?strophe concept:hasSequenceNumeral ?scrape
+	?strophe math:hasSequenceNumeral ?scrape
 }.
 
 
@@ -77,5 +78,5 @@
 }
 =>
 {
-	?verse concept:hasSequenceLiteral ?scrape
+	?verse math:hasSequenceLiteral ?scrape
 }.

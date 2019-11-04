@@ -1,0 +1,29 @@
+@prefix math: <http://www.nie.org/ontology/mathematics#>.
+
+# N3-query for passing a filtered part of the deductive closure or full reasoning result:
+# Note: a sequence number or sequence letter is not reified.
+
+{
+	?sequenced
+		a ?Class;
+		math:hasSequenceNumeral ?sequenceNumeral
+}
+=>
+{
+	?sequenced
+		a ?Class;
+		math:hasSequenceNumeral ?sequenceNumeral
+}.
+
+
+{
+	?sequenced
+		a ?Class;
+		math:hasSequenceLiteral ?sequenceLiteral
+}
+=>
+{
+	?sequenced
+		a ?Class;
+		math:hasSequenceLiteral ?sequenceLiteral
+}.
