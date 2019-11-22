@@ -20,7 +20,7 @@ They provide class and property declarations for built-ins representing an exten
 These built-ins are mentioned in some of the following rule examples.
 
 ## N3-rules serve different purposes: 
-
+Note: also mentioned in the use case catalogue.
 ### Implementation of the RDF model theory:
 A set of [N3-rules implementation of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo) permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
 Examples are rules for the implementation of:
