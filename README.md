@@ -65,8 +65,8 @@ For example string manipulation, e.g. parsing using regular expressions, is poss
 The repository contains a reasoning example on sequence numbers derived from entity identifiers, using following properties declared in the respective ontology
 <div align="center">
 
-	math:hasSequenceNumeral  
 	math:hasSequenceLiteral  
+	math:hasSequenceNumeral  
 </div>
 and a set of rules that can be made as general as possible, but very likely only within a certain project, considering the numerous possible combinations in creating alphanumeric identifiers.
 
