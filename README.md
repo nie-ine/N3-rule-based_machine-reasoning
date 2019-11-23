@@ -22,29 +22,32 @@ These built-ins are mentioned in some of the following rule examples.
 ## N3-rules serve different purposes: 
 Note: also mentioned in the use case catalogue.
 ### Implementation of the RDF model theory:
-A set of [N3-rules implementation of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo) permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
+A set of [N3-rules implementating of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo) permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
 Examples are rules for the implementation of:
+<div align="center">
+		@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+		@prefix owl: <http://www.w3.org/2002/07/owl#>.
 
-					rdfs:subClassOf
-					rdfs:subPropertyOf
-					owl:TransitiveProperty
-					owl:disjointWith
-					owl:oneOf
-					owl:unionOf
-					owl:disjointUnionOf
-					owl:propertyChainAxiom
-
+		rdfs:subClassOf
+		rdfs:subPropertyOf
+		owl:TransitiveProperty
+		owl:disjointWith
+		owl:oneOf
+		owl:unionOf
+		owl:disjointUnionOf
+		owl:propertyChainAxiom
+</div>
 A complete reasoning example on transitivity for the 'is part of' property for text and text structures as prosodic entities is given in the repository, also involving a series of other RDFS- and OWL-rules. The data and query files are commented.
 
 ### Consistency checking:
 User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows part of the 'human' class declaration in Turtle with a cardinality restriction of maximum 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual (see [human-ontology](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/human-ontology.ttl)).
-
-	human:Human rdfs:subClassOf [
-		a owl:Restriction;
-		owl:onProperty human:hasBiologicalSex;
-		owl:maxCardinality "1"^^xs:nonNegativeInteger].
-
 <div align="center">
+		@prefix human: <http://www.nie.org/ontology/human#>.
+
+		human:Human rdfs:subClassOf [
+			a owl:Restriction;
+			owl:onProperty human:hasBiologicalSex;
+			owl:maxCardinality "1"^^xs:nonNegativeInteger].
 
 ##### Figure 1: Class declaration with a cardinality restriction of maximum 1
 </div>
@@ -58,15 +61,16 @@ Further functionality is provided by the [time-ontology](https://raw.githubuserc
 
 A temporal reasoning example is given in the repository, considering an event without a start or end date, with specific example of missing birth- or death date.
 
-### Various functionalities and calculations:
-Also for this type of N3-rules an large set of [built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3) is available, dealing with e.g. logical and mathematical operators, lists, and strings.
+### Miscellaneous functionalities and calculations:
+Also for this type of N3-rules a large set of [built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3) is available, dealing with e.g. logical and mathematical operators, lists, and strings.
 For example string manipulation, e.g. parsing using regular expressions, is possible with formal expressions, offering the advantage of staying in the formal N3/RDF environment until a fully reasoned upon data set or deductive closure is obtained, which can be stored in an RDF database and queried with SPARQL, or which can be transformed to JSON(-LD) for GUI application.  
 
 The repository contains a reasoning example on sequence numbers derived from entity identifiers, using following properties declared in the respective ontology
 <div align="center">
+		@prefix math: <http://www.nie.org/ontology/mathematics#>.
 
-	math:hasSequenceLiteral  
-	math:hasSequenceNumeral  
+			math:hasSequenceLiteral  
+			math:hasSequenceNumeral  
 </div>
 and a set of rules that can be made as general as possible, but very likely only within a certain project, considering the numerous possible combinations in creating alphanumeric identifiers.
 
@@ -77,6 +81,9 @@ EYE comes with syntax check and intrinsic functionality provided by [built-ins](
 All other reasoning material has to be input, i.e. OWL-ontologies, RDF-data, N3-rules.  
 
 ### Basic command example for EYE:
+
+Note: the command for the reasoner is written for Unix OS, but can be easily converted for Windows OS.
+
     eye			  # call the machine reasoner  
     			  # one or more options can be used, e.g.  
     --nope		          # option for output without a proof
