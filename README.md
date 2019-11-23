@@ -49,6 +49,7 @@ User-defined restrictions can be checked upon, e.g. a cardinality restriction fo
 				owl:onProperty human:hasBiologicalSex;
 				owl:maxCardinality "1"^^xs:nonNegativeInteger].
 <div align="center">
+
 ##### Figure 1: Class declaration with a cardinality restriction of maximum 1
 </div>
 
