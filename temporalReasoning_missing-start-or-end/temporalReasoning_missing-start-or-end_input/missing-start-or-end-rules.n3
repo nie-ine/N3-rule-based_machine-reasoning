@@ -9,7 +9,7 @@
 @prefix time: <http://www.nie.org/ontology/time#>.
 @prefix human: <http://www.nie.org/ontology/human#>.
 
-# Rule to calculate a 'latest death date' for a person, hence a 'latest end date' of the life of a person, hence a certainty interval for the life, based on the birthdate and a set maximum duration of a person's life, in absence of the death date:
+# Rule to calculate a 'latest death date' for a person, hence a 'latest end date' of the life of a person, hence a high probability interval for the life, based on the birthdate and a set maximum duration of a person's life, in absence of the death date:
 {
 	?person
 		# Get data:
@@ -32,7 +32,7 @@
 		time:hasLatestEndDateTime ?latestDeathDate
 }.
 
-# Rule to calculate an 'earliest birth date' for a person, hence an 'earliest start date' of the life of a person, hence a certainty interval for the life, based on the death date and a set maximum duration of a person's life, in absence of the birthdate:
+# Rule to calculate an 'earliest birth date' for a person, hence an 'earliest start date' of the life of a person, hence a high probability interval for the life, based on the death date and a set maximum duration of a person's life, in absence of the birthdate:
 {
 	?person
 		human:hasLife ?personLife;
@@ -55,7 +55,7 @@
 }.
 
 # To do: generalize to event
-# Rule to calculate certainty interval for an event if start or end is missing, based on a set time difference between start and end:
+# Rule to calculate a high probability interval for an event if start or end is missing, based on a set time difference between start and end:
 # {
 #	?event time:hasStartDateTime ?startDateTime.
 		# Check absence of end date:
