@@ -1,7 +1,7 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 echo "# Execution date" $(date) > $DIR/machineReasoning_sequence-number_input/result.n3
-./eye.sh --nope --traditional $DIR/machineReasoning_sequence-number_input/data.ttl $DIR/machineReasoning_sequence-number_input/sequence-number-rules.n3 --query $DIR/machineReasoning_sequence-number_input/queries.n3 |cwm >> $DIR/machineReasoning_sequence-number_input/result.n3
+./eye.sh --nope $DIR/machineReasoning_sequence-number_input/data.ttl $DIR/machineReasoning_sequence-number_input/sequence-number-rules.n3 --query $DIR/machineReasoning_sequence-number_input/queries.n3 |cwm >> $DIR/machineReasoning_sequence-number_input/result.n3
 
 
 # 1. Description of the input for the reasoner:
