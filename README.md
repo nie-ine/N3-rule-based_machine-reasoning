@@ -70,8 +70,8 @@ The repository contains a reasoning example on sequence numbers or ordinals, der
 
 		@prefix math: <http://www.nie.org/ontology/mathematics#>.
 
-			math:hasSequenceLiteral  
-			math:hasSequenceNumeral  
+			math:hasOrdinalLiteral  
+			math:hasOrdinalNumeral  
 
 and a set of rules that can be made as general as possible, but very likely only within a certain project, considering the numerous possible combinations in creating alphanumeric identifiers.
 

@@ -107,23 +107,23 @@ data:versePoemCollection1
 	document:hasIdentifier data:versePoemCollectionIdentifier1.
 data:versePoemCollectionIdentifier1 concept:hasLiteral "AZ1".
 
-data:verse20101a
+data:verse201011a
 	a prosodic-structure:Verse;
 	prosodic-structure:verseHasIdentifier data:verseIdentifier20101a;
 	prosodic-structure:isVerseOfStrophe data:strophe20101.
-data:verseIdentifier20101a concept:hasLiteral "az20.10.1a".
+data:verseIdentifier20101a concept:hasLiteral "az20.10.11a".
 
-data:verse20101b
+data:verse201011b
 	a prosodic-structure:Verse;
 	prosodic-structure:verseHasIdentifier data:verseIdentifier20101b;
 	prosodic-structure:isVerseOfStrophe data:strophe20101.
-data:verseIdentifier20101b concept:hasLiteral "az20.10.1b".
+data:verseIdentifier20101b concept:hasLiteral "az20.10.11b".
 
-data:strophe20101
+data:strophe201011
 	a prosodic-structure:Strophe;
 	prosodic-structure:stropheHasIdentifier data:stropheIdentifier20101;
 	prosodic-structure:isStropheOfPoem data:versePoem2010.
-data:stropheIdentifier20101 concept:hasLiteral "az20.10.1".
+data:stropheIdentifier20101 concept:hasLiteral "az20.10.11".
 
 data:versePoem2010
 	a literature:VersePoem;

@@ -6,24 +6,24 @@
 {
 	?sequenced
 		a ?Class;
-		math:hasSequenceNumeral ?sequenceNumeral
+		math:hasOrdinalNumeral ?ordinalNumeral
 }
 =>
 {
 	?sequenced
 		a ?Class;
-		math:hasSequenceNumeral ?sequenceNumeral
+		math:hasOrdinalNumeral ?ordinalNumeral
 }.
 
 
 {
 	?sequenced
 		a ?Class;
-		math:hasSequenceLiteral ?sequenceLiteral
+		math:hasOrdinalLiteral ?ordinalLiteral
 }
 =>
 {
 	?sequenced
 		a ?Class;
-		math:hasSequenceLiteral ?sequenceLiteral
+		math:hasOrdinalLiteral ?ordinalLiteral
 }.

@@ -32,7 +32,7 @@
 }
 =>
 {
-	?poemCollection math:hasSequenceNumeral ?scrape
+	?poemCollection math:hasOrdinalNumeral ?scrape
 }.
 
 
@@ -51,7 +51,7 @@
 }
 =>
 {
-	?versePoem math:hasSequenceNumeral ?scrape
+	?versePoem math:hasOrdinalNumeral ?scrape
 }.
 
 
@@ -64,7 +64,7 @@
 }
 =>
 {
-	?strophe math:hasSequenceNumeral ?scrape
+	?strophe math:hasOrdinalNumeral ?scrape
 }.
 
 
@@ -78,5 +78,5 @@
 }
 =>
 {
-	?verse math:hasSequenceLiteral ?scrape
+	?verse math:hasOrdinalLiteral ?scrape
 }.
