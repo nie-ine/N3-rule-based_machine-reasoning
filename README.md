@@ -15,6 +15,8 @@ The general external ontologies for N3-rule declaration are in following namespa
 	<http://www.w3.org/2000/10/swap/math#>  
 	<http://www.w3.org/2000/10/swap/crypto#>  
 	<http://eulersharp.sourceforge.net/2003/03swap/log-rules#>  
+	<http://eulersharp.sourceforge.net/2003/03swap/xsd-rules#>  
+
 
 They provide class and property declarations for built-ins representing an extensive variety of functionalities.  
 These built-ins are mentioned in some of the following rule examples.
@@ -22,7 +24,7 @@ These built-ins are mentioned in some of the following rule examples.
 ## N3-rules serve different purposes: 
 Note: also mentioned in the use case catalogue.
 ### Implementation of the RDF model theory:
-A set of [N3-rules implementating of the RDF model theory](https://github.com/josd/eye/tree/master/reasoning/rpo) permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
+A set of [N3-rules implementating of the RDF model theory](https://github.com/josd/brain/tree/master/rpo) permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
 Examples are rules for the implementation of:
 
 		@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
@@ -42,7 +44,7 @@ A complete reasoning example on transitivity for the 'is part of' property for t
 ### Consistency check for user defined restrictions:
 User-defined restrictions can be checked upon, e.g. a cardinality restriction for the object value of a certain property of a certain subject class instance. Figure 1 shows part of the 'human' class declaration in Turtle with a cardinality restriction of maximum 1 on the property 'has biological sex', IOW a human can only have exactly 1 biological sex, i.e. female, male or intersexual (see [human-ontology](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/human-ontology.ttl)).
 
-		@prefix human: <http://www.nie.org/ontology/human#>.
+		@prefix human: <http://www.e-editiones.ch/ontology/human#>.
 
 			human:Human rdfs:subClassOf [
 				a owl:Restriction;
@@ -68,7 +70,7 @@ For example string manipulation, e.g. parsing using regular expressions, is poss
 
 The repository contains a reasoning example on sequence numbers or ordinals, derived from entity identifiers, using following properties declared in the respective ontology:
 
-		@prefix math: <http://www.nie.org/ontology/mathematics#>.
+		@prefix math: <http://www.e-editiones.ch/ontology/mathematics#>.
 
 			math:hasOrdinalLiteral  
 			math:hasOrdinalNumeral  
@@ -78,7 +80,7 @@ and a set of rules that can be made as general as possible, but very likely only
 ## Machine Reasoner EYE (Euler Yet another proof Engine):
 Development: https://github.com/josd/eye  
 Download site: https://sourceforge.net/projects/eulersharp/files/eulersharp/  
-EYE comes with syntax check and intrinsic functionality provided by [built-ins](https://github.com/josd/eye/blob/master/eye-builtins.n3), 
+EYE comes with syntax check and intrinsic functionality provided by [built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3), 
 All other reasoning material has to be input, i.e. OWL-ontologies, RDF-data, N3-rules.  
 
 ### Basic command example for EYE:
