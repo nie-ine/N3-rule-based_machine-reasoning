@@ -1,4 +1,4 @@
-# Execution date So Okt 27 17:55:46 CET 2019
+# Execution date Mi Feb 5 12:43:10 CET 2020
 #Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
         #    using base file:///home/changeme/programs/eye/
         
@@ -6,18 +6,18 @@
 #       notation3.py,v 1.200 2007/12/11 21:18:08 syosi Exp
 
 #   Base was: file:///home/changeme/programs/eye/
-     @prefix : <http://www.nie.org/data/transitive#> .
-    @prefix concept: <http://www.nie.org/ontology/concept#> .
-    @prefix creating: <http://www.nie.org/ontology/creating#> .
-    @prefix document: <http://www.nie.org/ontology/document#> .
-    @prefix language: <http://www.nie.org/ontology/language#> .
-    @prefix litera: <http://www.nie.org/ontology/literature#> .
-    @prefix math: <http://www.nie.org/ontology/mathematics#> .
-    @prefix prosodic-structure: <http://www.nie.org/ontology/prosodic-structure#> .
+     @prefix : <http://www.e-editiones.ch/data/transitive#> .
+    @prefix concept: <http://www.e-editiones.ch/ontology/concept#> .
+    @prefix creating: <http://www.e-editiones.ch/ontology/creating#> .
+    @prefix document: <http://www.e-editiones.ch/ontology/document#> .
+    @prefix event: <http://www.e-editiones.ch/ontology/event#> .
+    @prefix language: <http://www.e-editiones.ch/ontology/language#> .
+    @prefix literature: <http://www.e-editiones.ch/ontology/literature#> .
+    @prefix prosodic-structure: <http://www.e-editiones.ch/ontology/prosodic-structure#> .
     @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-    @prefix text: <http://www.nie.org/ontology/text#> .
-    @prefix text-expression: <http://www.nie.org/ontology/text-expression#> .
-    @prefix text-structure: <http://www.nie.org/ontology/text-structure#> .
+    @prefix text: <http://www.e-editiones.ch/ontology/text#> .
+    @prefix text-expression: <http://www.e-editiones.ch/ontology/text-expression#> .
+    @prefix text-structure: <http://www.e-editiones.ch/ontology/text-structure#> .
     
      @forSome <#_g0> .
     
@@ -45,11 +45,8 @@
                 :verseSection1;
          concept:isPartOf :versePoem1,
                 :verseSection1;
-         document:contentStructureHasIdentifier :stropheNumber1;
          prosodic-structure:isStropheOfSection :verseSection1;
-         prosodic-structure:stropheHasIdentifier :stropheNumber1;
-         prosodic-structure:stropheHasNumber :stropheNumber1;
-         text-structure:hasIdentifier :stropheNumber1 .
+         prosodic-structure:stropheHasOrdinalNumeral "1" .
     
     :strophe2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -75,11 +72,8 @@
                 :verseSection1;
          concept:isPartOf :versePoem1,
                 :verseSection1;
-         document:contentStructureHasIdentifier :stropheNumber2;
          prosodic-structure:isStropheOfSection :verseSection1;
-         prosodic-structure:stropheHasIdentifier :stropheNumber2;
-         prosodic-structure:stropheHasNumber :stropheNumber2;
-         text-structure:hasIdentifier :stropheNumber2 .
+         prosodic-structure:stropheHasOrdinalNumeral "2" .
     
     :strophe3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -105,11 +99,8 @@
                 :verseSection2;
          concept:isPartOf :versePoem1,
                 :verseSection2;
-         document:contentStructureHasIdentifier :stropheNumber3;
          prosodic-structure:isStropheOfSection :verseSection2;
-         prosodic-structure:stropheHasIdentifier :stropheNumber3;
-         prosodic-structure:stropheHasNumber :stropheNumber3;
-         text-structure:hasIdentifier :stropheNumber3 .
+         prosodic-structure:stropheHasOrdinalNumeral "3" .
     
     :stropheB1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -133,11 +124,8 @@
                 text-structure:Structure;
          <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem2;
          concept:isPartOf :versePoem2;
-         document:contentStructureHasIdentifier :stropheBNumber1;
          prosodic-structure:isStropheOfPoem :versePoem2;
-         prosodic-structure:stropheHasIdentifier :stropheBNumber1;
-         prosodic-structure:stropheHasNumber :stropheBNumber1;
-         text-structure:hasIdentifier :stropheBNumber1 .
+         prosodic-structure:stropheHasOrdinalNumeral "1" .
     
     :stropheB2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -161,111 +149,8 @@
                 text-structure:Structure;
          <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem2;
          concept:isPartOf :versePoem2;
-         document:contentStructureHasIdentifier :stropheBNumber2;
          prosodic-structure:isStropheOfPoem :versePoem2;
-         prosodic-structure:stropheHasIdentifier :stropheBNumber2;
-         prosodic-structure:stropheHasNumber :stropheBNumber2;
-         text-structure:hasIdentifier :stropheBNumber2 .
-    
-    :stropheBNumber1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:StropheIdentifier,
-                prosodic-structure:StropheNumber,
-                text-structure:Identifier;
-         math:hasNumeral "1" .
-    
-    :stropheBNumber2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:StropheIdentifier,
-                prosodic-structure:StropheNumber,
-                text-structure:Identifier;
-         math:hasNumeral "2" .
-    
-    :stropheNumber1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:StropheIdentifier,
-                prosodic-structure:StropheNumber,
-                text-structure:Identifier;
-         math:hasNumeral "1" .
-    
-    :stropheNumber2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:StropheIdentifier,
-                prosodic-structure:StropheNumber,
-                text-structure:Identifier;
-         math:hasNumeral "2" .
-    
-    :stropheNumber3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:StropheIdentifier,
-                prosodic-structure:StropheNumber,
-                text-structure:Identifier;
-         math:hasNumeral "3" .
+         prosodic-structure:stropheHasOrdinalNumeral "2" .
     
     :verse1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -293,11 +178,8 @@
          concept:isPartOf :strophe1,
                 :versePoem1,
                 :verseSection1;
-         document:contentStructureHasIdentifier :verseNumber1;
          prosodic-structure:isVerseOfStrophe :strophe1;
-         prosodic-structure:verseHasIdentifier :verseNumber1;
-         prosodic-structure:verseHasNumber :verseNumber1;
-         text-structure:hasIdentifier :verseNumber1 .
+         prosodic-structure:verseHasOrdinalNumeral "1" .
     
     :verse2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -325,11 +207,8 @@
          concept:isPartOf :strophe1,
                 :versePoem1,
                 :verseSection1;
-         document:contentStructureHasIdentifier :verseNumber2;
          prosodic-structure:isVerseOfStrophe :strophe1;
-         prosodic-structure:verseHasIdentifier :verseNumber2;
-         prosodic-structure:verseHasNumber :verseNumber2;
-         text-structure:hasIdentifier :verseNumber2 .
+         prosodic-structure:verseHasOrdinalNumeral "2" .
     
     :verse3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -357,11 +236,8 @@
          concept:isPartOf :strophe1,
                 :versePoem1,
                 :verseSection1;
-         document:contentStructureHasIdentifier :verseNumber3;
          prosodic-structure:isVerseOfStrophe :strophe1;
-         prosodic-structure:verseHasIdentifier :verseNumber3;
-         prosodic-structure:verseHasNumber :verseNumber3;
-         text-structure:hasIdentifier :verseNumber3 .
+         prosodic-structure:verseHasOrdinalNumeral "3" .
     
     :verse4     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -389,11 +265,8 @@
          concept:isPartOf :strophe2,
                 :versePoem1,
                 :verseSection1;
-         document:contentStructureHasIdentifier :verseNumber4;
          prosodic-structure:isVerseOfStrophe :strophe2;
-         prosodic-structure:verseHasIdentifier :verseNumber4;
-         prosodic-structure:verseHasNumber :verseNumber4;
-         text-structure:hasIdentifier :verseNumber4 .
+         prosodic-structure:verseHasOrdinalNumeral "4" .
     
     :verse5     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -421,11 +294,8 @@
          concept:isPartOf :strophe2,
                 :versePoem1,
                 :verseSection1;
-         document:contentStructureHasIdentifier :verseNumber5;
          prosodic-structure:isVerseOfStrophe :strophe2;
-         prosodic-structure:verseHasIdentifier :verseNumber5;
-         prosodic-structure:verseHasNumber :verseNumber5;
-         text-structure:hasIdentifier :verseNumber5 .
+         prosodic-structure:verseHasOrdinalNumeral "5" .
     
     :verse6     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -453,11 +323,8 @@
          concept:isPartOf :strophe2,
                 :versePoem1,
                 :verseSection1;
-         document:contentStructureHasIdentifier :verseNumber6;
          prosodic-structure:isVerseOfStrophe :strophe2;
-         prosodic-structure:verseHasIdentifier :verseNumber6;
-         prosodic-structure:verseHasNumber :verseNumber6;
-         text-structure:hasIdentifier :verseNumber6 .
+         prosodic-structure:verseHasOrdinalNumeral "6" .
     
     :verse7     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -485,11 +352,8 @@
          concept:isPartOf :strophe3,
                 :versePoem1,
                 :verseSection2;
-         document:contentStructureHasIdentifier :verseNumber7;
          prosodic-structure:isVerseOfStrophe :strophe3;
-         prosodic-structure:verseHasIdentifier :verseNumber7;
-         prosodic-structure:verseHasNumber :verseNumber7;
-         text-structure:hasIdentifier :verseNumber7 .
+         prosodic-structure:verseHasOrdinalNumeral "7" .
     
     :verse8     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -517,11 +381,8 @@
          concept:isPartOf :strophe3,
                 :versePoem1,
                 :verseSection2;
-         document:contentStructureHasIdentifier :verseNumber8;
          prosodic-structure:isVerseOfStrophe :strophe3;
-         prosodic-structure:verseHasIdentifier :verseNumber8;
-         prosodic-structure:verseHasNumber :verseNumber8;
-         text-structure:hasIdentifier :verseNumber8 .
+         prosodic-structure:verseHasOrdinalNumeral "8" .
     
     :verse9     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -549,11 +410,8 @@
          concept:isPartOf :strophe3,
                 :versePoem1,
                 :verseSection2;
-         document:contentStructureHasIdentifier :verseNumber9;
          prosodic-structure:isVerseOfStrophe :strophe3;
-         prosodic-structure:verseHasIdentifier :verseNumber9;
-         prosodic-structure:verseHasNumber :verseNumber9;
-         text-structure:hasIdentifier :verseNumber9 .
+         prosodic-structure:verseHasOrdinalNumeral "9" .
     
     :verseB1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -579,11 +437,8 @@
                 :versePoem2;
          concept:isPartOf :stropheB1,
                 :versePoem2;
-         document:contentStructureHasIdentifier :verseBNumber1;
          prosodic-structure:isVerseOfStrophe :stropheB1;
-         prosodic-structure:verseHasIdentifier :verseBNumber1;
-         prosodic-structure:verseHasNumber :verseBNumber1;
-         text-structure:hasIdentifier :verseBNumber1 .
+         prosodic-structure:verseHasOrdinalNumeral "1" .
     
     :verseB2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -609,11 +464,8 @@
                 :versePoem2;
          concept:isPartOf :stropheB1,
                 :versePoem2;
-         document:contentStructureHasIdentifier :verseBNumber2;
          prosodic-structure:isVerseOfStrophe :stropheB1;
-         prosodic-structure:verseHasIdentifier :verseBNumber2;
-         prosodic-structure:verseHasNumber :verseBNumber2;
-         text-structure:hasIdentifier :verseBNumber2 .
+         prosodic-structure:verseHasOrdinalNumeral "2" .
     
     :verseB3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -639,11 +491,8 @@
                 :versePoem2;
          concept:isPartOf :stropheB2,
                 :versePoem2;
-         document:contentStructureHasIdentifier :verseBNumber3;
          prosodic-structure:isVerseOfStrophe :stropheB2;
-         prosodic-structure:verseHasIdentifier :verseBNumber3;
-         prosodic-structure:verseHasNumber :verseBNumber3;
-         text-structure:hasIdentifier :verseBNumber3 .
+         prosodic-structure:verseHasOrdinalNumeral "3" .
     
     :verseB4     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
                 <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
@@ -669,271 +518,8 @@
                 :versePoem2;
          concept:isPartOf :stropheB2,
                 :versePoem2;
-         document:contentStructureHasIdentifier :verseBNumber4;
          prosodic-structure:isVerseOfStrophe :stropheB2;
-         prosodic-structure:verseHasIdentifier :verseBNumber4;
-         prosodic-structure:verseHasNumber :verseBNumber4;
-         text-structure:hasIdentifier :verseBNumber4 .
-    
-    :verseBNumber1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "1" .
-    
-    :verseBNumber2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "2" .
-    
-    :verseBNumber3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "3" .
-    
-    :verseBNumber4     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "4" .
-    
-    :verseNumber1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "1" .
-    
-    :verseNumber2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "2" .
-    
-    :verseNumber3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "3" .
-    
-    :verseNumber4     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "4" .
-    
-    :verseNumber5     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "5" .
-    
-    :verseNumber6     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "6" .
-    
-    :verseNumber7     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "7" .
-    
-    :verseNumber8     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "8" .
-    
-    :verseNumber9     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseIdentifier,
-                prosodic-structure:VerseNumber,
-                text-structure:Identifier;
-         math:hasNumeral "9" .
+         prosodic-structure:verseHasOrdinalNumeral "4" .
     
     :versePoem1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression>,
                 <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
@@ -947,14 +533,15 @@
                 creating:Creation,
                 document:Document,
                 document:Expression,
-                litera:Expression,
-                litera:Poem,
-                litera:VersePoem,
+                literature:Expression,
+                literature:Poem,
+                literature:VersePoem,
                 text-expression:Expression,
                 rdfs:Resource,
                 <#_g0>;
          document:expressionHasTitle "Baum";
-         litera:hasPoet :person1;
+         event:outputInvolvesRole :poet1;
+         literature:hasPoet :person1;
          text:hasText "Baum";
          text:hasTitle "Baum";
          text-expression:hasAuthor :person1 .
@@ -971,14 +558,15 @@
                 creating:Creation,
                 document:Document,
                 document:Expression,
-                litera:Expression,
-                litera:Poem,
-                litera:VersePoem,
+                literature:Expression,
+                literature:Poem,
+                literature:VersePoem,
                 text-expression:Expression,
                 rdfs:Resource,
                 <#_g0>;
          document:expressionHasTitle "Wolke";
-         litera:hasPoet :person1;
+         event:outputInvolvesRole :poet1;
+         literature:hasPoet :person1;
          text:hasText "Wolke";
          text:hasTitle "Wolke";
          text-expression:hasAuthor :person1 .
@@ -1005,11 +593,8 @@
                 text-structure:Structure;
          <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem1;
          concept:isPartOf :versePoem1;
-         document:contentStructureHasIdentifier prosodic-structure:verseSectionNumber1;
          prosodic-structure:isVerseSectionOfPoem :versePoem1;
-         prosodic-structure:verseSectionHasIdentifier prosodic-structure:verseSectionNumber1;
-         prosodic-structure:verseSectionHasNumber prosodic-structure:verseSectionNumber1;
-         text-structure:hasIdentifier prosodic-structure:verseSectionNumber1;
+         prosodic-structure:verseSectionHasOrdinalNumeral "1";
          text-structure:isPartOfTextExpression :versePoem1 .
     
     :verseSection2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
@@ -1034,51 +619,8 @@
                 text-structure:Structure;
          <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem1;
          concept:isPartOf :versePoem1;
-         document:contentStructureHasIdentifier prosodic-structure:verseSectionNumber2;
          prosodic-structure:isVerseSectionOfPoem :versePoem1;
-         prosodic-structure:verseSectionHasIdentifier prosodic-structure:verseSectionNumber2;
-         prosodic-structure:verseSectionHasNumber prosodic-structure:verseSectionNumber2;
-         text-structure:hasIdentifier prosodic-structure:verseSectionNumber2;
+         prosodic-structure:verseSectionHasOrdinalNumeral "2";
          text-structure:isPartOfTextExpression :versePoem1 .
-    
-    prosodic-structure:verseSectionNumber1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseSectionIdentifier,
-                prosodic-structure:VerseSectionNumber,
-                text-structure:Identifier;
-         math:hasNumeral "1" .
-    
-    prosodic-structure:verseSectionNumber2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Identifier,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructureIdentifier,
-                document:Element,
-                document:Structure,
-                math:NaturalNumber,
-                prosodic-structure:VerseSectionIdentifier,
-                prosodic-structure:VerseSectionNumber,
-                text-structure:Identifier;
-         math:hasNumeral "2" .
     
 #ENDS

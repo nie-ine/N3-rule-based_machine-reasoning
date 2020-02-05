@@ -1,139 +1,102 @@
-@prefix human: <http://www.nie.org/ontology/human#>.
-@prefix math: <http://www.nie.org/ontology/mathematics#>.
-@prefix document: <http://www.nie.org/ontology/document#>.
-@prefix litera: <http://www.nie.org/ontology/literature#>.
-@prefix prosodic-structure: <http://www.nie.org/ontology/prosodic-structure#>.
+@prefix event: <http://www.e-editiones.ch/ontology/event#>.
+@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+@prefix math: <http://www.e-editiones.ch/ontology/mathematics#>.
+@prefix document: <http://www.e-editiones.ch/ontology/document#>.
+@prefix litera: <http://www.e-editiones.ch/ontology/literature#>.
+@prefix prosodic-structure: <http://www.e-editiones.ch/ontology/prosodic-structure#>.
 
-@prefix dataTransitive: <http://www.nie.org/data/transitive#>.
+@prefix dataTransitive: <http://www.e-editiones.ch/data/transitive#>.
 
 dataTransitive:verse1
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber1;
+	prosodic-structure:verseHasOrdinalNumeral "1";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe1.
-
-dataTransitive:verseNumber1	math:hasNumeral "1".
 
 dataTransitive:verse2
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber2;
+	prosodic-structure:verseHasOrdinalNumeral "2";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe1.
-
-dataTransitive:verseNumber2	math:hasNumeral "2".
 
 dataTransitive:verse3
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber3;
+	prosodic-structure:verseHasOrdinalNumeral "3";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe1.
 
-dataTransitive:verseNumber3	math:hasNumeral "3".
-
 dataTransitive:strophe1
-	prosodic-structure:stropheHasNumber dataTransitive:stropheNumber1;
+	prosodic-structure:stropheHasOrdinalNumeral "1";
 	prosodic-structure:isStropheOfSection dataTransitive:verseSection1.
-
-dataTransitive:stropheNumber1 math:hasNumeral "1".
 
 dataTransitive:verse4
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber4;
+	prosodic-structure:verseHasOrdinalNumeral "4";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe2.
-
-dataTransitive:verseNumber4	math:hasNumeral "4".
 
 dataTransitive:verse5
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber5;
+	prosodic-structure:verseHasOrdinalNumeral "5";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe2.
-
-dataTransitive:verseNumber5	math:hasNumeral "5".
 
 dataTransitive:verse6
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber6;
+	prosodic-structure:verseHasOrdinalNumeral "6";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe2.
 
-dataTransitive:verseNumber6	math:hasNumeral "6".
-
 dataTransitive:strophe2
-	prosodic-structure:stropheHasNumber dataTransitive:stropheNumber2;
+	prosodic-structure:stropheHasOrdinalNumeral "2";
 	prosodic-structure:isStropheOfSection dataTransitive:verseSection1.
 
-dataTransitive:stropheNumber2 math:hasNumeral "2".
-
 dataTransitive:verseSection1
-	prosodic-structure:verseSectionHasNumber prosodic-structure:verseSectionNumber1;
+	prosodic-structure:verseSectionHasOrdinalNumeral "1";
 	prosodic-structure:isVerseSectionOfPoem dataTransitive:versePoem1.
-
-prosodic-structure:verseSectionNumber1 math:hasNumeral "1".
 
 dataTransitive:verse7
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber7;
+	prosodic-structure:verseHasOrdinalNumeral "7";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe3.
-
-dataTransitive:verseNumber7	math:hasNumeral "7".
 
 dataTransitive:verse8
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber8;
+	prosodic-structure:verseHasOrdinalNumeral "8";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe3.
-
-dataTransitive:verseNumber8	math:hasNumeral "8".
 
 dataTransitive:verse9
-	prosodic-structure:verseHasNumber dataTransitive:verseNumber9;
+	prosodic-structure:verseHasOrdinalNumeral "9";
 	prosodic-structure:isVerseOfStrophe dataTransitive:strophe3.
 
-dataTransitive:verseNumber9	math:hasNumeral "9".
-
 dataTransitive:strophe3
-	prosodic-structure:stropheHasNumber dataTransitive:stropheNumber3;
+	prosodic-structure:stropheHasOrdinalNumeral "3";
 	prosodic-structure:isStropheOfSection dataTransitive:verseSection2.
 
-dataTransitive:stropheNumber3 math:hasNumeral "3".
-
 dataTransitive:verseSection2
-	prosodic-structure:verseSectionHasNumber prosodic-structure:verseSectionNumber2;
+	prosodic-structure:verseSectionHasOrdinalNumeral "2";
 	prosodic-structure:isVerseSectionOfPoem dataTransitive:versePoem1.
-
-prosodic-structure:verseSectionNumber2 math:hasNumeral "2".
 
 dataTransitive:versePoem1
 	a litera:VersePoem;
 	litera:hasPoet dataTransitive:person1;
+	event:outputInvolvesRole dataTransitive:poet1;
 	document:expressionHasTitle "Baum".
 
 dataTransitive:verseB1
-	prosodic-structure:verseHasNumber dataTransitive:verseBNumber1;
+	prosodic-structure:verseHasOrdinalNumeral "1";
 	prosodic-structure:isVerseOfStrophe dataTransitive:stropheB1.
-
-dataTransitive:verseBNumber1	math:hasNumeral "1".
 
 dataTransitive:verseB2
-	prosodic-structure:verseHasNumber dataTransitive:verseBNumber2;
+	prosodic-structure:verseHasOrdinalNumeral "2";
 	prosodic-structure:isVerseOfStrophe dataTransitive:stropheB1.
 
-dataTransitive:verseBNumber2	math:hasNumeral "2".
-
 dataTransitive:stropheB1
-	prosodic-structure:stropheHasNumber dataTransitive:stropheBNumber1;
+	prosodic-structure:stropheHasOrdinalNumeral "1";
 	prosodic-structure:isStropheOfPoem dataTransitive:versePoem2.
-
-dataTransitive:stropheBNumber1 math:hasNumeral "1".
 
 dataTransitive:verseB3
-	prosodic-structure:verseHasNumber dataTransitive:verseBNumber3;
+	prosodic-structure:verseHasOrdinalNumeral "3";
 	prosodic-structure:isVerseOfStrophe dataTransitive:stropheB2.
-
-dataTransitive:verseBNumber3	math:hasNumeral "3".
 
 dataTransitive:verseB4
-	prosodic-structure:verseHasNumber dataTransitive:verseBNumber4;
+	prosodic-structure:verseHasOrdinalNumeral "4";
 	prosodic-structure:isVerseOfStrophe dataTransitive:stropheB2.
 
-dataTransitive:verseBNumber4	math:hasNumeral "4".
-
 dataTransitive:stropheB2
-	prosodic-structure:stropheHasNumber dataTransitive:stropheBNumber2;
+	prosodic-structure:stropheHasOrdinalNumeral "2";
 	prosodic-structure:isStropheOfPoem dataTransitive:versePoem2.
-
-dataTransitive:stropheBNumber2 math:hasNumeral "2".
 
 dataTransitive:versePoem2
 	a litera:VersePoem;
 	litera:hasPoet dataTransitive:person1;
+	event:outputInvolvesRole dataTransitive:poet1;
 	document:expressionHasTitle "Wolke".
 
 dataTransitive:person1

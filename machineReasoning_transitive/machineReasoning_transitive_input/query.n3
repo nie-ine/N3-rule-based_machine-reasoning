@@ -3,20 +3,20 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#>.
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix concept: <http://www.nie.org/ontology/concept#>.
-@prefix prosodic-structure: <http://www.nie.org/ontology/prosodic-structure#>.
-@prefix litera: <http://www.nie.org/ontology/literature#>.
+@prefix concept: <http://www.e-editiones.ch/ontology/concept#>.
+@prefix prosodic-structure: <http://www.e-editiones.ch/ontology/prosodic-structure#>.
+@prefix litera: <http://www.e-editiones.ch/ontology/literature#>.
 
-@prefix dataTransitive: <http://www.nie.org/data/transitive#>.
+@prefix dataTransitive: <http://www.e-editiones.ch/data/transitive#>.
 
-@prefix queryTransitive: <http://www.nie.org/query/transitive#>.
+@prefix queryTransitive: <http://www.e-editiones.ch/query/transitive#>.
 
 # Note: using different combinations of the triples in the premise permits filtering for different parts of the deductive closure, needed for GUI-representation. The current query filters a maximum inference for prosodic entities, i.e. verse, strophe, verse section, and poem.
 
 {
-	# Make a list of all classes found to be defined in the literature-ontology, to reduce :
+	# Make a list of all classes found as be defined in the literature-ontology, to reduce :
 	?SCOPE e:findall (?ClassA {?ClassA rdfs:isDefinedBy litera:} ?ClassList1).
-	# Make a list of all classes found to be defined in the prosodic-structure-ontology:
+	# Make a list of all classes found as be defined in the prosodic-structure-ontology:
 	?SCOPE e:findall (?ClassB {?ClassB rdfs:isDefinedBy prosodic-structure:} ?ClassList2).
 	# Merge the 2 lists:
 	(?ClassList1 ?ClassList2) list:append ?ClassList.

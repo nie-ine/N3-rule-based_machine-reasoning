@@ -7,9 +7,9 @@
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 
-@prefix cardinality: <http://nie-ine.org/rule/cardinality#>.
+@prefix cardinality: <http://www.e-editiones.ch/rule/cardinality#>.
 
-<http://nie-ine.org/rule/cardinality>
+<http://www.e-editiones.ch/rule/cardinality>
 	dct:issued "2017-05-18"^^xsd:date;
 	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title """OWL cardinality rules"""@en;

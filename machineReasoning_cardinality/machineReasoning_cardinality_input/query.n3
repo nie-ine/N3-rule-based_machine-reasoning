@@ -8,7 +8,7 @@
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 
-# An N3 query is a filter on the inferred result set of an EYE run using N3 rules on one or more formal data sets and RDF/S-OWL ontologies.
+# An N3 query is a filter on the inferred result set of an EYE run using N3 rules on one or more formal data sets and OWL-ontologies.
 
 # In the EYE command it is put after --query producing the output.
 

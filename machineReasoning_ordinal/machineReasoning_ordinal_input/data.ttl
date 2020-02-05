@@ -1,12 +1,12 @@
-@prefix concept: <http://www.nie.org/ontology/concept#>.
-@prefix document: <http://www.nie.org/ontology/document#>.
-@prefix text-expression: <http://www.nie.org/ontology/text-expression#>.
-@prefix prosodic-structure: <http://www.nie.org/ontology/prosodic-structure#>.
-@prefix literature: <http://www.nie.org/ontology/literature#>.
+@prefix concept: <http://www.e-editiones.ch/ontology/concept#>.
+@prefix document: <http://www.e-editiones.ch/ontology/document#>.
+@prefix text-expression: <http://www.e-editiones.ch/ontology/text-expression#>.
+@prefix prosodic-structure: <http://www.e-editiones.ch/ontology/prosodic-structure#>.
+@prefix literature: <http://www.e-editiones.ch/ontology/literature#>.
 
 # Mock-up data:
 
-@prefix data: <http://www.nie.org/data/sequence-number#>.
+@prefix data: <http://www.e-editiones.ch/data/ordinal#>.
 
 data:verse111a
 	a prosodic-structure:Verse;

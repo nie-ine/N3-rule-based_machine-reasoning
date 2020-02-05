@@ -1,7 +1,7 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 echo "# Execution date" $(date) > $DIR/machineReasoning_cardinality_input/result.n3
-./eye.sh --nope https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/knora-ontologies/knora-base.ttl https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/webapi/_test_data/ontologies/images-onto.ttl $DIR/machineReasoning_cardinality_input/images-demo-data.ttl https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subClassOf.n3 https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subPropertyOf.n3 $DIR/machineReasoning_cardinality_input/cardinality-rules.n3 --query $DIR/machineReasoning_cardinality_input/query.n3 |cwm >> $DIR/machineReasoning_cardinality_input/result.n3
+./eye.sh --nope https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/knora-ontologies/knora-base.ttl https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/webapi/_test_data/ontologies/images-onto.ttl $DIR/machineReasoning_cardinality_input/images-demo-data.ttl https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subClassOf.n3 https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subPropertyOf.n3 $DIR/machineReasoning_cardinality_input/cardinality-rules.n3 --query $DIR/machineReasoning_cardinality_input/query.n3 |cwm >> $DIR/machineReasoning_cardinality_input/result.n3
 
 
 # 1. Description of the input for the reasoner:

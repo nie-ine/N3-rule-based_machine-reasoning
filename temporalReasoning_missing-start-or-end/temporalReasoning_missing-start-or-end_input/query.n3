@@ -5,9 +5,9 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#>. # created by Tim Berners-Lee
 @prefix math: <http://www.w3.org/2000/10/swap/math#>. # created by Tim Berners-Lee
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix event: <http://www.nie.org/ontology/event#>.
-@prefix time: <http://www.nie.org/ontology/time#>.
-@prefix human: <http://www.nie.org/ontology/human#>.
+@prefix event: <http://www.e-editiones.ch/ontology/event#>.
+@prefix time: <http://www.e-editiones.ch/ontology/time#>.
+@prefix human: <http://www.e-editiones.ch/ontology/human#>.
 @prefix : <#>.
 
 
@@ -17,7 +17,7 @@
 	?person
 		human:hasBirthdate ?birthdate; # An N3-query can take any triple from the store.
 		human:hasLatestDeathDate ?latestDeathDate;
-		human:hasLife ?personLife. # An N3-query can take any triple from the store.
+		human:hasLife ?personLife.
 	?personLife
 		time:hasStartDateTime ?birthdate;
 		time:hasLatestEndDateTime ?latestDeathDate

@@ -1,7 +1,7 @@
-@prefix math: <http://www.nie.org/ontology/mathematics#>.
+@prefix math: <http://www.e-editiones.ch/ontology/mathematics#>.
 
 # N3-query for passing a filtered part of the deductive closure or full reasoning result:
-# Note: a sequence number or sequence letter is not reified.
+# Note: an ordinal numeral or ordinal literal is not reified.
 
 {
 	?sequenced

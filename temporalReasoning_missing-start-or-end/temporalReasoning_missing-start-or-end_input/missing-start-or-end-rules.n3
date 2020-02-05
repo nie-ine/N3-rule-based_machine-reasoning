@@ -5,11 +5,13 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#>. # created by Tim Berners-Lee
 @prefix math: <http://www.w3.org/2000/10/swap/math#>. # created by Tim Berners-Lee
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix event: <http://www.nie.org/ontology/event#>.
-@prefix time: <http://www.nie.org/ontology/time#>.
-@prefix human: <http://www.nie.org/ontology/human#>.
+@prefix event: <http://www.e-editiones.ch/ontology/event#>.
+@prefix time: <http://www.e-editiones.ch/ontology/time#>.
+@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+
 
 # Rule to calculate a 'latest death date' for a person, hence a 'latest end date' of the life of a person, hence a high probability interval for the life, based on the birthdate and a set maximum duration of a person's life, in absence of the death date:
+
 {
 	?person
 		# Get data:
@@ -32,7 +34,9 @@
 		time:hasLatestEndDateTime ?latestDeathDate
 }.
 
+
 # Rule to calculate an 'earliest birth date' for a person, hence an 'earliest start date' of the life of a person, hence a high probability interval for the life, based on the death date and a set maximum duration of a person's life, in absence of the birthdate:
+
 {
 	?person
 		human:hasLife ?personLife;
@@ -53,6 +57,7 @@
 		time:hasEarliestStartDateTime ?earliestBirthdate;
 		time:hasEndDateTime ?deathDate
 }.
+
 
 # To do: generalize to event
 # Rule to calculate a high probability interval for an event if start or end is missing, based on a set time difference between start and end:

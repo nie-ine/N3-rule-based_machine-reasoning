@@ -1,6 +1,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix time: <http://www.nie.org/ontology/time#>.
-@prefix human: <http://www.nie.org/ontology/human#>.
+@prefix time: <http://www.e-editiones.ch/ontology/time#>.
+@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+
 
 # Rule setting an arbitrary though realistic maximum of a person's life duration.
 # To have an idea: https://en.wikipedia.org/wiki/Maximum_life_span
@@ -18,7 +19,7 @@
 # OR a shortcut, but then without knowledge about the life as an event:
 
 # {
-#	?person human:hasMaxLifeSpan "P125Y"^^xsd:duration. # If another value is wanted, it only has to be changed here.
+#	?person human:hasMaxLifeSpan "P125Y"^^xsd:duration.
 # }
 # <= # backward rule
 # {

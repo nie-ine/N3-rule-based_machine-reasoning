@@ -21,7 +21,7 @@
 	images:signatur <http://data.knora.org/0cb8286054d5/values/aab421c4eb0f04> ;
 	images:bildnr <http://data.knora.org/0cb8286054d5/values/6dde74fdeb0f04> ;
 	images:description <http://data.knora.org/0cb8286054d5/values/3caf141ced0f04> ;
-	images:jahreszeit <http://data.knora.org/0cb8286054d5/values/f3311b70ec0f04> ;	#  Restriction on property of owl:minCardinality "1"^^xsd:nonNegativeInteger => INCONSISTENCY IF triple is commented
+	images:jahreszeit <http://data.knora.org/0cb8286054d5/values/f3311b70ec0f04> ;	#  Restriction on property of owl:minCardinality "1"^^xsd:nonNegativeInteger => INCONSISTENCY IF triple is commented out
 	images:jahrzehnt <http://data.knora.org/0cb8286054d5/values/852c0ec8ed0f04> ;
 	images:jahr_exakt <http://data.knora.org/0cb8286054d5/values/48566101ee0f04> ;
 	images:bildformat <http://data.knora.org/47b2992554d5> ;
@@ -34,7 +34,7 @@
 	images:copyright <http://data.knora.org/df1260ad43d5> ;
 	images:copyrightValue <http://data.knora.org/0cb8286054d5/values/7d9e429c-4ef4-4708-bef1-e89c842f5f55> ;
 	rdfs:label "1 Alpinismus" ;
-	knora-base:hasStillImageFileValue <http://data.knora.org/0cb8286054d5/reps/073ce085942f01>;	#  Restriction on property of owl:cardinality "1"^^xsd:nonNegativeInteger in the knora-base-ontology => INCONSISTENCY IF triple is commented OR IF there are 2 or more different values
+#	knora-base:hasStillImageFileValue <http://data.knora.org/0cb8286054d5/reps/073ce085942f01>;	#  Restriction on property of owl:cardinality "1"^^xsd:nonNegativeInteger in the knora-base-ontology => INCONSISTENCY IF triple is commented out OR IF there are 2 or more different values
 	knora-base:creationDate "2016-03-02T15:05:57Z"^^xsd:dateTimeStamp ;
 	knora-base:hasPermissions "CR knora-base:ProjectMember,knora-base:Creator|V knora-base:KnownUser|RV knora-base:UnknownUser" .
 
