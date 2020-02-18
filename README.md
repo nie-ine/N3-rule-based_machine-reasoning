@@ -58,7 +58,9 @@ User-defined restrictions can be checked upon, e.g. a cardinality restriction fo
 A reasoning example on cardinality is given in the repository, using 2 external ontologies and an RDF data set on images of the [Knora server application](https://www.knora.org/), developed by the [DHLab (DHL)](https://dhlab.philhist.unibas.ch/en/home/) at the University of Basel and the [Data and Service Center for humanities (DaSCH)](https://dasch.swiss/).
 
 ### Temporal reasoning:
-Generally, time indicators are uniformly converted to intervals to calculate with.
+This type of reasoning is crucial for formal data to be reusable and interchangeable, because its first step is a unification of time expressions in different calendars and/or with different accuracy.  
+Time expressions with the accuracy of a day (date) from different calendars are converted to the respective Julian Day Numbers, and in this way comparable.  
+A time expression with less accuracy than a day, i.e. a year or year-month, is converted to the period with the start and end date of the specific calendar, and with the start and end Julian Day Number.
 For this process the machine reasoner provides an extensive set of [Time and RIF Built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3) based on W3C standards [RIF Datatypes and Built-Ins 1.0](https://www.w3.org/TR/2013/REC-rif-dtb-20130205/), using for instance literals typed with e.g. xsd:date, xsd:dateTime, and xsd:duration from the <http://www.w3.org/2001/XMLSchema#> namespace.
 Further functionality is provided by the [time-ontology](https://raw.githubusercontent.com/nie-ine/Ontologies/master/Nie-ontologies/Generic-ontologies/time-ontology.ttl), and the [calendar-ontology](https://raw.githubusercontent.com/nie-ine/Ontologies/master/Nie-ontologies/Generic-ontologies/calendar-ontology.ttl), declaring the properties used in N3-rules.
 
@@ -84,7 +86,7 @@ Download site: https://sourceforge.net/projects/eulersharp/files/eulersharp/
 EYE comes with syntax check and intrinsic functionality provided by [built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3), 
 All other reasoning material has to be input, i.e. OWL-ontologies, RDF-data, N3-rules.  
 
-### Basic command example for EYE:
+## Basic command example for EYE:
 
 Note: the command for the reasoner is written for Unix OS, but can be easily converted for Windows OS.
 
