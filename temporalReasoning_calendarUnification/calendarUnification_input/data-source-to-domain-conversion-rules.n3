@@ -1,0 +1,332 @@
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix time: <http://www.e-editiones.ch/ontology/time#>.
+@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+@prefix calendar: <http://www.e-editiones.ch/ontology/calendar#>.
+
+@prefix projectx: <http://www.e-editiones.ch/project/ontology/projectx#>.
+# Mock-up project-specific ontology needed in the first step of the 2-step formalization
+# As a 1-1 or uninterpreted mapping from the source data model (e.g. XML, SQL) to RDF
+# To make the source data semantics explicit in RDF
+
+# In the second step the source data semantics are converted to domain semantics, also converting the time indicator literals to typed literals or periods, in preperation of temporal reasoning on those data through interval calculus.
+
+# A project can span more than one calendar of the sequence preleptic-Julian/Julian/Gregorian or combine calendars, e.g. Julian and Islamic.
+
+# If calendrical messages are not needed variables in a rule can be removed or rules can be commented out by a dot after the premise and a hash before the implicator.
+
+{
+	?r
+		projectx:hasDate ?d;
+		projectx:hasCalendar projectx:gregorianCalendar.
+	# INVOKE THE GREGORIAN CALENDAR CONVERSION RULE SET:
+	(?d calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn ?m)
+}
+=>
+{
+	?r
+		calendar:hasGregorianDate ?gD;
+		calendar:hasJulianDayNumber ?jdn;
+		calendar:hasMessage ?m
+}.
+
+
+{
+	?r
+		projectx:hasDate ?d;
+		projectx:hasCalendar projectx:julianCalendar.
+	# INVOKE THE JULIAN CALENDAR CONVERSION RULE SET:
+	(?d calendar:julianCalendar) calendar:dateLiteralToDate (?jD ?jdn)
+}
+=>
+{
+	?r
+		calendar:hasJulianDate ?jD;
+		calendar:hasJulianDayNumber ?jdn
+}.
+
+
+{
+	?r
+		projectx:hasDate ?d;
+		projectx:hasCalendar projectx:prolepticJulianCalendar.
+	# INVOKE THE PROPLEPTIC JULIAN CALENDAR CONVERSION RULE SET:
+	(?d calendar:prolepticJulianCalendar) calendar:dateLiteralToDate (?pJD ?jdn)
+}
+=>
+{
+	?r
+		calendar:hasProlepticJulianDate ?pJD;
+		calendar:hasJulianDayNumber ?jdn
+}.
+
+
+{
+	?r
+		projectx:hasYear ?y;
+		projectx:hasCalendar projectx:gregorianCalendar.
+	# INVOKE THE CALENDAR CONVERSION RULE SET:
+	(?y calendar:gregorianCalendar) calendar:yearLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?r
+		time:hasYearPeriod [
+			calendar:hasGregorianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?r
+		projectx:hasYear "1582";
+		projectx:hasCalendar projectx:julianCalendar, projectx:gregorianCalendar.
+	# RETRIEVE THE VALUES FOR THE JULIAN-GRAGORIAN YEAR 1582 AS CONSTANTS:
+	("1582" calendar:julianCalendar calendar:gregorianCalendar) calendar:yearLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?r
+		time:hasYearPeriod [
+			calendar:hasJulianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?p
+		projectx:hasBirthYear ?y;
+		projectx:hasCalendar projectx:gregorianCalendar.
+	# INVOKE THE CALENDAR CONVERSION RULE SET:
+	(?y calendar:gregorianCalendar) calendar:yearLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?p
+		human:hasBirthYearPeriod [
+			calendar:hasGregorianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?p
+		projectx:hasDeathYear ?y;
+		projectx:hasCalendar projectx:gregorianCalendar.
+	# INVOKE THE CALENDAR CONVERSION RULE SET:
+	(?y calendar:gregorianCalendar) calendar:yearLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?p
+		human:hasDeathYearPeriod [
+			calendar:hasGregorianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?r
+		projectx:hasYear ?y;
+		projectx:hasCalendar projectx:julianCalendar.
+	# INVOKE THE CALENDAR CONVERSION RULE SET:
+	(?y calendar:julianCalendar) calendar:yearLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?r
+		time:hasYearPeriod [
+			calendar:hasJulianStartDate ?sD;
+			calendar:hasJulianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?r
+		projectx:hasYear ?y;
+		projectx:hasCalendar projectx:prolepticJulianCalendar.
+	# INVOKE THE CALENDAR CONVERSION RULE SET:
+	(?y calendar:prolepticJulianCalendar) calendar:yearLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?r
+		time:hasYearPeriod [
+			calendar:hasProlepticJulianStartDate ?sD;
+			calendar:hasProlepticJulianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?r
+		projectx:hasYearMonth (?y ?m);
+		projectx:hasCalendar projectx:gregorianCalendar.
+	# INVOKE THE CALENDAR CONVERSION RULE SET:
+	((?y ?m) calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?r
+		time:hasYearMonthPeriod [
+			calendar:hasGregorianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?r
+		projectx:hasYearMonth ("1582" "10");
+		projectx:hasCalendar projectx:julianCalendar, projectx:gregorianCalendar.
+	# RETRIEVE THE VALUES FOR THE JULIAN-GRAGORIAN YEAR-MONTH OCTOBER 1582 AS CONSTANTS:
+	(("1582" "10") calendar:julianCalendar calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?r
+		time:hasYearMonthPeriod [
+			calendar:hasJulianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?r
+		projectx:hasYearMonth (?y ?m);
+		projectx:hasCalendar projectx:julianCalendar.
+	# INVOKE THE CALENDAR CONVERSION RULE SET:
+	((?y ?m) calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?r
+		time:hasYearMonthPeriod [
+			calendar:hasJulianStartDate ?sD;
+			calendar:hasJulianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?r
+		projectx:hasYearMonth (?y ?m);
+		projectx:hasCalendar projectx:prolepticJulianCalendar.
+	# INVOKE THE CALENDAR CONVERSION RULE SET:
+	((?y ?m) calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?sD ?eD ?sJDN ?eJDN)
+}
+=>
+{
+	?r
+		time:hasYearMonthPeriod [
+			calendar:hasProlepticJulianStartDate ?sD;
+			calendar:hasProlepticJulianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?r projectx:hasYear "0".
+	[] e:optional {?r projectx:hasCalendar projectx:gregorianCalendar}. #°
+	[] e:optional {?r projectx:hasCalendar projectx:julianCalendar}.
+	[] e:optional {?r projectx:hasCalendar projectx:prolepticJulianCalendar}.
+}
+=> {?r calendar:hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr}.
+
+
+{
+	?r projectx:hasYearMonth ("0" ?m).
+	[] e:optional {?r projectx:hasCalendar projectx:gregorianCalendar}. #°
+	[] e:optional {?r projectx:hasCalendar projectx:julianCalendar}.
+	[] e:optional {?r projectx:hasCalendar projectx:prolepticJulianCalendar}.
+}
+=> {?r calendar:hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr}.
+
+
+{
+	?r projectx:hasDate ("0" ?m ?d).
+	[] e:optional {?r projectx:hasCalendar projectx:gregorianCalendar}. #°
+	[] e:optional {?r projectx:hasCalendar projectx:julianCalendar}.
+	[] e:optional {?r projectx:hasCalendar projectx:prolepticJulianCalendar}.
+}
+=> {?r calendar:hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr}.
+
+
+{
+	?r projectx:hasYearMonth (?y ?m).
+	?m math:lessThan 1
+}
+=> {?r calendar:hasMessage "Un mois a besoin d'un entier positif."@fr}.
+
+
+{
+	?r projectx:hasDate (?y ?m ?d).
+	?m math:lessThan 1
+}
+=> {?r calendar:hasMessage "Un mois a besoin d'un entier positif."@fr}.
+
+
+{
+	?r projectx:hasYearMonth (?y ?m).
+	?m math:greaterThan 12
+}
+=> {?r calendar:hasMessage "Il y a seulement 12 mois dans le calendrier grégorien, julien et julien proleptique."@fr}.
+
+
+{
+	?r projectx:hasDate (?y ?m ?d).
+	?m math:greaterThan 12
+}
+=> {?r calendar:hasMessage "Il y a seulement 12 mois dans le calendrier grégorien, julien et julien proleptique."@fr}.
+
+
+{
+	?r projectx:hasDate (?y ?m ?d).
+	?d math:lessThan 1
+}
+=> {?r calendar:hasMessage "Un jour a besoin d'un entier positif."@fr}.
+
+
+{
+	?r projectx:hasDate (?y ?m ?d).
+	[] e:optional {?r projectx:hasCalendar projectx:gregorianCalendar}. #°
+	[] e:optional {?r projectx:hasCalendar projectx:julianCalendar}.
+	[] e:optional {?r projectx:hasCalendar projectx:prolepticJulianCalendar}.
+	?d math:greaterThan 31
+}
+=> {?r calendar:hasMessage "Il n'y a aucun mois dans le calendrier grégorien, julien et julien proleptique avec plus de 31 jours."@fr}.
+
+
+{
+	?r
+		projectx:hasDate ("1582" "10" ?d);
+		projectx:hasCalendar projectx:gregorianCalendar.
+	?d math:greaterThan 4; math:lessThan 15
+}
+=> {?r calendar:hasMessage "Il n'y a pas l'octobre 5-14 en 1582 dans le calendrier grégorien."@fr}.

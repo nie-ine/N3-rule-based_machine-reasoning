@@ -24,7 +24,7 @@ These built-ins are mentioned in some of the following rule examples.
 ## N3-rules serve different purposes: 
 Note: also mentioned in the use case catalogue.
 ### Implementation of the RDF model theory:
-A set of [N3-rules implementating of the RDF model theory](https://github.com/josd/brain/tree/master/rpo) permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
+A set of [N3-rules implementing of the RDF model theory](https://github.com/josd/brain/tree/master/rpo) permits to infer data from data based on the built-in logic of the W3C Semantic Web standard languages.
 Examples are rules for the implementation of:
 
 		@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
@@ -59,10 +59,11 @@ A reasoning example on cardinality is given in the repository, using 2 external 
 
 ### Temporal reasoning:
 Generally, time indicators are uniformly converted to intervals to calculate with.
-For this process the machine reasoner provides an extensive set of [Time and RIF Built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3) based on W3C standards [RIF Datatypes and Built-Ins 1.0](https://www.w3.org/TR/2013/REC-rif-dtb-20130205/), using for instance literals typed with e.g. xs:dateTime, and xs:duration from the <http://www.w3.org/2001/XMLSchema#> namespace.
-Further functionality is provided by the [time-ontology](https://raw.githubusercontent.com/nie-ine/Ontologies/master/Nie-ontologies/Generic-ontologies/time-ontology.ttl) declaring the properties used in N3-rules.
+For this process the machine reasoner provides an extensive set of [Time and RIF Built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3) based on W3C standards [RIF Datatypes and Built-Ins 1.0](https://www.w3.org/TR/2013/REC-rif-dtb-20130205/), using for instance literals typed with e.g. xsd:date, xsd:dateTime, and xsd:duration from the <http://www.w3.org/2001/XMLSchema#> namespace.
+Further functionality is provided by the [time-ontology](https://raw.githubusercontent.com/nie-ine/Ontologies/master/Nie-ontologies/Generic-ontologies/time-ontology.ttl), and the [calendar-ontology](https://raw.githubusercontent.com/nie-ine/Ontologies/master/Nie-ontologies/Generic-ontologies/calendar-ontology.ttl), declaring the properties used in N3-rules.
 
-A temporal reasoning example is given in the repository, considering an event without a start or end date, with specific example of missing birth- or death date.
+A temporal reasoning example is given in the repository, converting calendrical time expressions to a unifying Julian Day Number.  
+Another example deals with an event without a start or end date, with the specific example of missing birth- or death date.
 
 ### Miscellaneous functionalities and calculations:
 Also for this type of N3-rules a large set of [built-ins](https://raw.githubusercontent.com/josd/eye/master/eye-builtins.n3) is available, dealing with e.g. logical and mathematical operators, lists, and strings.

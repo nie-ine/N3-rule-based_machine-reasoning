@@ -1,0 +1,257 @@
+@prefix time: <http://www.e-editiones.ch/ontology/time#>.
+@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+@prefix calendar: <http://www.e-editiones.ch/ontology/calendar#>.
+
+@prefix projectx: <http://www.e-editiones.ch/project/ontology/projectx#>.
+
+@prefix data: <#>. # test data with calendrical cases commented
+
+
+data:resource01
+	projectx:hasYear "0"; # year
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource02
+	projectx:hasYearMonth ("0" "2"); # year in year-month
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource03
+	projectx:hasDate ("0" "0"); # year and month in year-month
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource04
+	projectx:hasDate ("0" "2" "9"); # year in date
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource04-1
+	projectx:hasDate ("1888" "13" "9"); # month in date
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource05
+	projectx:hasDate ("0" "0" "9"); # year and month
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource06
+	projectx:hasDate ("0" "0" "0"); # year, month and day in date
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource07
+	projectx:hasDate ("145" "5" "32"); # month in date
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource08
+	projectx:hasDate ("145" "4" "31"); # April in date
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource09
+	projectx:hasDate ("1682" "6" "31"); # June in date
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource10
+	projectx:hasDate ("-145" "9" "31"); # September in date
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource11
+	projectx:hasDate ("145" "11" "31"); # November in date
+	projectx:hasCalendar projectx:julianCalendar.
+
+data:resource12
+	projectx:hasDate ("1582" "10" "31"); # day in Oct. 1582
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource13
+	projectx:hasDate ("1582" "10" "14"); # day in Oct. 1582
+	projectx:hasCalendar projectx:gregorianCalendar.
+
+data:resource14
+	projectx:hasDate ("1721" "2" "28"); # non-leap Gregorian February
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource15
+	projectx:hasDate ("1624" "2" "29"); # leap Gregorian February
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource16
+	projectx:hasDate ("1700" "2" "32"); # non-leap Gregorian February AND day in date
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource17
+	projectx:hasDate ("1600" "2" "29"); # leap Gregorian February
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource18
+	projectx:hasDate ("1582" "10" "15"); # Gregorian date
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource19
+	projectx:hasDate ("1921" "2" "28");
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource20
+	projectx:hasDate ("1844" "8" "9");
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource21
+	projectx:hasDate ("1900" "12" "31");
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource22
+	projectx:hasDate ("2000" "5" "17");
+	projectx:hasCalendar projectx:gregorianCalendar.
+
+data:resource23
+	projectx:hasDate ("0" "0" "0"); # Julian date
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource23-1
+	projectx:hasDate ("4" "13" "32");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource23-2
+	projectx:hasDate ("4" "10" "6");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource23-3
+	projectx:hasDate ("4" "10" "16");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource24
+	projectx:hasDate ("1321" "2" "2");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource24-1
+	projectx:hasDate ("1321" "2" "28"); # non-leap Julian February
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource24-2
+	projectx:hasDate ("1321" "12" "2");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource24-3
+	projectx:hasDate ("1321" "12" "28");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource25
+	projectx:hasDate ("624" "2" "9");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource25-1
+	projectx:hasDate ("624" "2" "29"); # leap Julian February
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource25-2
+	projectx:hasDate ("624" "12" "9");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource25-3
+	projectx:hasDate ("1361" "12" "12");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource26
+	projectx:hasDate ("34" "1" "4");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource26-1
+	projectx:hasDate ("34" "1" "24");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource27
+	projectx:hasDate ("34" "11" "2");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource28
+	projectx:hasDate ("34" "11" "24");
+	projectx:hasCalendar projectx:julianCalendar.
+
+data:resource29
+	projectx:hasDate ("-1721" "2" "29"); # proleptic Julian date AND leap February
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource30
+	projectx:hasDate ("-1624" "2" "28"); # non-leap proleptic Julian February
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource30-1
+	projectx:hasDate ("-1624" "3" "1");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource31
+	projectx:hasDate ("3" "5" "6");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource32
+	projectx:hasDate ("-5" "5" "6");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource33
+	projectx:hasDate ("-4719" "11" "1");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource34
+	projectx:hasDate ("-122000" "4" "24");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+
+data:resource35
+	projectx:hasYear "1838", "1839"; # non-leap Gregorian year
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource36
+	projectx:hasYear "1920"; # leap Gregorian year
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource37
+	projectx:hasYear "1900"; # non-leap Gregorian year
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource38
+	projectx:hasYear "2000"; # leap Gregorian year
+	projectx:hasCalendar projectx:gregorianCalendar.
+
+data:resource39
+	projectx:hasYear "1582", "1583";
+	projectx:hasCalendar projectx:julianCalendar, projectx:gregorianCalendar. # Julian-Gregorian year
+
+data:resource40
+	projectx:hasYear "1522"; # non-leap Julian year
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource41
+	projectx:hasYear "824"; # leap Julian year
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource42
+	projectx:hasYear "94";
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource43
+	projectx:hasYear "4";
+	projectx:hasCalendar projectx:julianCalendar.
+
+data:resource44
+	projectx:hasYear "3"; # non-leap proleptic Julian year
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource45
+	projectx:hasYear "-4"; # non-leap proleptic Julian year
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource46
+	projectx:hasYear "-49"; # leap proleptic Julian year
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource47
+	projectx:hasYear "-100";
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource48
+	projectx:hasYear "-5473";
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+
+data:resource49
+	projectx:hasYearMonth ("1682" "2"), ("1682" "2"), ("1683" "2"), ("1683" "3"); # non-leap Gregorian year-month
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource50
+	projectx:hasYearMonth ("1820" "2"); # leap Gregorian year-month
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource51
+	projectx:hasYearMonth ("1700" "2"); # non-leap Gregorian year-month
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource52
+	projectx:hasYearMonth ("1600" "2"); # leap Gregorian year-month
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource53
+	projectx:hasYearMonth ("1704" "7");
+	projectx:hasCalendar projectx:gregorianCalendar.
+data:resource54
+	projectx:hasYearMonth ("1704" "9");
+	projectx:hasCalendar projectx:gregorianCalendar.
+
+data:resource55
+	projectx:hasYearMonth ("1582" "10"); # Gregorian-Julian year-month
+	projectx:hasCalendar projectx:julianCalendar, projectx:gregorianCalendar.
+
+data:resource56
+	projectx:hasYearMonth ("1433" "2"); # non-leap Julian year-month
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource57
+	projectx:hasYearMonth ("524" "2"); # leap Julian year-month
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource58
+	projectx:hasYearMonth ("24" "2");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource59
+	projectx:hasYearMonth ("4" "1");
+	projectx:hasCalendar projectx:julianCalendar.
+data:resource59-1
+	projectx:hasYearMonth ("1022" "11");
+	projectx:hasCalendar projectx:julianCalendar.
+
+data:resource60
+	projectx:hasYearMonth ("2" "2");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource61
+	projectx:hasYearMonth ("-5" "2"); # leap proleptic Julian year-month
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource62
+	projectx:hasYearMonth ("-12" "2"); # non-leap proleptic Julian year-month
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource63
+	projectx:hasYearMonth ("-123" "1");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource64
+	projectx:hasYearMonth ("-8433" "11");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+
+data:resource65
+	projectx:hasBirthYear "1738";
+	projectx:hasDeathYear "1813";
+	projectx:hasCalendar projectx:gregorianCalendar.

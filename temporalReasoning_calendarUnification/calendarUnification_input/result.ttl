@@ -1,0 +1,359 @@
+# Execution date Di Feb 18 21:07:58 CET 2020
+#Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
+        #    using base file:///home/changeme/programs/eye/
+        
+#  Notation3 generation by
+#       notation3.py,v 1.200 2007/12/11 21:18:08 syosi Exp
+
+#   Base was: file:///home/changeme/programs/eye/
+     @prefix : <http://www.e-editiones.ch/ontology/calendar#> .
+    @prefix data: <calendarUnification_input/data.ttl#> .
+    @prefix human: <http://www.e-editiones.ch/ontology/human#> .
+    @prefix time: <http://www.e-editiones.ch/ontology/time#> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    
+    data:resource01     :hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr .
+    
+    data:resource02     :hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr .
+    
+    data:resource04     :hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr .
+    
+    data:resource04-1     :hasMessage "Il y a seulement 12 mois dans le calendrier grégorien, julien et julien proleptique."@fr .
+    
+    data:resource05     :hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr,
+                "Un mois a besoin d'un entier positif."@fr .
+    
+    data:resource06     :hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr,
+                "Un jour a besoin d'un entier positif."@fr,
+                "Un mois a besoin d'un entier positif."@fr .
+    
+    data:resource07     :hasMessage "Il n'y a aucun mois dans le calendrier grégorien, julien et julien proleptique avec plus de 31 jours."@fr .
+    
+    data:resource12     :hasGregorianDate "1582-10-31+01:00"^^xsd:date;
+         :hasJulianDayNumber "2299177"^^:julianDayNumber;
+         :hasMessage "Has non-leap year"@en .
+    
+    data:resource13     :hasMessage "Il n'y a pas l'octobre 5-14 en 1582 dans le calendrier grégorien."@fr .
+    
+    data:resource14     :hasGregorianDate "1721-02-28+01:00"^^xsd:date;
+         :hasJulianDayNumber "2349701"^^:julianDayNumber;
+         :hasMessage "Has non-leap year"@en .
+    
+    data:resource15     :hasGregorianDate "1624-02-29+01:00"^^xsd:date;
+         :hasJulianDayNumber "2314273"^^:julianDayNumber;
+         :hasMessage "Has leap year"@en .
+    
+    data:resource16     :hasMessage "Il n'y a aucun mois dans le calendrier grégorien, julien et julien proleptique avec plus de 31 jours."@fr .
+    
+    data:resource17     :hasGregorianDate "1600-02-29+01:00"^^xsd:date;
+         :hasJulianDayNumber "2305507"^^:julianDayNumber;
+         :hasMessage "Has leap year"@en .
+    
+    data:resource18     :hasGregorianDate "1582-10-15+01:00"^^xsd:date;
+         :hasJulianDayNumber "2299161"^^:julianDayNumber;
+         :hasMessage "Has non-leap year"@en .
+    
+    data:resource19     :hasGregorianDate "1921-02-28+01:00"^^xsd:date;
+         :hasJulianDayNumber "2422749"^^:julianDayNumber;
+         :hasMessage "Has non-leap year"@en .
+    
+    data:resource20     :hasGregorianDate "1844-08-09+01:00"^^xsd:date;
+         :hasJulianDayNumber "2394788"^^:julianDayNumber;
+         :hasMessage "Has leap year"@en .
+    
+    data:resource21     :hasGregorianDate "1900-12-31+01:00"^^xsd:date;
+         :hasJulianDayNumber "2415385"^^:julianDayNumber;
+         :hasMessage "Has non-leap year"@en .
+    
+    data:resource22     :hasGregorianDate "2000-05-17+02:00"^^xsd:date;
+         :hasJulianDayNumber "2451682"^^:julianDayNumber;
+         :hasMessage "Has leap year"@en .
+    
+    data:resource23     :hasMessage "Il n'y a pas l'année 0 dans le calendrier julien proleptique ou grégorien proleptique."@fr,
+                "Un jour a besoin d'un entier positif."@fr,
+                "Un mois a besoin d'un entier positif."@fr .
+    
+    data:resource23-1     :hasMessage "Il n'y a aucun mois dans le calendrier grégorien, julien et julien proleptique avec plus de 31 jours."@fr,
+                "Il y a seulement 12 mois dans le calendrier grégorien, julien et julien proleptique."@fr .
+    
+    data:resource23-2     :hasJulianDate "0004-10-06"^^:julianDate;
+         :hasJulianDayNumber "1722798"^^:julianDayNumber .
+    
+    data:resource23-3     :hasJulianDate "0004-10-16"^^:julianDate;
+         :hasJulianDayNumber "1722808"^^:julianDayNumber .
+    
+    data:resource24     :hasJulianDate "1321-02-02"^^:julianDate;
+         :hasJulianDayNumber "2203586"^^:julianDayNumber .
+    
+    data:resource24-1     :hasJulianDate "1321-02-28"^^:julianDate;
+         :hasJulianDayNumber "2203612"^^:julianDayNumber .
+    
+    data:resource24-2     :hasJulianDate "1321-12-02"^^:julianDate;
+         :hasJulianDayNumber "2203889"^^:julianDayNumber .
+    
+    data:resource24-3     :hasJulianDate "1321-12-28"^^:julianDate;
+         :hasJulianDayNumber "2203915"^^:julianDayNumber .
+    
+    data:resource25     :hasJulianDate "0624-02-09"^^:julianDate;
+         :hasJulianDayNumber "1949013"^^:julianDayNumber .
+    
+    data:resource25-1     :hasJulianDate "0624-02-29"^^:julianDate;
+         :hasJulianDayNumber "1949033"^^:julianDayNumber .
+    
+    data:resource25-2     :hasJulianDate "0624-12-09"^^:julianDate;
+         :hasJulianDayNumber "1949317"^^:julianDayNumber .
+    
+    data:resource25-3     :hasJulianDate "1361-12-12"^^:julianDate;
+         :hasJulianDayNumber "2218509"^^:julianDayNumber .
+    
+    data:resource26     :hasJulianDate "0034-01-04"^^:julianDate;
+         :hasJulianDayNumber "1733480"^^:julianDayNumber .
+    
+    data:resource26-1     :hasJulianDate "0034-01-24"^^:julianDate;
+         :hasJulianDayNumber "1733500"^^:julianDayNumber .
+    
+    data:resource27     :hasJulianDate "0034-11-02"^^:julianDate;
+         :hasJulianDayNumber "1733782"^^:julianDayNumber .
+    
+    data:resource28     :hasJulianDate "0034-11-24"^^:julianDate;
+         :hasJulianDayNumber "1733804"^^:julianDayNumber .
+    
+    data:resource29     :hasJulianDayNumber "1092887"^^:julianDayNumber;
+         :hasProlepticJulianDate "-1721-02-29"^^:prolepticJulianDate .
+    
+    data:resource30     :hasJulianDayNumber "1128316"^^:julianDayNumber;
+         :hasProlepticJulianDate "-1624-02-28"^^:prolepticJulianDate .
+    
+    data:resource30-1     :hasJulianDayNumber "1128317"^^:julianDayNumber;
+         :hasProlepticJulianDate "-1624-03-01"^^:prolepticJulianDate .
+    
+    data:resource31     :hasJulianDayNumber "1722279"^^:julianDayNumber;
+         :hasProlepticJulianDate "0003-05-06"^^:prolepticJulianDate .
+    
+    data:resource32     :hasJulianDayNumber "1719723"^^:julianDayNumber;
+         :hasProlepticJulianDate "-0005-05-06"^^:prolepticJulianDate .
+    
+    data:resource33     :hasJulianDayNumber "-1887"^^:julianDayNumber;
+         :hasProlepticJulianDate "-4719-11-01"^^:prolepticJulianDate .
+    
+    data:resource34     :hasJulianDayNumber "-42838963"^^:julianDayNumber;
+         :hasProlepticJulianDate "-122000-04-24"^^:prolepticJulianDate .
+    
+    data:resource35     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "2392740"^^:julianDayNumber;
+             :hasGregorianEndDate "1838-12-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1838-01-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2392376"^^:julianDayNumber ],
+                 [
+             :hasEndJulianDayNumber "2393105"^^:julianDayNumber;
+             :hasGregorianEndDate "1839-12-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1839-01-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2392741"^^:julianDayNumber ] .
+    
+    data:resource36     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "2422690"^^:julianDayNumber;
+             :hasGregorianEndDate "1920-12-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1920-01-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2422325"^^:julianDayNumber ] .
+    
+    data:resource37     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "2415385"^^:julianDayNumber;
+             :hasGregorianEndDate "1900-12-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1900-01-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2415021"^^:julianDayNumber ] .
+    
+    data:resource38     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "2451910"^^:julianDayNumber;
+             :hasGregorianEndDate "2000-12-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "2000-01-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2451545"^^:julianDayNumber ] .
+    
+    data:resource39     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "2299238"^^:julianDayNumber;
+             :hasGregorianEndDate "1582-12-31+01:00"^^xsd:date;
+             :hasJulianStartDate "1582-01-01"^^:julianDate;
+             :hasStartJulianDayNumber "2298884"^^:julianDayNumber ],
+                 [
+             :hasEndJulianDayNumber "2299603"^^:julianDayNumber;
+             :hasGregorianEndDate "1583-12-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1583-01-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2299239"^^:julianDayNumber ] .
+    
+    data:resource40     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "2277333"^^:julianDayNumber;
+             :hasJulianEndDate "1522-12-31"^^:julianDate;
+             :hasJulianStartDate "1522-01-01"^^:julianDate;
+             :hasStartJulianDayNumber "2276969"^^:julianDayNumber ] .
+    
+    data:resource41     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "2022389"^^:julianDayNumber;
+             :hasJulianEndDate "0824-12-31"^^:julianDate;
+             :hasJulianStartDate "0824-01-01"^^:julianDate;
+             :hasStartJulianDayNumber "2022024"^^:julianDayNumber ] .
+    
+    data:resource42     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "1755756"^^:julianDayNumber;
+             :hasJulianEndDate "0094-12-31"^^:julianDate;
+             :hasJulianStartDate "0094-01-01"^^:julianDate;
+             :hasStartJulianDayNumber "1755392"^^:julianDayNumber ] .
+    
+    data:resource43     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "1722884"^^:julianDayNumber;
+             :hasJulianEndDate "0004-12-31"^^:julianDate;
+             :hasJulianStartDate "0004-01-01"^^:julianDate;
+             :hasStartJulianDayNumber "1722519"^^:julianDayNumber ] .
+    
+    data:resource44     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "1722518"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "0003-12-31"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "0003-01-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "1722154"^^:julianDayNumber ] .
+    
+    data:resource45     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "1720327"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "-0004-12-31"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "-0004-01-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "1719963"^^:julianDayNumber ] .
+    
+    data:resource46     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "1703891"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "-0049-12-31"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "-0049-01-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "1703526"^^:julianDayNumber ] .
+    
+    data:resource47     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "1685263"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "-0100-12-31"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "-0100-01-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "1684899"^^:julianDayNumber ] .
+    
+    data:resource48     time:hasYearPeriod  [
+             :hasEndJulianDayNumber "-277225"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "-5473-12-31"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "-5473-01-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "-277590"^^:julianDayNumber ] .
+    
+    data:resource49     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2335457"^^:julianDayNumber;
+             :hasGregorianEndDate "1682-02-28+01:00"^^xsd:date;
+             :hasGregorianStartDate "1682-02-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2335430"^^:julianDayNumber ],
+                 [
+             :hasEndJulianDayNumber "2335822"^^:julianDayNumber;
+             :hasGregorianEndDate "1683-02-28+01:00"^^xsd:date;
+             :hasGregorianStartDate "1683-02-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2335795"^^:julianDayNumber ],
+                 [
+             :hasEndJulianDayNumber "2335853"^^:julianDayNumber;
+             :hasGregorianEndDate "1683-03-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1683-03-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2335823"^^:julianDayNumber ] .
+    
+    data:resource50     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2385860"^^:julianDayNumber;
+             :hasGregorianEndDate "1820-02-29+01:00"^^xsd:date;
+             :hasGregorianStartDate "1820-02-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2385832"^^:julianDayNumber ] .
+    
+    data:resource51     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2342031"^^:julianDayNumber;
+             :hasGregorianEndDate "1700-02-28+01:00"^^xsd:date;
+             :hasGregorianStartDate "1700-02-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2342004"^^:julianDayNumber ] .
+    
+    data:resource52     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2305507"^^:julianDayNumber;
+             :hasGregorianEndDate "1600-02-29+01:00"^^xsd:date;
+             :hasGregorianStartDate "1600-02-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2305479"^^:julianDayNumber ] .
+    
+    data:resource53     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2343645"^^:julianDayNumber;
+             :hasGregorianEndDate "1704-07-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1704-07-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2343615"^^:julianDayNumber ] .
+    
+    data:resource54     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2343706"^^:julianDayNumber;
+             :hasGregorianEndDate "1704-09-30+01:00"^^xsd:date;
+             :hasGregorianStartDate "1704-09-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2343677"^^:julianDayNumber ] .
+    
+    data:resource55     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2299177"^^:julianDayNumber;
+             :hasGregorianEndDate "1582-10-31+01:00"^^xsd:date;
+             :hasJulianStartDate "1582-10-01"^^:julianDate;
+             :hasStartJulianDayNumber "2299157"^^:julianDayNumber ] .
+    
+    data:resource56     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2244520"^^:julianDayNumber;
+             :hasJulianEndDate "1433-02-28"^^:julianDate;
+             :hasJulianStartDate "1433-02-01"^^:julianDate;
+             :hasStartJulianDayNumber "2244493"^^:julianDayNumber ] .
+    
+    data:resource57     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "1912508"^^:julianDayNumber;
+             :hasJulianEndDate "0524-02-29"^^:julianDate;
+             :hasJulianStartDate "0524-02-01"^^:julianDate;
+             :hasStartJulianDayNumber "1912480"^^:julianDayNumber ] .
+    
+    data:resource58     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "1729883"^^:julianDayNumber;
+             :hasJulianEndDate "0024-02-29"^^:julianDate;
+             :hasJulianStartDate "0024-02-01"^^:julianDate;
+             :hasStartJulianDayNumber "1729855"^^:julianDayNumber ] .
+    
+    data:resource59     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "1722549"^^:julianDayNumber;
+             :hasJulianEndDate "0004-01-31"^^:julianDate;
+             :hasJulianStartDate "0004-01-01"^^:julianDate;
+             :hasStartJulianDayNumber "1722519"^^:julianDayNumber ] .
+    
+    data:resource59-1     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "2094677"^^:julianDayNumber;
+             :hasJulianEndDate "1022-11-30"^^:julianDate;
+             :hasJulianStartDate "1022-11-01"^^:julianDate;
+             :hasStartJulianDayNumber "2094648"^^:julianDayNumber ] .
+    
+    data:resource60     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "1721847"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "0002-02-28"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "0002-02-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "1721820"^^:julianDayNumber ] .
+    
+    data:resource61     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "1719656"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "-0005-02-29"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "-0005-02-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "1719628"^^:julianDayNumber ] .
+    
+    data:resource62     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "1717099"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "-0012-02-28"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "-0012-02-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "1717072"^^:julianDayNumber ] .
+    
+    data:resource63     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "1676528"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "-0123-01-31"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "-0123-01-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "1676498"^^:julianDayNumber ] .
+    
+    data:resource64     time:hasYearMonthPeriod  [
+             :hasEndJulianDayNumber "-1358396"^^:julianDayNumber;
+             :hasProlepticJulianEndDate "-8433-11-30"^^:prolepticJulianDate;
+             :hasProlepticJulianStartDate "-8433-11-01"^^:prolepticJulianDate;
+             :hasStartJulianDayNumber "-1358425"^^:julianDayNumber ] .
+    
+    data:resource65     human:hasBirthYearPeriod  [
+             :hasEndJulianDayNumber "2356216"^^:julianDayNumber;
+             :hasGregorianEndDate "1738-12-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1738-01-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2355852"^^:julianDayNumber ];
+         human:hasDeathYearPeriod  [
+             :hasEndJulianDayNumber "2383609"^^:julianDayNumber;
+             :hasGregorianEndDate "1813-12-31+01:00"^^xsd:date;
+             :hasGregorianStartDate "1813-01-01+01:00"^^xsd:date;
+             :hasStartJulianDayNumber "2383245"^^:julianDayNumber ] .
+    
+#ENDS

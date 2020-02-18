@@ -1,0 +1,1697 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#>.
+@prefix pred: <http://www.w3.org/2007/rif-builtin-predicate#>.
+@prefix prolog: <http://eulersharp.sourceforge.net/2003/03swap/prolog#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix time: <http://www.e-editiones.ch/ontology/time#>.
+@prefix event: <http://www.e-editiones.ch/ontology/event#>.
+@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+@prefix calendar: <http://www.e-editiones.ch/ontology/calendar#>.
+
+@prefix calendar-unification: <http://www.e-editiones.ch/rule/calendar-unification#>.
+
+<http://nie-ine.org/rule/calendar-unification>
+	dct:issued "2019-12-16+01:00"^^xsd:date;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
+	dct:title "calendar unification"@en;
+	dct:description """N3-rules unifying calendrical time expressions to Julian Day Number."""@en;
+	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
+	dct:publisher "Basel University, Switzerland"@en;
+	rdfs:seeAlso <https://keisan.casio.com/exec/system/1227779487>;
+	rdfs:seeAlso <https://bowie.gsfc.nasa.gov/time/julian.html>;
+	rdfs:seeAlso <https://en.wikipedia.org/wiki/Julian_calendar>;
+	rdfs:seeAlso <https://en.wikipedia.org/wiki/Proleptic_Julian_calendar>;
+	rdfs:seeAlso <https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar>;
+	rdfs:seeAlso <https://en.wikipedia.org/wiki/Talk%3AProleptic_Gregorian_calendar>.
+
+
+# Glossary:
+# _________
+
+# AD: anno Domini
+# BC: before Christ
+# D: day
+# GMT: Greenwich Mean Time
+# JDN: Julian Day Number
+# M: month
+# Y: year
+
+
+# Basic information:
+# __________________
+
+# The stable Julian calendar starts in the year 4 AD (though introduced on 1 January 45 BC) and it ends on 4 October 1582. Earlier than 4 AD the proleptic Julian calendar is used.
+# The Gregorian Calendar starts on 15 October 1582. Before this date the proleptic Gregorian Calendar is used (cf. ISO 8601:2004).
+# Hence 4 October 1582 in the Julian calendar with JDN 2299160 is followed by 15 October 1582 in the Gregorian calendar with JDN 2299161, thus there are no 5-14 October 1582.
+
+
+# Reference time point:
+# _____________________
+
+# Julian day number 0 at 12h Jan 1, 4713 BC in the proleptic Julian calendar (Julian date epoch)
+# Note: for 0 hours, UTC (GMT), on that date
+
+
+# CHECK ON A TIME EXPRESSION AND RETURN A MESSAGE:		# OR implement a stop with 'false' conclusion
+# ________________________________________________
+
+# YEAR:
+# -----
+{?resource time:hasYearLiteral "0"} => {?resource calendar:hasMessage "There is no year 0 in the proleptic Julian or Gregorian calendar."@en}.
+{?resource time:hasYearMonthLiteralList ("0" ?m)} => {?resource calendar:hasMessage "There is no year 0 in the proleptic Julian or Gregorian calendar."@en}.
+{?resource time:hasDateLiteralList ("0" ?m ?d)} => {?resource calendar:hasMessage "There is no year 0 in the proleptic Julian or Gregorian calendar."@en}.
+
+# MONTH:
+# ------
+{?resource time:hasYearMonthLiteralList (?y ?m). ?m math:lessThan 1} => {?resource calendar:hasMessage "A month needs a positive integer."@en}.
+{?resource time:hasYearMonthLiteralList (?y ?m). ?m math:greaterThan 12} => {?resource calendar:hasMessage "There are only 12 months."@en}.
+{?resource time:hasDateLiteralList (?y ?m ?d). ?m math:lessThan 1} => {?resource calendar:hasMessage "A month needs a positive integer."@en}.
+{?resource time:hasDateLiteralList (?y ?m ?d). ?m math:greaterThan 12} => {?resource calendar:hasMessage "There are only 12 months."@en}.
+
+# DAY:
+# ----
+{?resource time:hasDateLiteralList (?y ?m ?d). ?d math:lessThan 1} => {?resource calendar:hasMessage "A day needs a positive integer."@en}.
+{?resource time:hasDateLiteralList (?y ?m ?d). ?d math:greaterThan 31} => {?resource calendar:hasMessage "No month has more than 31 days."@en}.
+
+# MONTH AND DAY:
+# --------------
+{?resource time:hasDateLiteralList (?y "4" ?d). ?d math:greaterThan 30} => {?resource calendar:hasMessage "April has only 30 days."@en}.
+{?resource time:hasDateLiteralList (?y "6" ?d). ?d math:greaterThan 30} => {?resource calendar:hasMessage "June has only 30 days."@en}.
+{?resource time:hasDateLiteralList (?y "9" ?d). ?d math:greaterThan 30} => {?resource calendar:hasMessage "September has only 30 days."@en}.
+{?resource time:hasDateLiteralList (?y "11" ?d). ?d math:greaterThan 30} => {?resource calendar:hasMessage "November has only 30 days."@en}.
+
+# DATE:
+# -----
+{?resource time:hasDateLiteralList ("1582" "10" ?d). ?d math:greaterThan 4; math:lessThan 15} => {?resource calendar:hasMessage "There are no 5-14 October 1582 in the Gregorian calendar."@en}.
+
+
+# CONVERT A GREGORIAN DATE LITERAL LIST TO ITS GREGORIAN DATE TYPED LITERAL AND JULIAN DAY NUMBER:
+# ________________________________________________________________________________________________
+
+
+# IMPLEMENTED FORMULA:
+# --------------------
+
+# JDN = (1461 × (Y + 4800 + (M − 14)/12)) /4  +  (367 × (M − 2 − 12 × ((M − 14)/12)))/12  −  (3 × ((Y + 4900 + (M - 14)/12)/100))/4  +  D  −  32075
+
+# Alternative:
+#° JDN = ((Y - 1) x 365) + floor((Y - 1) / 4) - floor((Y - 1) / 100) + floor((Y - 1) / 400) + floor((((M x 367) - 362) / 12) + (?) + D)
+#° (month <= 2) ? 0 : (leap_gregorian(year) ? -1 : -2)
+
+# Alternative:
+#° JDN = (2 - Y/100 + (Y/100) / 4) + D + 365.25 x (Y + 4716) + 30.6001 x (M + 1) - 1524.5
+
+
+# SELECT A GREGORIAN DATE LITERAL LIST:
+{((?y ?m ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn ?message)}
+<=
+{
+	# CHECK ON GREGORIAN YEAR:
+	?y math:greaterThan 1582.
+	# CHECK THE YEAR-MONTH:
+	?m math:notEqualTo 2, 4, 6, 9, 11; math:greaterThan 0; math:lessThan 13.
+	# CHECK THE MONTH-DAY:
+	?d math:greaterThan 0; math:lessThan 32.
+	(?y ?m ?d)
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN DATE:
+		calendar:gregorianListToDate ?gD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?jdn;
+		# CHECK ON GREGORIAN LEAP YEAR AND RETURN A MESSAGE:
+		calendar:checkGregorianLeapYear ?message
+}.
+
+
+{((?y ?m ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn ?message)}
+<=
+{
+	?y math:greaterThan 1582.
+	?m math:notEqualTo 1, 2, 3, 5, 7, 8, 10, 12; math:greaterThan 0; math:lessThan 13.
+	?d math:greaterThan 0; math:lessThan 31.
+	(?y ?m ?d)
+		calendar:gregorianListToDate ?gD;
+		calendar:gregorianListToJDN ?jdn;
+		calendar:checkGregorianLeapYear ?message
+}.
+
+
+# SELECT A GREGORIAN DATE LITERAL LIST OF THE MONTH OCTOBER 1582 OF CHANGE FROM JULIAN TO GREGORIAN CALENDAR:
+{(("1582" "10" ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn "Has non-leap year"@en)}
+<=
+{
+	?d math:greaterThan 14; math:lessThan 32.
+	("1582" "10" ?d)
+		calendar:gregorianListToDate ?gD;
+		calendar:gregorianListToJDN ?jdn
+}.
+
+
+{(("1582" "11" ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn "Has non-leap year"@en)}
+<=
+{
+	?d math:greaterThan 0; math:lessThan 31.
+	("1582" "11" ?d)
+		calendar:gregorianListToDate ?gD;
+		calendar:gregorianListToJDN ?jdn
+}.
+
+
+{(("1582" "12" ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn "Has non-leap year"@en)}
+<=
+{
+	?d math:greaterThan 0; math:lessThan 32.
+	("1582" "12" ?d)
+		calendar:gregorianListToDate ?gD;
+		calendar:gregorianListToJDN ?jdn
+}.
+
+
+# SELECT A GREGORIAN DATE IN FEBRUARY AND CHECK ON LEAP YEAR:
+# -----------------------------------------------------------
+
+{((?y "2" ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn "Has non-leap year"@en)}
+<=
+{
+	# SELECT A GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN TO GREGORIAN CALENDAR:
+	?y math:greaterThan 1582.
+	# SELECT A NON-LEAP YEAR:
+	(?y 4)!math:remainder math:notEqualTo 0.
+	# CHECK THE MONTH-DAY:
+	?d math:greaterThan 0; math:lessThan 29.
+	(?y "2" ?d)
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN DATE:
+		calendar:gregorianListToDate ?gD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?jdn
+}.
+
+
+{((?y "2" ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn "Has leap year"@en)}
+<=
+{
+	?y math:greaterThan 1582.
+	# SELECT A LEAP YEAR:
+	(?y 4)!math:remainder math:equalTo 0.
+	(?y 100)!math:remainder math:notEqualTo 0.
+	?d math:greaterThan 0; math:lessThan 30.
+	(?y "2" ?d)
+		calendar:gregorianListToDate ?gD;
+		calendar:gregorianListToJDN ?jdn
+}.
+
+
+{((?y "2" ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn "Has non-leap year"@en)}
+<=
+{
+	?y math:greaterThan 1582.
+	# SELECT A NON-LEAP YEAR:
+	(?y 100)!math:remainder math:equalTo 0.
+	(?y 400)!math:remainder math:notEqualTo 0.
+	?d math:greaterThan 0; math:lessThan 29.
+	(?y "2" ?d)
+		calendar:gregorianListToDate ?gD;
+		calendar:gregorianListToJDN ?jdn
+}.
+
+
+{((?y "2" ?d) calendar:gregorianCalendar) calendar:dateLiteralToDate (?gD ?jdn "Has leap year"@en)}
+<=
+{
+	?y math:greaterThan 1582.
+	# SELECT A LEAP YEAR:
+	(?y 400)!math:remainder math:equalTo 0.
+	?d math:greaterThan 0; math:lessThan 30.
+	(?y "2" ?d)
+		calendar:gregorianListToDate ?gD;
+		calendar:gregorianListToJDN ?jdn
+}.
+
+
+# CHECK ON GREGORIAN LEAP YEAR AND RETURN A MESSAGE:
+# --------------------------------------------------
+
+{(?y ?m ?d) calendar:checkGregorianLeapYear "Has non-leap year"@en}
+<=
+{(?y 4)!math:remainder math:notEqualTo 0}.
+
+
+{(?y ?m ?d) calendar:checkGregorianLeapYear "Has non-leap year"@en}
+<=
+{
+	(?y 100)!math:remainder math:equalTo 0.
+	(?y 400)!math:remainder math:notEqualTo 0
+}.
+
+
+{(?y ?m ?d) calendar:checkGregorianLeapYear "Has leap year"@en}
+<=
+{
+	(?y 4)!math:remainder math:equalTo 0.
+	(?y 100)!math:remainder math:notEqualTo 0
+}.
+
+
+{(?y ?m ?d) calendar:checkGregorianLeapYear "Has leap year"@en}
+<=
+{(?y 400)!math:remainder math:equalTo 0}.
+
+
+# CONVERT A GREGORIAN DATE LITERAL LIST TO THE DATE TYPED LITERAL:
+# ----------------------------------------------------------------
+
+{(?y ?m ?d) calendar:gregorianListToDate ?date}
+<=
+{
+	?y e:numeral ?yNumeral.
+	?m e:numeral ?mNumeral.
+	?d e:numeral ?dNumeral.
+	(("date"^^prolog:atom ?yNumeral ?mNumeral ?dNumeral 0 0 0 ?timeZone!e:numeral!math:rounded!math:negation "-"^^prolog:atom "-"^^prolog:atom)^prolog:univ ?dateSeconds) prolog:date_time_stamp true.
+	(?dateLiteral xsd:date) log:dtlit ?dateSeconds, ?date
+}.
+
+
+# CALCULATE A JULIAN DAY NUMBER FROM A GREGORIAN DATE LITERAL LIST:
+# -----------------------------------------------------------------
+
+{(?y ?m ?d) calendar:gregorianListToJDN ?jdn}
+<=
+{
+	[] e:optional {
+		# PRE-SET VALUE FOR THE FORMULA PART '(M − 14)/12' is 0 IF MONTH NUMBER IS GREATER THAN 2:
+		?m math:greaterThan 2.
+		(((?y 4800 0)!math:sum 1461)!math:product 4) math:integerQuotient ?q2.
+		((((?m 2)!math:difference (0 12)!math:product)!math:difference 367)!math:product 12) math:integerQuotient ?q3.
+		((((?y 4900 0)!math:sum 100)!math:integerQuotient 3)!math:product 4) math:integerQuotient ?q4.
+		(((?q2 ?q3 ?d)!math:sum ?q4)!math:difference 32075) math:difference ?jdnNumeral. # ) math:difference 0.5
+		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
+		}.
+	[] e:optional {
+		# PRE-SET VALUE FOR THE FORMULA PART '(M − 14)/12' is -1 IF MONTH NUMBER IS LESS THAN 3:
+		?m math:lessThan 3.
+		(((?y 4800 -1)!math:sum 1461)!math:product 4) math:integerQuotient ?q2.
+		((((?m 2)!math:difference (-1 12)!math:product)!math:difference 367)!math:product 12) math:integerQuotient ?q3.
+		((((?y 4900 -1)!math:sum 100)!math:integerQuotient 3)!math:product 4) math:integerQuotient ?q4.
+		(((?q2 ?q3 ?d)!math:sum ?q4)!math:difference 32075) math:difference ?jdnNumeral. # ) math:difference 0.5
+		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
+		}
+}.
+
+
+# CONVERT A GREGORIAN YEAR NUMBER LITERAL TO ITS PERIOD WITH THE GREGORIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
+# __________________________________________________________________________________________________________________________________________________
+
+
+# SELECT A GREGORIAN YEAR NUMERAL:
+{(?y calendar:gregorianCalendar) calendar:yearLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK THE GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN CALENDAR:
+	?y math:greaterThan 1582.
+	# SET THE YEAR START DATE LITERAL LIST:
+	(?y "01" "01")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN START DATE:
+		calendar:gregorianListToDate ?gSD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?sJDN.
+	# SET THE YEAR END DATE LITERAL LIST:
+	(?y "12" "31")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN END DATE:
+		calendar:gregorianListToDate ?gED;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE END JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+# PRECALCULATED VALUES FOR THE YEAR 1582 OF CALENDAR CHANGE FROM JULIAN TO GREGORIAN, TREATED AS CONSTANTS:
+
+("1582" calendar:julianCalendar calendar:gregorianCalendar)
+		calendar:yearLiteralToPeriod (
+			"1582-01-01"^^calendar:julianDate
+			"1582-12-31+01:00"^^xsd:date
+			"2298884"^^calendar:julianDayNumber
+			"2299238"^^calendar:julianDayNumber
+			).
+
+
+# CONVERT A GREGORIAN DATE LITERAL LIST TO ITS DATE TYPED LITERAL:
+# ----------------------------------------------------------------
+
+# CALCULATE THE JULIAN DAY NUMBER FROM A GREGORIAN DATE LITERAL LIST:
+# -------------------------------------------------------------------
+
+# Note: for the above 2 sections the same rules apply as at the Gregorian date literal list conversion.
+
+
+# CONVERT A GREGORIAN YEAR-MONTH LITERAL LIST TO ITS PERIOD WITH THE GREGORIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
+# ______________________________________________________________________________________________________________________________________________________
+
+
+# SELECT A GREGORIAN YEAR-MONTH LITERAL LIST:
+{((?y "1") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK ON GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN CALENDAR:
+	?y math:greaterThan 1582.
+	# SET THE YEAR-MONTH START DATE LITERAL LIST:
+	(?y "01" "01")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN START DATE:
+		calendar:gregorianListToDate ?gSD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?sJDN.
+	# SET THE YEAR-MONTH END DATE LITERAL LIST:
+	(?y "01" "31")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN END DATE:
+		calendar:gregorianListToDate ?gED;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE END JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "2") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	# CHECK ON NON-LEAP YEAR:
+	(?y 4)!math:remainder math:notEqualTo 0.
+	(?y "02" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "02" "28")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "2") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	# CHECK ON NON-LEAP YEAR:
+	(?y 100)!math:remainder math:equalTo 0.
+	(?y 400)!math:remainder math:notEqualTo 0.
+	(?y "02" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "02" "28")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "2") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	# CHECK ON LEAP YEAR:
+	(?y 4)!math:remainder math:equalTo 0.
+	(?y 100)!math:remainder math:notEqualTo 0.
+	(?y "02" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "02" "29")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "2") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	# CHECK ON LEAP YEAR:
+	(?y 400)!math:remainder math:equalTo 0.
+	(?y "02" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "02" "29")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "3") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "03" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "03" "31")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "4") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "04" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "04" "30")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "5") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "05" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "05" "31")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "6") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "06" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "06" "30")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "7") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "07" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "07" "31")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "8") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "08" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "08" "31")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "9") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "09" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "09" "30")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "10") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "10" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "10" "31")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "11") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "11" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "11" "30")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{((?y "12") calendar:gregorianCalendar) calendar:yearMonthLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 1582.
+	(?y "12" "01")
+		calendar:gregorianListToDate ?gSD;
+		calendar:gregorianListToJDN ?sJDN.
+	(?y "12" "31")
+		calendar:gregorianListToDate ?gED;
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+# PRECALCULATED VALUES FOR THE YEAR-MONTH OCTOBER 1582 OF CALENDAR CHANGE FROM JULIAN TO GREGORIAN, TREATED AS CONSTANTS:
+
+(("1582" "10") calendar:julianCalendar calendar:gregorianCalendar)
+		calendar:yearMonthLiteralToPeriod (
+			"1582-10-01"^^calendar:julianDate
+			"1582-10-31+01:00"^^xsd:date
+			"2299157"^^calendar:julianDayNumber
+			"2299177"^^calendar:julianDayNumber
+			).
+
+
+# CONVERT A GREGORIAN DATE LITERAL LIST TO ITS DATE TYPED LITERAL:
+# ----------------------------------------------------------------
+
+# CALCULATE THE JULIAN DAY NUMBER FROM A GREGORIAN DATE LITERAL LIST:
+# -------------------------------------------------------------------
+
+# Note: for the above 2 sections the same rules apply as at the Gregorian date literal list conversion.
+
+
+# CONVERT A JULIAN DAY NUMBER TO THE GREGORIAN DATE:
+# __________________________________________________
+
+# Implemented formula:
+# l = jd + 68569
+#        n = ( 4 * l ) / 146097
+#        l = l - ( 146097 * n + 3 ) / 4
+#        i = ( 4000 * ( l + 1 ) ) / 1461001
+#        l = l - ( 1461 * i ) / 4 + 31
+#        j = ( 80 * l ) / 2447
+#        d = l - ( 2447 * j ) / 80
+#        l = j / 11
+#        m = j + 2 - ( 12 * l )
+#        y = 100 * ( n - 49 ) + i + l
+
+# {
+#	((((?jdn 68569)!sum 4)!product 146097)!quotient 49)!difference 100)!product ...
+# }
+
+
+# CONVERT A JULIAN DATE LITERAL LIST TO ITS JULIAN DATE TYPED LITERAL AND JULIAN DAY NUMBER:
+# __________________________________________________________________________________________
+
+
+# IMPLEMENTED FORMULA:
+# --------------------
+
+# JDN = floor((Y + 4716) x 365.25)) floor((M + 1) x 30.6001) + D - 1524.5 + 0.5
+
+# Alternative:
+# JDN = 367 × Y − (7 × (Y + 5001 + (M − 9)/7))/4 + (275 × M)/9 + D + 1729777
+
+
+# SELECT A JULIAN DATE LITERAL LIST:
+{((?y ?m ?d) calendar:julianCalendar) calendar:dateLiteralToDate (?gD ?jdn)}
+<=
+{
+	# CHECK ON JULIAN YEAR:
+	?y math:greaterThan 3; math:lessThan 1582.
+	# CHECK THE YEAR-MONTH:
+	?m math:notEqualTo 2, 4, 6, 9, 11; math:greaterThan 0; math:lessThan 13.
+	# CHECK THE MONTH-DAY:
+	?d math:greaterThan 0; math:lessThan 32.
+	(?y ?m ?d)
+		# INVOKING THE BACKWARD RULE TO CALCULATE THE JULIAN DATE:
+		calendar:julianListToDate ?gD;
+		# INVOKING THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
+		calendar:julianListToJDN ?jdn
+}.
+
+
+{((?y ?m ?d) calendar:julianCalendar) calendar:dateLiteralToDate (?gD ?jdn)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	?m math:notEqualTo 1, 2, 3, 5, 7, 8, 10, 12; math:greaterThan 0; math:lessThan 13.
+	?d math:greaterThan 0; math:lessThan 31.
+	(?y ?m ?d)
+		calendar:julianListToDate ?gD;
+		calendar:julianListToJDN ?jdn
+}.
+
+
+{(("1582" ?m ?d) calendar:julianCalendar) calendar:dateLiteralToDate (?gD ?jdn)}
+<=
+{
+
+	?m math:notEqualTo 2, 4, 6, 9; math:greaterThan 0; math:lessThan 10. #°
+	?d math:greaterThan 0; math:lessThan 32.
+	("1582" ?m ?d)
+		calendar:julianListToDate ?gD;
+		calendar:julianListToJDN ?jdn
+}.
+
+
+{(("1582" ?m ?d) calendar:julianCalendar) calendar:dateLiteralToDate (?gD ?jdn)}
+<=
+{
+	?m math:notEqualTo 1, 2, 3, 5, 7, 8; math:greaterThan 0; math:lessThan 10.
+	?d math:greaterThan 0; math:lessThan 31.
+	("1582" ?m ?d)
+		calendar:julianListToDate ?gD;
+		calendar:julianListToJDN ?jdn
+}.
+
+
+{(("1582" "10" ?d) calendar:julianCalendar) calendar:dateLiteralToDate (?gD ?jdn)}
+<=
+{
+	?d math:greaterThan 0; math:lessThan 5.
+	("1582" "10" ?d)
+		calendar:julianListToDate ?gD;
+		calendar:julianListToJDN ?jdn
+}.
+
+
+# SELECT A JULIAN DATE LITERAL LIST IN FEBRUARY:
+# Note: including the year 1582 of change to the Gregorian calendar
+{((?y "2" ?d) calendar:julianCalendar) calendar:dateLiteralToDate (?gD ?jdn)}
+<=
+{
+	# CHECK ON THE JULIAN YEAR:
+	?y math:greaterThan 3; math:lessThan 1583.
+	# CHECK ON NON-LEAP YEAR:
+	(?y 4)!math:remainder math:notEqualTo 0.
+	# CHECK ON THE MONTH-DAY:
+	?d math:greaterThan 0; math:lessThan 29.
+	(?y "2" ?d)
+		# INVOKING THE BACKWARD RULE TO CALCULATE THE JULIAN DATE:
+		calendar:julianListToDate ?gD;
+		# INVOKING THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
+		calendar:julianListToJDN ?jdn
+}.
+
+
+{((?y "2" ?d) calendar:julianCalendar) calendar:dateLiteralToDate (?gD ?jdn)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1583.
+	(?y 4)!math:remainder math:equalTo 0.
+	?d math:greaterThan 0; math:lessThan 30.
+	(?y "2" ?d)
+		calendar:julianListToDate ?gD;
+		calendar:julianListToJDN ?jdn
+}.
+
+
+# CONVERT A JULIAN DATE LITERAL LIST TO A DATE TYPED LITERAL:
+# -----------------------------------------------------------
+
+# Note: XML Schema temporal elements are only applicable to the Gregorian calendar, leading to creation of a datatype for Julian date.
+# Conform the ISO representation of a date the lexical representation of the julian date type can have a leading zero in the year, month and day part.
+
+{(?y ?m ?d) calendar:julianListToDate ?jD}
+<=
+{
+	[] e:optional {
+		?y math:lessThan 1000; math:greaterThan 99.
+		("0" ?y) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 1000; math:greaterThan 99.
+		("0" ?y) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 1000; math:greaterThan 99.
+		("0" ?y) string:concatenation ?zy.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 1000; math:greaterThan 99.
+		("0" ?y) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 100; math:greaterThan 9.
+		("00" ?y) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 100; math:greaterThan 9.
+		("00" ?y) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 100; math:greaterThan 9.
+		("00" ?y) string:concatenation ?zy.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 100; math:greaterThan 9.
+		("00" ?y) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 10.
+		("000" ?y) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 10.
+		("000" ?y) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 10.
+		("000" ?y) string:concatenation ?zy.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?y math:lessThan 10.
+		("000" ?y) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?y "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?y "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?y "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}.
+	[] e:optional {
+		(?y "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jD
+		}
+}.
+
+
+# CALCULATE A JULIAN DAY NUMBER FROM A JULIAN DATE LITERAL LIST:
+# --------------------------------------------------------------
+
+{(?y ?m ?d) calendar:julianListToJDN ?jdn}
+<=
+{
+	[] e:optional {
+		# CHECK ON MONTH GREATER THAN 2:
+		?m math:greaterThan 2.
+		((((((?y 4716)!math:sum 365.25)!math:product 1)!math:integerQuotient (((?m 1)!math:sum 30.6001)!math:product 1)!math:integerQuotient ?d)!math:sum 1524.5)!math:difference 0.5) math:sum ?jdnRaw. ?jdnRaw math:rounded ?jdnNumeral.
+		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
+		}.
+	[] e:optional {
+		# CHECK ON MONTH LESS THAN 3:
+		?m math:lessThan 3.
+		(?y 1) math:difference ?yCorrected.
+		(?m 12) math:sum ?mCorrected.
+		((((((?yCorrected 4716)!math:sum 365.25)!math:product 1)!math:integerQuotient (((?mCorrected 1)!math:sum 30.6001)!math:product 1)!math:integerQuotient ?d)!math:sum 1524.5)!math:difference 0.5) math:sum ?jdnRaw. ?jdnRaw math:rounded ?jdnNumeral.
+		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
+		}
+}.
+
+
+# CONVERT A JULIAN YEAR LITERAL LIST TO ITS PERIOD WITH THE JULIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
+# __________________________________________________________________________________________________________________________________________
+
+
+# SELECT A JULIAN YEAR:
+{(?y calendar:julianCalendar) calendar:yearLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK THE JULIAN YEAR AND BEFORE THE YEAR OF CHANGE TO THE GREGORIAN CALENDAR:
+	?y math:greaterThan 3; math:lessThan 1582.
+	# SET ITS START DATE LITERAL LIST:
+	(?y "01" "01")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE JULIAN START DATE:
+		calendar:julianSetListToDate ?jSD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
+		calendar:julianListToJDN ?sJDN.
+	# SET ITS END DATE LITERAL LIST:
+	(?y "12" "31")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE JULIAN END DATE:
+		calendar:julianSetListToDate ?jED;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE END JULIAN DAY NUMBER:
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+# CONVERT A JULIAN DATE LITERAL LIST TO ITS DATE TYPED LITERAL:
+# -------------------------------------------------------------
+
+# SELECT A JULIAN DATE LITERAL LIST:
+{(?y ?m ?d) calendar:julianSetListToDate ?jSD}
+<=
+{
+	[] e:optional {
+		?y math:lessThan 1000; math:greaterThan 99.
+		("0" ?y) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jSD
+		}.
+	[] e:optional {
+		?y math:lessThan 100; math:greaterThan 9.
+		("00" ?y) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jSD
+		}.
+	[] e:optional {
+		?y math:lessThan 10.
+		("000" ?y) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jSD
+		}.
+	[] e:optional {
+		(?y "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:julianDate) log:dtlit ?jSD
+		}
+}.
+
+
+# CALCULATE THE JULIAN DAY NUMBER FROM A JULIAN DATE LITERAL LIST:
+# ----------------------------------------------------------------
+
+# The same rules apply as at the Julian date literal list conversion.
+
+
+# CONVERT A JULIAN YEAR-MONTH LITERAL LIST TO ITS PERIOD WITH THE JULIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
+# ________________________________________________________________________________________________________________________________________________
+
+
+# SELECT A JULIAN YEAR-MONTH LITERAL LIST:
+{((?y "1") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK THE JULIAN YEAR AND BEFORE THE YEAR OF CHANGE TO THE GREGORIAN CALENDAR:
+	?y math:greaterThan 3; math:lessThan 1582.
+	# SET ITS START DATE LITERAL LIST:
+	(?y "01" "01")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE JULIAN START DATE:
+		calendar:julianSetListToDate ?jSD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
+		calendar:julianListToJDN ?sJDN.
+	# SET ITS END DATE LITERAL LIST:
+	(?y "01" "31")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE JULIAN END DATE:
+		calendar:julianSetListToDate ?jED;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE END JULIAN DAY NUMBER:
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "2") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	# CHECK ON NON-LEAP YEAR:
+	(?y 4)!math:remainder math:notEqualTo 0.
+	(?y "02" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "02" "28")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "2") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	# CHECK ON LEAP YEAR:
+	(?y 4)!math:remainder math:equalTo 0.
+	(?y "02" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "02" "29")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "3") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "03" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "03" "31")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "4") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "04" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "04" "30")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "5") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "05" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "05" "31")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "6") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "06" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "06" "30")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "7") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "07" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "07" "31")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "8") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "08" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "08" "31")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "9") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "09" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "09" "30")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "10") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "10" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "10" "31")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "11") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK ON THE JULIAN YEAR AND BEFORE THE YEAR OF CHANGE TO THE GREGORIAN CALENDAR:
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "11" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "11" "30")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+{((?y "12") calendar:julianCalendar) calendar:yearMonthLiteralToPeriod (?jSD ?jED ?sJDN ?eJDN)}
+<=
+{
+	?y math:greaterThan 3; math:lessThan 1582.
+	(?y "12" "01")
+		calendar:julianSetListToDate ?jSD;
+		calendar:julianListToJDN ?sJDN.
+	(?y "12" "31")
+		calendar:julianSetListToDate ?jED;
+		calendar:julianListToJDN ?eJDN.
+}.
+
+
+# CONVERT A JULIAN DATE LITERAL LIST TO ITS DATE TYPED LITERAL:
+# -------------------------------------------------------------
+
+# The same rules apply as at the Julian year literal list conversion.
+
+
+# CALCULATE THE JULIAN DAY NUMBER FROM A JULIAN DATE LITERAL LIST:
+# ----------------------------------------------------------------
+
+# The same rules apply as at the Julian date literal list conversion.
+
+
+# CONVERT A PROLEPTIC JULIAN DATE LITERAL LIST TO ITS PROLEPTIC JULIAN DATE TYPED LITERAL AND JULIAN DAY NUMBER:
+# ______________________________________________________________________________________________________________
+
+
+# IMPLEMENTED FORMULA:
+# --------------------
+
+# JDN = floor((Y + 4716) x 365.25)) floor((M + 1) x 30.6001) + D - 1524.5 + 0.5
+
+# Alternative:
+# JDN = 367 × Y − (7 × (Y + 5001 + (M − 9)/7))/4 + (275 × M)/9 + D + 1729777
+
+
+# SELECT A PROLEPTIC JULIAN DATE LITERAL LIST:
+{((?y ?m ?d) calendar:prolepticJulianCalendar) calendar:dateLiteralToDate (?pJD ?jdn)}
+<=
+{
+	# CHECK ON PROLEPTIC JULIAN YEAR:
+	?y math:lessThan 4; math:notEqualTo 0.
+	# CHECK THE YEAR-MONTH:
+	?m math:notEqualTo 2, 4, 6, 9, 11; math:greaterThan 0; math:lessThan 13.
+	# CHECK THE MONTH-DAY:
+	?d math:greaterThan 0; math:lessThan 32.
+	(?y ?m ?d)
+		# INVOKING THE BACKWARD RULE TO CALCULATE THE PROLEPTIC JULIAN DATE:
+		calendar:prolepticJulianListToDate ?pJD;
+		# INVOKING THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
+		calendar:prolepticJulianListToJDN ?jdn
+}.
+
+
+{((?y ?m ?d) calendar:prolepticJulianCalendar) calendar:dateLiteralToDate (?pJD ?jdn)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	?m math:notEqualTo 1, 2, 3, 5, 7, 8, 10, 12; math:greaterThan 0; math:lessThan 13.
+	?d math:greaterThan 0; math:lessThan 31.
+	(?y ?m ?d)
+		calendar:prolepticJulianListToDate ?pJD;
+		calendar:prolepticJulianListToJDN ?jdn
+}.
+
+
+# SELECT A PROLEPTIC JULIAN DATE LITERAL LIST IN FEBRUARY:
+{((?y "2" ?d) calendar:prolepticJulianCalendar) calendar:dateLiteralToDate (?pJD ?jdn)}
+<=
+{
+	# CHECK ON PROLEPTIC JULIAN YEAR:
+	?y math:lessThan 4; math:notEqualTo 0.
+	# CHECK ON NON-LEAP YEAR:
+	((?y -1)!math:difference 4)!math:remainder math:notEqualTo 0.
+	# CHECK THE MONTH-DAY:
+	?d math:greaterThan 0; math:lessThan 29.
+	(?y "2" ?d)
+		# INVOKING THE BACKWARD RULE TO CALCULATE THE PROLEPTIC JULIAN DATE:
+		calendar:prolepticJulianListToDate ?pJD;
+		# INVOKING THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
+		calendar:prolepticJulianListToJDN ?jdn
+}.
+
+
+{((?y "2" ?d) calendar:prolepticJulianCalendar) calendar:dateLiteralToDate (?pJD ?jdn)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	((?y -1)!math:difference 4)!math:remainder math:equalTo 0.
+	?d math:greaterThan 0; math:lessThan 30.
+	(?y "2" ?d)
+		calendar:prolepticJulianListToDate ?pJD;
+		calendar:prolepticJulianListToJDN ?jdn
+}.
+
+
+# CONVERT A PROLEPTIC JULIAN DATE LITERAL LIST TO ITS DATE TYPED LITERAL:
+# -----------------------------------------------------------------------
+
+# Note: XML Schema elements are only applicable to the Gregorian calendar, leading to creation of a datatype for the proleptic Julian date.
+# Conform the ISO representation of a date the lexical representation of the proleptic julian date type can have a leading zero in the year, month and day part, and a minus sign if before Christ.
+
+{(?y ?m ?d) calendar:prolepticJulianListToDate ?pJD}
+<=
+{
+	[] e:optional {
+		?y math:greaterThan -1000; math:lessThan -99.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-0" ?sy) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -1000; math:lessThan -99.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-0" ?sy) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -1000; math:lessThan -99.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-0" ?sy) string:concatenation ?zy.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -1000; math:lessThan -99.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-0" ?sy) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -100; math:lessThan -9.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-00" ?sy) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -100; math:lessThan -9.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-00" ?sy) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -100; math:lessThan -9.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-00" ?sy) string:concatenation ?zy.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -100; math:lessThan -9.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-00" ?sy) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -10; math:lessThan 0.
+		(?y "(\\d)") string:scrape ?sy.
+		("-000" ?sy) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -10; math:lessThan 0.
+		(?y "(\\d)") string:scrape ?sy.
+		("-000" ?sy) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -10; math:lessThan 0.
+		(?y "(\\d)") string:scrape ?sy.
+		("-000" ?sy) string:concatenation ?zy.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan -10; math:lessThan 0.
+		(?y "(\\d)") string:scrape ?sy.
+		("-000" ?sy) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan 0.
+		("000" ?y) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan 0.
+		("000" ?y) string:concatenation ?zy.
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan 0.
+		("000" ?y) string:concatenation ?zy.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?y math:greaterThan 0.
+		("000" ?y) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?y "-" ?zm "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?m math:lessThan 10.
+		("0" ?m) string:concatenation ?zm.
+		(?y "-" ?zm "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		?d math:lessThan 10.
+		("0" ?d) string:concatenation ?zd.
+		(?y "-" ?m "-" ?zd) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}.
+	[] e:optional {
+		(?y "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		}
+}.
+
+
+# CALCULATE THE JULIAN DAY NUMBER FROM A PROLEPTIC JULIAN DATE LITERAL LIST:
+# --------------------------------------------------------------------------
+
+{(?y ?m ?d) calendar:prolepticJulianListToJDN ?jdn}
+<=
+{
+	# IF AFTER CHRIST (positive year numeral):
+	?y math:greaterThan 0.
+	[] e:optional {
+		# CHECK ON MONTH GREATER THAN 2:
+		?m math:greaterThan 2.
+		((((((?y 4716)!math:sum 365.25)!math:product 1)!math:integerQuotient (((?m 1)!math:sum 30.6001)!math:product 1)!math:integerQuotient ?d)!math:sum 1524.5)!math:difference 0.5) math:sum ?jdnRaw. ?jdnRaw math:rounded ?jdnNumeral.
+		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
+		}.
+	[] e:optional {
+		# CHECK ON MONTH LESS THAN 3:
+		?m math:lessThan 3.
+		(?y 1) math:difference ?yCorrected.
+		(?m 12) math:sum ?mCorrected.
+		((((((?yCorrected 4716)!math:sum 365.25)!math:product 1)!math:integerQuotient (((?mCorrected 1)!math:sum 30.6001)!math:product 1)!math:integerQuotient ?d)!math:sum 1524.5)!math:difference 0.5) math:sum ?jdnRaw. ?jdnRaw math:rounded ?jdnNumeral.
+		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
+		}
+}.
+
+
+{(?y ?m ?d) calendar:prolepticJulianListToJDN ?jdn}
+<=
+{
+	# IF BEFORE CHRIST (negative year numeral) ADD ONE YEAR SINCE THERE IS NO YEAR 0 IN THE PROLEPTIC JULIAN AND PROLEPTIC GREGORIAN CALENDAR:
+	?y math:lessThan 0.
+	(?y 1) math:sum ?yBeforeChrist.
+	[] e:optional {
+		# CHECK ON MONTH GREATER THAN 2:
+		?m math:greaterThan 2.
+		((((((?yBeforeChrist 4716)!math:sum 365.25)!math:product 1)!math:integerQuotient (((?m 1)!math:sum 30.6001)!math:product 1)!math:integerQuotient ?d)!math:sum 1524.5)!math:difference 0.5) math:sum ?jdnRaw. ?jdnRaw math:rounded ?jdnNumeral.
+		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
+		}.
+	[] e:optional {
+		# CHECK ON MONTH LESS THAN 3:
+		?m math:lessThan 3.
+		(?yBeforeChrist 1) math:difference ?yBeforeChristCorrected.
+		(?m 12) math:sum ?mCorrected.
+		((((((?yBeforeChristCorrected 4716)!math:sum 365.25)!math:product 1)!math:integerQuotient (((?mCorrected 1)!math:sum 30.6001)!math:product 1)!math:integerQuotient ?d)!math:sum 1524.5)!math:difference 0.5) math:sum ?jdnRaw. ?jdnRaw math:rounded ?jdnNumeral.
+		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
+		}
+}.
+
+
+# CONVERT A PROLEPTIC JULIAN YEAR LITERAL TO ITS PERIOD WITH THE START AND END JULIAN DAY NUMBER AND A THE PROLEPTIC JULIAN START AND END DATE:
+# _____________________________________________________________________________________________________________________________________________
+
+{(?y calendar:prolepticJulianCalendar) calendar:yearLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK THE PROLEPTIC JULIAN YEAR:
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "01" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "12" "31")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+# CONVERT A PROLEPTIC JULIAN DATE LITERAL LIST TO ITS DATE TYPED LITERAL:
+# -----------------------------------------------------------------------
+
+{(?y ?m ?d) calendar:prolepticJulianSetListToDate ?pJSD}
+<=
+{
+	[] e:optional {
+		?y math:greaterThan -1000; math:lessThan -99.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-0" ?sy) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJSD
+		}.
+	[] e:optional {
+		?y math:greaterThan -100; math:lessThan -9.
+		(?y "(\\d+)") string:scrape ?sy.
+		("-00" ?sy) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJSD
+		}.
+	[] e:optional {
+		?y math:greaterThan -10; math:lessThan 0.
+		(?y "(\\d)") string:scrape ?sy.
+		("-000" ?sy) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJSD
+		}.
+	[] e:optional {
+		?y math:greaterThan 0.
+		("000" ?y) string:concatenation ?zy.
+		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJSD
+		}.
+	[] e:optional {
+		(?y "-" ?m "-" ?d) string:concatenation ?cymd.
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJSD
+		}
+}.
+
+
+# CALCULATE THE JULIAN DAY NUMBER FROM A PROLEPTIC JULIAN DATE LITERAL LIST:
+# --------------------------------------------------------------------------
+
+# The same rules apply as at the proleptic Julian year literal list conversion.
+
+
+# CONVERT A PROLEPTIC JULIAN YEAR-MONTH LITERAL LIST TO ITS PERIOD WITH THE PROLEPTIC JULIAN START AND END DATE TYPED LITERAL AND START AND END JULIAN DAY NUMBER:
+# ________________________________________________________________________________________________________________________________________________________________
+
+
+# SELECT A PROLEPTIC JULIAN YEAR-MONTH LITERAL LIST:
+{((?y "1") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK THE PROLEPTIC JULIAN YEAR:
+	?y math:lessThan 4; math:notEqualTo 0.
+	# SET ITS START DATE LITERAL LIST:
+	(?y "01" "01")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE PROLEPTIC JULIAN START DATE:
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
+		calendar:prolepticJulianListToJDN ?sJDN.
+	# SET ITS END DATE LITERAL LIST:
+	(?y "01" "31")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE PROLEPTIC JULIAN END DATE:
+		calendar:prolepticJulianSetListToDate ?pJED;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE END JULIAN DAY NUMBER:
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "2") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	# CHECK ON NON-LEAP YEAR:
+	((?y -1)!math:difference 4)!math:remainder math:notEqualTo 0.
+	(?y "02" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "02" "28")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "2") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	# CHECK ON LEAP YEAR:
+	((?y -1)!math:difference 4)!math:remainder math:equalTo 0.
+	(?y "02" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "02" "29")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "3") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "03" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "03" "31")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "4") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "04" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "04" "30")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "5") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "05" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "05" "31")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "6") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "06" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "06" "30")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "7") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "07" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "07" "31")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "8") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "08" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "08" "31")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "9") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "09" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "09" "30")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "10") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "10" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "10" "31")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "11") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "11" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "11" "30")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+{((?y "12") calendar:prolepticJulianCalendar) calendar:yearMonthLiteralToPeriod (?pJSD ?pJED ?sJDN ?eJDN)}
+<=
+{
+	?y math:lessThan 4; math:notEqualTo 0.
+	(?y "12" "01")
+		calendar:prolepticJulianSetListToDate ?pJSD;
+		calendar:prolepticJulianListToJDN ?sJDN.
+	(?y "12" "31")
+		calendar:prolepticJulianSetListToDate ?pJED;
+		calendar:prolepticJulianListToJDN ?eJDN.
+}.
+
+
+# CONVERT A PROLEPTIC JULIAN DATE LITERAL LIST TO ITS DATE TYPED LITERAL:
+# -----------------------------------------------------------------------
+
+# CALCULATE THE JULIAN DAY NUMBER FROM A PROLEPTIC JULIAN DATE LITERAL LIST:
+# ---------------------------------------------------------------------------
+
+# Note: for the above 2 sections the same rules apply as at the proleptic Julian year literal list conversion.
+
+
+# CONVERT AN ISLAMIC DATE LITERAL LIST TO ITS JULIAN OR GREGORIAN DATE TYPED LITERAL AND JULIAN DAY NUMBER:
+# _________________________________________________________________________________________________________
+
+# START: 0622-07-16 AD Julian, 0622-07-19 AD Gregorian
+#ID TO JDN: 
+#  	     day +
+#            Math.ceil(29.5 * (month - 1)) +
+#            (year - 1) * 354 +
+#            Math.floor((3 + (11 * year)) / 30) +
+#            ISLAMIC_EPOCH) - 1
+
+
+

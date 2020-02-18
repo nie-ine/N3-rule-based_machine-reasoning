@@ -1,0 +1,238 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix time: <http://www.e-editiones.ch/ontology/time#>.
+@prefix event: <http://www.e-editiones.ch/ontology/event#>.
+@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+@prefix calendar: <http://www.e-editiones.ch/ontology/calendar#>.
+
+
+{?resource
+	calendar:hasGregorianDate ?gd;
+	calendar:hasJulianDayNumber ?jdn;
+	calendar:hasMessage ?m
+}
+=>
+{?resource
+	calendar:hasGregorianDate ?gd;
+	calendar:hasJulianDayNumber ?jdn;
+	calendar:hasMessage ?m
+}.
+
+
+{?resource
+	calendar:hasJulianDate ?jd;
+	calendar:hasJulianDayNumber ?jdn
+}
+=>
+{?resource
+	calendar:hasJulianDate ?jd;
+	calendar:hasJulianDayNumber ?jdn
+}.
+
+
+{?resource
+	calendar:hasProlepticJulianDate ?pjd;
+	calendar:hasJulianDayNumber ?jdn
+}
+=>
+{?resource
+	calendar:hasProlepticJulianDate ?pjd;
+	calendar:hasJulianDayNumber ?jdn
+}.
+
+
+{
+	?resource time:hasYearPeriod ?yP.
+	?yP
+		calendar:hasGregorianStartDate ?gSD;
+		calendar:hasGregorianEndDate ?gED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}
+=>
+{
+	?resource time:hasYearPeriod ?yP.
+	?yP
+		calendar:hasGregorianStartDate ?gSD;
+		calendar:hasGregorianEndDate ?gED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}.
+
+
+{
+	?resource time:hasYearPeriod ?yP.
+	?yP
+		calendar:hasJulianStartDate ?jSD;
+		calendar:hasGregorianEndDate ?gED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}
+=>
+{
+	?resource time:hasYearPeriod ?yP.
+	?yP
+		calendar:hasJulianStartDate ?jSD;
+		calendar:hasGregorianEndDate ?gED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}.
+
+
+{
+	?resource time:hasYearPeriod ?yP.
+	?yP
+		calendar:hasJulianStartDate ?jSD;
+		calendar:hasJulianEndDate ?jED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}
+=>
+{
+	?resource time:hasYearPeriod ?yP.
+	?yP
+		calendar:hasJulianStartDate ?jSD;
+		calendar:hasJulianEndDate ?jED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}.
+
+
+{
+	?resource time:hasYearPeriod ?yP.
+	?yP
+		calendar:hasProlepticJulianStartDate ?pJSD;
+		calendar:hasProlepticJulianEndDate ?pJED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}
+=>
+{
+	?resource time:hasYearPeriod ?yP.
+	?yP
+		calendar:hasProlepticJulianStartDate ?pJSD;
+		calendar:hasProlepticJulianEndDate ?pJED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}.
+
+
+{
+	?resource time:hasYearMonthPeriod ?yMP.
+	?yMP
+		calendar:hasGregorianStartDate ?gSD;
+		calendar:hasGregorianEndDate ?gED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}
+=>
+{
+	?resource time:hasYearMonthPeriod ?yMP.
+	?yMP
+		calendar:hasGregorianStartDate ?gSD;
+		calendar:hasGregorianEndDate ?gED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}.
+
+
+{
+	?resource time:hasYearMonthPeriod ?yMP.
+	?yMP
+		calendar:hasJulianStartDate ?jSD;
+		calendar:hasGregorianEndDate ?gED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}
+=>
+{
+	?resource time:hasYearMonthPeriod ?yMP.
+	?yMP
+		calendar:hasJulianStartDate ?jSD;
+		calendar:hasGregorianEndDate ?gED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}.
+
+
+{
+	?resource time:hasYearMonthPeriod ?yMP.
+	?yMP
+		calendar:hasJulianStartDate ?jSD;
+		calendar:hasJulianEndDate ?julianEndDate;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}
+=>
+{
+	?resource time:hasYearMonthPeriod ?yMP.
+	?yMP
+		calendar:hasJulianStartDate ?jSD;
+		calendar:hasJulianEndDate ?julianEndDate;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}.
+
+
+{
+	?resource time:hasYearMonthPeriod ?yMP.
+	?yMP
+		calendar:hasProlepticJulianStartDate ?pJSD;
+		calendar:hasProlepticJulianEndDate ?pJED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}
+=>
+{
+	?resource time:hasYearMonthPeriod ?yMP.
+	?yMP
+		calendar:hasProlepticJulianStartDate ?pJSD;
+		calendar:hasProlepticJulianEndDate ?pJED;
+		calendar:hasStartJulianDayNumber ?sJDN;
+		calendar:hasEndJulianDayNumber ?eJDN
+}.
+
+
+{?resource calendar:hasMessage ?message} => {?resource calendar:hasMessage ?message}.
+
+
+{
+	?p
+		human:hasBirthYearPeriod [
+			calendar:hasGregorianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}
+=>
+{
+	?p
+		human:hasBirthYearPeriod [
+			calendar:hasGregorianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
+
+
+{
+	?p
+		human:hasDeathYearPeriod [
+			calendar:hasGregorianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}
+=>
+{
+	?p
+		human:hasDeathYearPeriod [
+			calendar:hasGregorianStartDate ?sD;
+			calendar:hasGregorianEndDate ?eD;
+			calendar:hasStartJulianDayNumber ?sJDN;
+			calendar:hasEndJulianDayNumber ?eJDN
+			]
+}.
