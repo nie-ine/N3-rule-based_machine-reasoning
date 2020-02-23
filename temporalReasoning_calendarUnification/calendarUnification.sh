@@ -1,7 +1,7 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 echo "# Execution date" $(date) > $DIR/calendarUnification_input/result.ttl
-./eye.sh --nope $DIR/calendarUnification_input/data.ttl https://raw.githubusercontent.com/nie-ine/Ontologies/master/Nie-ontologies/Generic-ontologies/calendar-ontology.ttl https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subClassOf.n3 $DIR/calendarUnification_input/data-source-to-domain-conversion-rules.n3 $DIR/calendarUnification_input/calendar-unification-rules.n3 --query $DIR/calendarUnification_input/query.n3 |cwm >> $DIR/calendarUnification_input/result.ttl
+./eye.sh --nope $DIR/calendarUnification_input/data.ttl https://raw.githubusercontent.com/nie-ine/Ontologies/master/Nie-ontologies/Generic-ontologies/calendar-ontology.ttl https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subClassOf.n3 $DIR/calendarUnification_input/data-source-to-domain-conversion-rules.n3 $DIR/calendarUnification_input/calendar-unification-rules.n3 --query $DIR/calendarUnification_input/query.n3 |cwm >> $DIR/calendarUnification_input/result.ttl
 
 
 # 1. Description of the input for the reasoner:

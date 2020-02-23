@@ -11,20 +11,20 @@
 
 # Note: a full logical proof is given in the result file if the option --nope is removed.
 
-eye --nope https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/knora-ontologies/knora-base.ttl https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/webapi/_test_data/ontologies/images-onto.ttl /home/changeme/programs/eye/machineReasoning_cardinality_input/images-demo-data.ttl https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subClassOf.n3 https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subPropertyOf.n3 /home/changeme/programs/eye/machineReasoning_cardinality_input/cardinality-rules.n3 --query /home/changeme/programs/eye/machineReasoning_cardinality_input/query.n3
-EYE v20.0129.2333 josd
-SWI-Prolog 8.0.3 (x86_64-linux): Jun 19 2019, 14:01:03
-starting 52 [msec cputime] 58 [msec walltime]
-GET https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/knora-ontologies/knora-base.ttl SC=1317
+eye --nope https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/knora-ontologies/knora-base.ttl https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/webapi/_test_data/ontologies/images-onto.ttl /home/changeme/programs/eye/machineReasoning_cardinality_input/images-demo-data.ttl https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subClassOf.n3 https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subPropertyOf.n3 /home/changeme/programs/eye/machineReasoning_cardinality_input/cardinality-rules.n3 --query /home/changeme/programs/eye/machineReasoning_cardinality_input/query.n3
+EYE v20.0209.2139 josd
+SWI-Prolog version 8.0.3
+starting 49 [msec cputime] 54 [msec walltime]
+GET https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/knora-ontologies/knora-base.ttl SC=1335
 GET https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/webapi/_test_data/ontologies/images-onto.ttl SC=584
 GET file:///home/changeme/programs/eye/machineReasoning_cardinality_input/images-demo-data.ttl SC=4764
-GET https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subClassOf.n3 SC=4
-GET https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subPropertyOf.n3 SC=4
+GET https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subClassOf.n3 SC=4
+GET https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subPropertyOf.n3 SC=4
 GET file:///home/changeme/programs/eye/machineReasoning_cardinality_input/cardinality-rules.n3 SC=10
 GET file:///home/changeme/programs/eye/machineReasoning_cardinality_input/query.n3 SC=1
-networking 467 [msec cputime] 1194 [msec walltime]
-** ERROR ** eam ** inference_fuse({<http://data.knora.org/0cb8286054d5> a <http://josd.github.io/.well-known/genid/GKvJb4zvSosZ17Yw:p08eocT_uA#bn_84>. <http://josd.github.io/.well-known/genid/GKvJb4zvSosZ17Yw:p08eocT_uA#bn_84> owl:onProperty :hasStillImageFileValue. <http://josd.github.io/.well-known/genid/GKvJb4zvSosZ17Yw:p08eocT_uA#bn_84> owl:cardinality "1"^^xsd:nonNegativeInteger. ((<https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/knora-ontologies/knora-base.ttl> <https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/webapi/_test_data/ontologies/images-onto.ttl> <file:///home/changeme/programs/eye/machineReasoning_cardinality_input/images-demo-data.ttl> <https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subClassOf.n3> <https://raw.githubusercontent.com/josd/brain/master/rpo/rdfs-subPropertyOf.n3> <file:///home/changeme/programs/eye/machineReasoning_cardinality_input/cardinality-rules.n3>) 1) e:findall (?_13010 {<http://data.knora.org/0cb8286054d5> :hasStillImageFileValue ?_13010} ()). () math:memberCount 0 . 0 math:notEqualTo 1} => false)
-reasoning 313 [msec cputime] 312 [msec walltime]
-2020-02-04T23:59:50.709Z in=6684 out=0 ent=12648 step=65555 brake=4 inf=7063326 sec=0.832 inf/sec=8489575
+networking 459 [msec cputime] 2416 [msec walltime]
+** ERROR ** eam ** inference_fuse({<http://data.knora.org/0cb8286054d5> a <http://josd.github.io/.well-known/genid/F41LnTtZkkzZvmeTsmMGn9ttCjw#bn_85>. <http://josd.github.io/.well-known/genid/F41LnTtZkkzZvmeTsmMGn9ttCjw#bn_85> owl:onProperty :hasStillImageFileValue. <http://josd.github.io/.well-known/genid/F41LnTtZkkzZvmeTsmMGn9ttCjw#bn_85> owl:cardinality "1"^^xsd:nonNegativeInteger. ((<https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/knora-ontologies/knora-base.ttl> <https://raw.githubusercontent.com/dasch-swiss/knora-api/develop/webapi/_test_data/ontologies/images-onto.ttl> <file:///home/changeme/programs/eye/machineReasoning_cardinality_input/images-demo-data.ttl> <https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subClassOf.n3> <https://raw.githubusercontent.com/josd/eye/master/reasoning/rpo/rdfs-subPropertyOf.n3> <file:///home/changeme/programs/eye/machineReasoning_cardinality_input/cardinality-rules.n3>) 1) e:findall (?_13018 {<http://data.knora.org/0cb8286054d5> :hasStillImageFileValue ?_13018} ()). () math:memberCount 0 . 0 math:notEqualTo 1} => false)
+reasoning 341 [msec cputime] 340 [msec walltime]
+2020-02-23T18:40:06.624Z in=6702 out=0 ent=12675 step=65694 brake=4 inf=7078509 sec=0.849 inf/sec=8337466
 
 
