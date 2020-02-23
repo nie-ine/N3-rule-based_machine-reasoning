@@ -1,7 +1,7 @@
 ## Calendar unification:
 
 ### Summary
-An entry part of temporal machine reasoning is converting different calendrical time expressions to a unifying time expression, to enable calculation with time expressions coming from different calendars.
+An entry part of temporal machine reasoning is converting different calendrical time expressions to a unifying one, to enable calculation with time expressions coming from different calendars.
 
 ### Introduction
 In Humanities the need for having time expressions being comparable through time and place is esstial.
@@ -34,19 +34,22 @@ Other will follow.
 
 The semantic entities for time and calendrical expressions are mostly in the [time-](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/time-ontology.ttl) and [calendar-ontology](https://github.com/nie-ine/Ontologies/blob/master/Nie-ontologies/Generic-ontologies/calendar-ontology.ttl) respectively.
 
-The ontologies not only provide elements to RDF-ize data, but also to declare rules for calendar conversion and other temporal reasoning.
+The ontologies not only provide elements to RDF-ize data, but also to declare rules for calendar unification and other temporal reasoning.
 
-In this use case there is a mock-up data-graph from projectx as a 1-1 translation from e.g. XML to RDF.
-It covers the possible cases for the 3 implemented calendars. 
-In the file *data-source-to-domain-conversion-rules.n3* there are the N3-rules declared for conversion of the 'data source semantics' of a project to 'domain semantics' expressed using our ontologies, enabling data-interoperability and re-usability.
-In those rules also the conversions of literal time expressions to typed literals are invoked.
-The file *calendar-conversion-rules.n3* contains the N3-rules for the actual conversion to date typed literals and Julian Day Numbers. Partial time expressions, i.e. 'year' and 'year-month', are first converted to a period for which the start and end calendar-specific dates and the start and end Julian Day Numbers are calculated for interval calculus. Optionally other information can be inferred, e.g. being a leap year or not.
-The 'query' file is a filter on the deductive closure of the machine reasoning session.
-The 'result' file is an example of conversion of the mock-up data.
+In this use case there is a mock-up RDF-data-graph from projectx as a 1-1 translation, without domain modeling, from e.g. XML to RDF.  
+It covers the possible cases for the 3 implemented calendars.  
+The year expression is a literal. The year-month and date are literal lists.
+In the file *data-source-to-domain-conversion-rules.n3* there are the N3-rules declared for conversion of the 'data source semantics' of a project to 'domain semantics' expressed using our and external domain ontologies, enabling data-interoperability and re-usability.  
+In those rules also the conversions of literal time expressions to typed literals are invoked.  
+The file *calendar-unification-rules.n3* contains the N3-rules for the actual conversion to date typed literals and Julian Day Numbers. Partial time expressions, i.e. 'year' and 'year-month', are first converted to a period for which the start and end calendar-specific dates and the start and end Julian Day Numbers are calculated for interval calculus. Optionally other information can be inferred, e.g. being a leap year or not.  
+The 'query' file is a filter on the deductive closure of the machine reasoning session.  
+The 'result' file is an example of conversion of the mock-up data.  
 
-Note: the XML Schema datatypes are only applicable to the Gregorian calendar. For the other calendars the data types have to be created as instances of rdfs:Datatype.
+Notes:
+The XML Schema datatypes are only applicable to the Gregorian calendar. For the other calendars the data types are created as instances of rdfs:Datatype.  
+'Before Christ' is indicated with a leading minus sign.
 
-In the example I chose for exclusion of inconsistent data and giving an error message, instead of stopping the reasoning process and returning a 'false' conclusion in the terminal. In a production environment the messages can be given in different languages, here French as an example.
+In the example I chose for exclusion of inconsistent data and giving an error message, instead of stopping the reasoning process and returning a 'false' conclusion in the terminal. In a production environment the messages can be given in different languages, here French as an example.  
 
 ### References:
 https://en.wikipedia.org/wiki/Gregorian_calendar  

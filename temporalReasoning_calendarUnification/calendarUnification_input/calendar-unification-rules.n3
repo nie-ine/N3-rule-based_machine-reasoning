@@ -57,39 +57,6 @@
 # Note: for 0 hours, UTC (GMT), on that date
 
 
-# CHECK ON A TIME EXPRESSION AND RETURN A MESSAGE:		# OR implement a stop with 'false' conclusion
-# ________________________________________________
-
-# YEAR:
-# -----
-{?resource time:hasYearLiteral "0"} => {?resource calendar:hasMessage "There is no year 0 in the proleptic Julian or Gregorian calendar."@en}.
-{?resource time:hasYearMonthLiteralList ("0" ?m)} => {?resource calendar:hasMessage "There is no year 0 in the proleptic Julian or Gregorian calendar."@en}.
-{?resource time:hasDateLiteralList ("0" ?m ?d)} => {?resource calendar:hasMessage "There is no year 0 in the proleptic Julian or Gregorian calendar."@en}.
-
-# MONTH:
-# ------
-{?resource time:hasYearMonthLiteralList (?y ?m). ?m math:lessThan 1} => {?resource calendar:hasMessage "A month needs a positive integer."@en}.
-{?resource time:hasYearMonthLiteralList (?y ?m). ?m math:greaterThan 12} => {?resource calendar:hasMessage "There are only 12 months."@en}.
-{?resource time:hasDateLiteralList (?y ?m ?d). ?m math:lessThan 1} => {?resource calendar:hasMessage "A month needs a positive integer."@en}.
-{?resource time:hasDateLiteralList (?y ?m ?d). ?m math:greaterThan 12} => {?resource calendar:hasMessage "There are only 12 months."@en}.
-
-# DAY:
-# ----
-{?resource time:hasDateLiteralList (?y ?m ?d). ?d math:lessThan 1} => {?resource calendar:hasMessage "A day needs a positive integer."@en}.
-{?resource time:hasDateLiteralList (?y ?m ?d). ?d math:greaterThan 31} => {?resource calendar:hasMessage "No month has more than 31 days."@en}.
-
-# MONTH AND DAY:
-# --------------
-{?resource time:hasDateLiteralList (?y "4" ?d). ?d math:greaterThan 30} => {?resource calendar:hasMessage "April has only 30 days."@en}.
-{?resource time:hasDateLiteralList (?y "6" ?d). ?d math:greaterThan 30} => {?resource calendar:hasMessage "June has only 30 days."@en}.
-{?resource time:hasDateLiteralList (?y "9" ?d). ?d math:greaterThan 30} => {?resource calendar:hasMessage "September has only 30 days."@en}.
-{?resource time:hasDateLiteralList (?y "11" ?d). ?d math:greaterThan 30} => {?resource calendar:hasMessage "November has only 30 days."@en}.
-
-# DATE:
-# -----
-{?resource time:hasDateLiteralList ("1582" "10" ?d). ?d math:greaterThan 4; math:lessThan 15} => {?resource calendar:hasMessage "There are no 5-14 October 1582 in the Gregorian calendar."@en}.
-
-
 # CONVERT A GREGORIAN DATE LITERAL LIST TO ITS GREGORIAN DATE TYPED LITERAL AND JULIAN DAY NUMBER:
 # ________________________________________________________________________________________________
 
