@@ -15,7 +15,7 @@
 
 @prefix calendar-unification: <http://www.e-editiones.ch/rule/calendar-unification#>.
 
-<http://nie-ine.org/rule/calendar-unification>
+<http://www.e-editiones.ch/rule/calendar-unification>
 	dct:issued "2019-12-16+01:00"^^xsd:date;
 	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "calendar unification"@en;
@@ -312,6 +312,59 @@
 # -------------------------------------------------------------------
 
 # Note: for the above 2 sections the same rules apply as at the Gregorian date literal list conversion.
+
+
+# CONVERT A GREGORIAN YEAR NUMBER LITERAL TO ITS DECADE PERIOD WITH THE GREGORIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
+# _________________________________________________________________________________________________________________________________________________________
+
+# SELECT A GREGORIAN YEAR NUMERAL:
+{(?y calendar:gregorianCalendar) calendar:yearLiteralToDecadePeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK THE GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN CALENDAR:
+	?y math:greaterThan 1582.
+	# SET END YEAR OF DECADE:
+	(?y 9) math:sum ?eY.
+	# SET THE DECADE START DATE LITERAL LIST:
+	(?y "01" "01")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN START DATE:
+		calendar:gregorianListToDate ?gSD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?sJDN.
+	# SET THE YEAR END DATE LITERAL LIST:
+	(?eY "12" "31")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN END DATE:
+		calendar:gregorianListToDate ?gED;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE END JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+# CONVERT A GREGORIAN YEAR NUMBER LITERAL TO ITS CENTURY PERIOD WITH THE GREGORIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
+# __________________________________________________________________________________________________________________________________________________________
+
+# SELECT A GREGORIAN YEAR NUMERAL:
+{(?y calendar:gregorianCalendar) calendar:yearLiteralToCenturyPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK THE GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN CALENDAR:
+	?y math:greaterThan 1582.
+	# SET END YEAR OF CENTURY:
+	(?y "([0-9][0-9])$") string:scrape ?s; e:trace ?s.
+	(?y ?s "99") string:replace ?eY.
+	# SET THE DECADE START DATE LITERAL LIST:
+	(?y "01" "01")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN START DATE:
+		calendar:gregorianListToDate ?gSD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?sJDN.
+	# SET THE YEAR END DATE LITERAL LIST:
+	(?eY "12" "31")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN END DATE:
+		calendar:gregorianListToDate ?gED;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE END JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?eJDN.
+}.
 
 
 # CONVERT A GREGORIAN YEAR-MONTH LITERAL LIST TO ITS PERIOD WITH THE GREGORIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
@@ -1114,14 +1167,14 @@
 {
 	# CHECK ON PROLEPTIC JULIAN YEAR:
 	?y math:lessThan 4; math:notEqualTo 0.
-	# CHECK THE YEAR-MONTH:
+	# CHECK THE YEAR-MONTH WITH 31 DAYS:
 	?m math:notEqualTo 2, 4, 6, 9, 11; math:greaterThan 0; math:lessThan 13.
 	# CHECK THE MONTH-DAY:
 	?d math:greaterThan 0; math:lessThan 32.
 	(?y ?m ?d)
-		# INVOKING THE BACKWARD RULE TO CALCULATE THE PROLEPTIC JULIAN DATE:
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE PROLEPTIC JULIAN DATE:
 		calendar:prolepticJulianListToDate ?pJD;
-		# INVOKING THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
 		calendar:prolepticJulianListToJDN ?jdn
 }.
 
@@ -1130,6 +1183,7 @@
 <=
 {
 	?y math:lessThan 4; math:notEqualTo 0.
+	# CHECK THE YEAR-MONTH WITH 30 DAYS:
 	?m math:notEqualTo 1, 2, 3, 5, 7, 8, 10, 12; math:greaterThan 0; math:lessThan 13.
 	?d math:greaterThan 0; math:lessThan 31.
 	(?y ?m ?d)
@@ -1149,9 +1203,9 @@
 	# CHECK THE MONTH-DAY:
 	?d math:greaterThan 0; math:lessThan 29.
 	(?y "2" ?d)
-		# INVOKING THE BACKWARD RULE TO CALCULATE THE PROLEPTIC JULIAN DATE:
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE PROLEPTIC JULIAN DATE:
 		calendar:prolepticJulianListToDate ?pJD;
-		# INVOKING THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE JULIAN DAY NUMBER:
 		calendar:prolepticJulianListToJDN ?jdn
 }.
 
@@ -1160,6 +1214,7 @@
 <=
 {
 	?y math:lessThan 4; math:notEqualTo 0.
+	# CHECK ON LEAP YEAR:
 	((?y -1)!math:difference 4)!math:remainder math:equalTo 0.
 	?d math:greaterThan 0; math:lessThan 30.
 	(?y "2" ?d)
@@ -1179,19 +1234,19 @@
 {
 	[] e:optional {
 		?y math:greaterThan -1000; math:lessThan -99.
-		(?y "(\\d+)") string:scrape ?sy.
-		("-0" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-0" ?ny) string:concatenation ?zy.
 		?m math:lessThan 10.
 		("0" ?m) string:concatenation ?zm.
 		?d math:lessThan 10.
 		("0" ?d) string:concatenation ?zd.
 		(?zy "-" ?zm "-" ?zd) string:concatenation ?cymd.
-		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
+		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD.
 		}.
 	[] e:optional {
 		?y math:greaterThan -1000; math:lessThan -99.
-		(?y "(\\d+)") string:scrape ?sy.
-		("-0" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-0" ?ny) string:concatenation ?zy.
 		?m math:lessThan 10.
 		("0" ?m) string:concatenation ?zm.
 		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
@@ -1199,8 +1254,8 @@
 		}.
 	[] e:optional {
 		?y math:greaterThan -1000; math:lessThan -99.
-		(?y "(\\d+)") string:scrape ?sy.
-		("-0" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-0" ?ny) string:concatenation ?zy.
 		?d math:lessThan 10.
 		("0" ?d) string:concatenation ?zd.
 		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
@@ -1208,15 +1263,15 @@
 		}.
 	[] e:optional {
 		?y math:greaterThan -1000; math:lessThan -99.
-		(?y "(\\d+)") string:scrape ?sy.
-		("-0" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-0" ?ny) string:concatenation ?zy.
 		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
 		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
 		}.
 	[] e:optional {
 		?y math:greaterThan -100; math:lessThan -9.
-		(?y "(\\d+)") string:scrape ?sy.
-		("-00" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-00" ?ny) string:concatenation ?zy.
 		?m math:lessThan 10.
 		("0" ?m) string:concatenation ?zm.
 		?d math:lessThan 10.
@@ -1226,8 +1281,8 @@
 		}.
 	[] e:optional {
 		?y math:greaterThan -100; math:lessThan -9.
-		(?y "(\\d+)") string:scrape ?sy.
-		("-00" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-00" ?ny) string:concatenation ?zy.
 		?m math:lessThan 10.
 		("0" ?m) string:concatenation ?zm.
 		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
@@ -1235,8 +1290,8 @@
 		}.
 	[] e:optional {
 		?y math:greaterThan -100; math:lessThan -9.
-		(?y "(\\d+)") string:scrape ?sy.
-		("-00" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-00" ?ny) string:concatenation ?zy.
 		?d math:lessThan 10.
 		("0" ?d) string:concatenation ?zd.
 		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
@@ -1244,15 +1299,15 @@
 		}.
 	[] e:optional {
 		?y math:greaterThan -100; math:lessThan -9.
-		(?y "(\\d+)") string:scrape ?sy.
-		("-00" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-00" ?ny) string:concatenation ?zy.
 		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
 		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
 		}.
 	[] e:optional {
 		?y math:greaterThan -10; math:lessThan 0.
-		(?y "(\\d)") string:scrape ?sy.
-		("-000" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-000" ?ny) string:concatenation ?zy.
 		?m math:lessThan 10.
 		("0" ?m) string:concatenation ?zm.
 		?d math:lessThan 10.
@@ -1262,8 +1317,8 @@
 		}.
 	[] e:optional {
 		?y math:greaterThan -10; math:lessThan 0.
-		(?y "(\\d)") string:scrape ?sy.
-		("-000" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-000" ?ny) string:concatenation ?zy.
 		?m math:lessThan 10.
 		("0" ?m) string:concatenation ?zm.
 		(?zy "-" ?zm "-" ?d) string:concatenation ?cymd.
@@ -1271,8 +1326,8 @@
 		}.
 	[] e:optional {
 		?y math:greaterThan -10; math:lessThan 0.
-		(?y "(\\d)") string:scrape ?sy.
-		("-000" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-000" ?ny) string:concatenation ?zy.
 		?d math:lessThan 10.
 		("0" ?d) string:concatenation ?zd.
 		(?zy "-" ?m "-" ?zd) string:concatenation ?cymd.
@@ -1280,8 +1335,8 @@
 		}.
 	[] e:optional {
 		?y math:greaterThan -10; math:lessThan 0.
-		(?y "(\\d)") string:scrape ?sy.
-		("-000" ?sy) string:concatenation ?zy.
+		?y math:negation ?ny.
+		("-000" ?ny) string:concatenation ?zy.
 		(?zy "-" ?m "-" ?d) string:concatenation ?cymd.
 		(?cymd calendar:prolepticJulianDate) log:dtlit ?pJD
 		}.

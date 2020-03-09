@@ -143,6 +143,18 @@ data:resource31
 data:resource32
 	projectx:hasDate ("-5" "5" "6");
 	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource32-1
+	projectx:hasDate ("-5" "10" "6");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource32-2
+	projectx:hasDate ("-5" "5" "11");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource32-3
+	projectx:hasDate ("-50" "5" "6");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
+data:resource32-4
+	projectx:hasDate ("-500" "5" "6");
+	projectx:hasCalendar projectx:prolepticJulianCalendar.
 data:resource33
 	projectx:hasDate ("-4719" "11" "1");
 	projectx:hasCalendar projectx:prolepticJulianCalendar.
