@@ -14,7 +14,7 @@ Through history a whole series of calendars are introduced at different times in
 An established calendar can be replaced by another one. E.g. the Julian calendar, de facto started in the year 4 AD in the Roman Empire and used until October 4 1582, was then replaced by the Gregorian calendar, skipping a few days and recalculating leap years, and used by the majority of people.
 But some groups decided to further use the Julian calendar.
 
-Before the existande of a certain calendar other calendars already existed, but one can use e.g. the Julian calendar to go back in time before the year 4 AD, called the 'proleptic' Julian calendar.
+Before the existence of a certain calendar other calendars already existed, but one can use e.g. the Julian calendar to go back in time before the year 4 AD, called the 'proleptic' Julian calendar.
 
 Besides those 3 mentioned calendars, sprouting from a certain part of the world, other ones exist, e.g. the Islamic calendar, started on 16 July 622, or the Hebrew, the Persian, and other calendars.
 
