@@ -7,7 +7,7 @@
 @prefix prosodic-structure: <http://e-editiones.ch/ontology/prosodic-structure#>.
 @prefix litera: <http://e-editiones.ch/ontology/literature#>.
 
-@prefix queryTransitive: <http://e-editiones.ch/query/transitive#>.
+@prefix query-transitive: <http://e-editiones.ch/query/transitive#>.
 
 # Note: using different combinations of the triples in the premise permits filtering for different parts of the deductive closure, needed for GUI-representation. The current query filters a maximum inference for prosodic entities, i.e. verse, strophe, verse section, and poem.
 
