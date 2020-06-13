@@ -3,18 +3,16 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#>.
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix concept: <http://www.e-editiones.ch/ontology/concept#>.
-@prefix prosodic-structure: <http://www.e-editiones.ch/ontology/prosodic-structure#>.
-@prefix litera: <http://www.e-editiones.ch/ontology/literature#>.
+@prefix concept: <http://e-editiones.ch/ontology/concept#>.
+@prefix prosodic-structure: <http://e-editiones.ch/ontology/prosodic-structure#>.
+@prefix litera: <http://e-editiones.ch/ontology/literature#>.
 
-@prefix dataTransitive: <http://www.e-editiones.ch/data/transitive#>.
-
-@prefix queryTransitive: <http://www.e-editiones.ch/query/transitive#>.
+@prefix queryTransitive: <http://e-editiones.ch/query/transitive#>.
 
 # Note: using different combinations of the triples in the premise permits filtering for different parts of the deductive closure, needed for GUI-representation. The current query filters a maximum inference for prosodic entities, i.e. verse, strophe, verse section, and poem.
 
 {
-	# Make a list of all classes found as be defined in the literature-ontology, to reduce :
+	# Make a list of all classes found as be defined in the literature-ontology, to reduce subsumption:
 	?SCOPE e:findall (?ClassA {?ClassA rdfs:isDefinedBy litera:} ?ClassList1).
 	# Make a list of all classes found as be defined in the prosodic-structure-ontology:
 	?SCOPE e:findall (?ClassB {?ClassB rdfs:isDefinedBy prosodic-structure:} ?ClassList2).
@@ -23,38 +21,40 @@
 	# Check whether certain classes are in the list, up-front differentiating in*:
 	?ClassList list:member ?ClassInList1, ?ClassInList2.
 	# Select all subproperties of the 'is part of' property declared in the concept-ontology:
-#	?isPartOf rdfs:subPropertyOf concept:isPartOf.
-#	?poemPart # *prosodic part
-#		a ?ClassInList1;
-##		concept:isPartOf ?biggerPart. # *bigger prosodic or more general part
+	?isPartOf rdfs:subPropertyOf concept:isPartOf.
+	?poemPart # *prosodic part
+		a ?ClassInList1;
+		concept:isPartOf ?biggerPart. # *bigger prosodic or more general part
 		# OR
 ##		?isPartOf ?biggerPart. # Showing the subproperties.
 		# OR
 ##		?p1 ?o1. # To infer the maximum inference for prosodic entities.
-#	?biggerPart
-#		a ?ClassInList2;
+	?biggerPart
+		a ?ClassInList2.
 ##		?p2 ?o2. # To infer the maximum inference for prosodic entities.
 		# OR
 ##		litera:hasPoet ?poet. # Infers as bigger prosodic part only a poem.
 		# OR
-##	?SCOPE e:optional {?biggerPart litera:hasPoet ?poet.} # Allows to infer also another bigger prosodic part than poem.
-	?prosodicEntity # Generalizes ?poemPart and  ?biggerPart.
-		a ?ClassInList1; # Using 1 instead of 2 variables and outcommenting the 'isPartOf' triples, lifts the differentiation.
-		?p ?o. # To show the deductive closure for SPARQL query possibilities.
+	?SCOPE e:optional {?biggerPart litera:hasPoet ?poet.} # Allows to infer also another bigger prosodic part than poem.
+	# OR
+#	?prosodicEntity # Generalizes ?poemPart and  ?biggerPart.
+#		a ?ClassInList1; # Using 1 instead of 2 variables and outcommenting the 'isPartOf' triples, lifts the differentiation.
+#		?p ?o. # To show the deductive closure for SPARQL query possibilities.
 }
 =>
 {
-#	?poemPart
-#		a ?ClassInList1;
-##		concept:isPartOf ?biggerPart.
+	?poemPart
+		a ?ClassInList1;
+		concept:isPartOf ?biggerPart.
 		# OR
 ##		?p1 ?o1.
-#	?biggerPart
-#		a ?ClassInList2;
-#		litera:hasPoet ?poet.
+	?biggerPart
+		a ?ClassInList2;
+		litera:hasPoet ?poet.
 		# OR
 ##		?p2 ?o2.
-	?prosodicEntity
-		a ?ClassInList1;
-		?p ?o.
+	# OR
+#	?prosodicEntity
+#		a ?ClassInList1;
+#		?p ?o.
 }.

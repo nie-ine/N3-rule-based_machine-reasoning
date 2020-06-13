@@ -1,4 +1,4 @@
-# Execution date Mi Feb 5 01:25:47 CET 2020
+# Execution date Sa Jun 13 11:07:10 CEST 2020
 #Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
         #    using base file:///home/changeme/programs/eye/
         
@@ -6,72 +6,72 @@
 #       notation3.py,v 1.200 2007/12/11 21:18:08 syosi Exp
 
 #   Base was: file:///home/changeme/programs/eye/
-     @prefix : <http://www.e-editiones.ch/data/ordinal#> .
-    @prefix literature: <http://www.e-editiones.ch/ontology/literature#> .
-    @prefix math: <http://www.e-editiones.ch/ontology/mathematics#> .
-    @prefix prosodic-structure: <http://www.e-editiones.ch/ontology/prosodic-structure#> .
+     @prefix : <http://e-editiones.ch/data/ordinal#> .
+    @prefix literature: <http://e-editiones.ch/ontology/literature#> .
+    @prefix math: <http://e-editiones.ch/ontology/mathematics#> .
+    @prefix prosodic-structure: <http://e-editiones.ch/ontology/prosodic-structure#> .
     
-    :strophe111     a prosodic-structure:Strophe;
+    :strophe1-1-1     a prosodic-structure:Strophe;
          math:hasOrdinalNumeral "1" .
     
-    :strophe112     a prosodic-structure:Strophe;
+    :strophe1-1-2     a prosodic-structure:Strophe;
          math:hasOrdinalNumeral "2" .
     
-    :strophe121     a prosodic-structure:Strophe;
+    :strophe1-2-1     a prosodic-structure:Strophe;
          math:hasOrdinalNumeral "1" .
     
-    :strophe201011     a prosodic-structure:Strophe;
+    :strophe20-10-11     a prosodic-structure:Strophe;
          math:hasOrdinalNumeral "11" .
     
-    :verse111a     a prosodic-structure:Verse;
+    :verse1-1-1-a     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "a" .
     
-    :verse111b     a prosodic-structure:Verse;
+    :verse1-1-1-b     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "b" .
     
-    :verse111c     a prosodic-structure:Verse;
+    :verse1-1-1-c     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "c" .
     
-    :verse112a     a prosodic-structure:Verse;
+    :verse1-1-2-a     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "a" .
     
-    :verse112b     a prosodic-structure:Verse;
+    :verse1-1-2-b     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "b" .
     
-    :verse112c     a prosodic-structure:Verse;
+    :verse1-1-2-c     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "c" .
     
-    :verse121a     a prosodic-structure:Verse;
+    :verse1-2-1-a     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "a" .
     
-    :verse121b     a prosodic-structure:Verse;
+    :verse1-2-1-b     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "b" .
     
-    :verse121c     a prosodic-structure:Verse;
+    :verse1-2-1-c     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "c" .
     
-    :verse121d     a prosodic-structure:Verse;
+    :verse1-2-1-d     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "d" .
     
-    :verse201011a     a prosodic-structure:Verse;
+    :verse20-10-11-a     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "a" .
     
-    :verse201011b     a prosodic-structure:Verse;
+    :verse20-10-11-b     a prosodic-structure:Verse;
          math:hasOrdinalLiteral "b" .
     
-    :versePoem11     a literature:VersePoem;
+    :versePoem1-1     a literature:VersePoem;
          math:hasOrdinalNumeral "1" .
     
-    :versePoem12     a literature:VersePoem;
+    :versePoem1-2     a literature:VersePoem;
          math:hasOrdinalNumeral "2" .
     
-    :versePoem2010     a literature:VersePoem;
+    :versePoem20-10     a literature:VersePoem;
          math:hasOrdinalNumeral "10" .
     
-    :versePoemCollection1     a literature:Collection;
+    :versePoemCollection1     a literature:Anthology;
          math:hasOrdinalNumeral "1" .
     
-    :versePoemCollection20     a literature:Collection;
+    :versePoemCollection20     a literature:Anthology;
          math:hasOrdinalNumeral "20" .
     
 #ENDS

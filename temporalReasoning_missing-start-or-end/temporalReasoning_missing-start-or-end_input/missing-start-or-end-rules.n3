@@ -5,9 +5,9 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#>. # created by Tim Berners-Lee
 @prefix math: <http://www.w3.org/2000/10/swap/math#>. # created by Tim Berners-Lee
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix event: <http://www.e-editiones.ch/ontology/event#>.
-@prefix time: <http://www.e-editiones.ch/ontology/time#>.
-@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+@prefix event: <http://e-editiones.ch/ontology/event#>.
+@prefix time: <http://e-editiones.ch/ontology/time#>.
+@prefix human: <http://e-editiones.ch/ontology/human#>.
 
 
 # Rule to calculate a 'latest death date' for a person, hence a 'latest end date' of the life of a person, hence a high probability interval for the life, based on the birthdate and a set maximum duration of a person's life, in absence of the death date:

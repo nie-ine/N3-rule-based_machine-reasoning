@@ -1,29 +1,29 @@
-@prefix math: <http://www.e-editiones.ch/ontology/mathematics#>.
+@prefix math: <http://e-editiones.ch/ontology/mathematics#>.
 
 # N3-query for passing a filtered part of the deductive closure or full reasoning result:
 # Note: an ordinal numeral or ordinal literal is not reified.
 
 {
-	?sequenced
+	?sequencedEntity
 		a ?Class;
 		math:hasOrdinalNumeral ?ordinalNumeral
 }
 =>
 {
-	?sequenced
+	?sequencedEntity
 		a ?Class;
 		math:hasOrdinalNumeral ?ordinalNumeral
 }.
 
 
 {
-	?sequenced
+	?sequencedEntity
 		a ?Class;
 		math:hasOrdinalLiteral ?ordinalLiteral
 }
 =>
 {
-	?sequenced
+	?sequencedEntity
 		a ?Class;
 		math:hasOrdinalLiteral ?ordinalLiteral
 }.

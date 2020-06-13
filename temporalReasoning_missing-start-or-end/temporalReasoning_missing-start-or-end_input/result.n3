@@ -1,4 +1,4 @@
-# Execution date So Feb 23 19:35:01 CET 2020
+# Execution date Sa Jun 13 14:38:34 CEST 2020
 #Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
         #    using base file:///home/changeme/programs/eye/
         
@@ -8,8 +8,8 @@
 #   Base was: file:///home/changeme/programs/eye/
      @prefix : <http://www.w3.org/2001/XMLSchema#> .
     @prefix data1: <temporalReasoning_missing-start-or-end_input/data1#> .
-    @prefix human: <http://www.e-editiones.ch/ontology/human#> .
-    @prefix time: <http://www.e-editiones.ch/ontology/time#> .
+    @prefix human: <http://e-editiones.ch/ontology/human#> .
+    @prefix time: <http://e-editiones.ch/ontology/time#> .
     
     data1:person1     human:hasBirthdate "1686-09-08T00:00:00+01:00"^^:dateTime;
          human:hasLatestDeathDate "1811-09-09T06:30:00.0Z"^^:dateTime;

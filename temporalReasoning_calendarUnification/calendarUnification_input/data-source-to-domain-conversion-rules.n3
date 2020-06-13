@@ -1,17 +1,17 @@
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix time: <http://www.e-editiones.ch/ontology/time#>.
-@prefix human: <http://www.e-editiones.ch/ontology/human#>.
-@prefix calendar: <http://www.e-editiones.ch/ontology/calendar#>.
+@prefix time: <http://e-editiones.ch/ontology/time#>.
+@prefix human: <http://e-editiones.ch/ontology/human#>.
+@prefix calendar: <http://e-editiones.ch/ontology/calendar#>.
 
-@prefix projectx: <http://www.e-editiones.ch/project/ontology/projectx#>.
+@prefix projectx: <http://e-editiones.ch/project/ontology/projectx#>.
 # Mock-up project-specific ontology needed in the first step of the 2-step formalization
 # As a 1-1 or uninterpreted mapping from the source data model (e.g. XML, SQL) to RDF
 # To make the source data semantics explicit in RDF
 
 # In the second step the source data semantics are converted to domain semantics, also converting the time indicator literals to typed literals or periods, in preperation of temporal reasoning on those data through interval calculus.
 
-# A project can span more than one calendar of the sequence preleptic-Julian/Julian/Gregorian or combine calendars, e.g. Julian and Islamic.
+# A project can span more than one calendar of the sequence proleptic-Julian/Julian/Gregorian or combine calendars, e.g. Julian and Islamic.
 
 # If calendrical messages are not needed variables in a rule can be removed or rules can be commented out by a dot after the premise and a hash before the implicator.
 

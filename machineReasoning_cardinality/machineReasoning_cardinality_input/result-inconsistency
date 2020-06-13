@@ -1,5 +1,4 @@
-# Note: this comment is manually added to a copied result from the EYE-reasoner in the terminal below.
-
+# Note: this comment is manually added to the below copied result from the EYE-reasoner in the terminal.
 # Inferred 'false' because:
 # An image representation <http://data.knora.org/0cb8286054d5> (in images-demo-data.ttl)
 # is an instance of the class images:bild,

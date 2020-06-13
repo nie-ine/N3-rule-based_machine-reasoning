@@ -1,3 +1,4 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -8,14 +9,11 @@
 @prefix pred: <http://www.w3.org/2007/rif-builtin-predicate#>.
 @prefix prolog: <http://eulersharp.sourceforge.net/2003/03swap/prolog#>.
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix time: <http://www.e-editiones.ch/ontology/time#>.
-@prefix event: <http://www.e-editiones.ch/ontology/event#>.
-@prefix human: <http://www.e-editiones.ch/ontology/human#>.
-@prefix calendar: <http://www.e-editiones.ch/ontology/calendar#>.
+@prefix calendar: <http://e-editiones.ch/ontology/calendar#>.
 
-@prefix calendar-unification: <http://www.e-editiones.ch/rule/calendar-unification#>.
+@prefix calendar-unification: <http://e-editiones.ch/rule/calendar-unification#>.
 
-<http://www.e-editiones.ch/rule/calendar-unification>
+<http://e-editiones.ch/rule/calendar-unification>
 	dct:issued "2019-12-16+01:00"^^xsd:date;
 	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "calendar unification"@en;
@@ -231,14 +229,14 @@
 # CONVERT A GREGORIAN DATE LITERAL LIST TO THE DATE TYPED LITERAL:
 # ----------------------------------------------------------------
 
-{(?y ?m ?d) calendar:gregorianListToDate ?date}
+{(?y ?m ?d) calendar:gregorianListToDate ?gD}
 <=
 {
 	?y e:numeral ?yNumeral.
 	?m e:numeral ?mNumeral.
 	?d e:numeral ?dNumeral.
 	(("date"^^prolog:atom ?yNumeral ?mNumeral ?dNumeral 0 0 0 ?timeZone!e:numeral!math:rounded!math:negation "-"^^prolog:atom "-"^^prolog:atom)^prolog:univ ?dateSeconds) prolog:date_time_stamp true.
-	(?dateLiteral xsd:date) log:dtlit ?dateSeconds, ?date
+	(?dateLiteral xsd:date) log:dtlit ?dateSeconds, ?gD
 }.
 
 
@@ -248,7 +246,7 @@
 {(?y ?m ?d) calendar:gregorianListToJDN ?jdn}
 <=
 {
-	[] e:optional {
+	?SCOPE e:optional {
 		# PRE-SET VALUE FOR THE FORMULA PART '(M − 14)/12' is 0 IF MONTH NUMBER IS GREATER THAN 2:
 		?m math:greaterThan 2.
 		(((?y 4800 0)!math:sum 1461)!math:product 4) math:integerQuotient ?q2.
@@ -257,7 +255,7 @@
 		(((?q2 ?q3 ?d)!math:sum ?q4)!math:difference 32075) math:difference ?jdnNumeral. # ) math:difference 0.5
 		(?jdnLiteral calendar:julianDayNumber) log:dtlit ?jdnNumeral, ?jdn
 		}.
-	[] e:optional {
+	?SCOPE e:optional {
 		# PRE-SET VALUE FOR THE FORMULA PART '(M − 14)/12' is -1 IF MONTH NUMBER IS LESS THAN 3:
 		?m math:lessThan 3.
 		(((?y 4800 -1)!math:sum 1461)!math:product 4) math:integerQuotient ?q2.
@@ -277,6 +275,9 @@
 {(?y calendar:gregorianCalendar) calendar:yearLiteralToPeriod (?gSD ?gED ?sJDN ?eJDN)}
 <=
 {
+#	[] e:trace ?c.
+#	("\"" ?c "\"") string:concatenation ?cs.
+#	?cs string:matches "(calendar:gregorianCalendar)".
 	# CHECK THE GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN CALENDAR:
 	?y math:greaterThan 1582.
 	# SET THE YEAR START DATE LITERAL LIST:
@@ -323,7 +324,7 @@
 {
 	# CHECK THE GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN CALENDAR:
 	?y math:greaterThan 1582.
-	# SET END YEAR OF DECADE:
+	# CALCULATE END YEAR OF DECADE:
 	(?y 9) math:sum ?eY.
 	# SET THE DECADE START DATE LITERAL LIST:
 	(?y "01" "01")
@@ -340,25 +341,48 @@
 }.
 
 
-# CONVERT A GREGORIAN YEAR NUMBER LITERAL TO ITS CENTURY PERIOD WITH THE GREGORIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
-# __________________________________________________________________________________________________________________________________________________________
+# CONVERT A GREGORIAN YEAR NUMBER LITERAL TO ITS CENTURY ACCURATE PERIOD WITH THE GREGORIAN START AND END DATE TYPED LITERAL AND THE START AND END JULIAN DAY NUMBER:
+# ___________________________________________________________________________________________________________________________________________________________________
 
 # SELECT A GREGORIAN YEAR NUMERAL:
-{(?y calendar:gregorianCalendar) calendar:yearLiteralToCenturyPeriod (?gSD ?gED ?sJDN ?eJDN)}
+{(?sY calendar:gregorianCalendar) calendar:startYearLiteralToCenturyPeriod (?gSD ?gED ?sJDN ?eJDN)}
 <=
 {
 	# CHECK THE GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN CALENDAR:
-	?y math:greaterThan 1582.
-	# SET END YEAR OF CENTURY:
-	(?y "([0-9][0-9])$") string:scrape ?s; e:trace ?s.
-	(?y ?s "99") string:replace ?eY.
-	# SET THE DECADE START DATE LITERAL LIST:
-	(?y "01" "01")
+	?sY math:greaterThan 1582.
+	# CALCULATE END YEAR OF CENTURY:
+	(?sY "(\\d\\d)$") string:scrape ?s.
+	(?sY ?s "99") string:replace ?eY.
+	# SET THE CENTURY START DATE LITERAL LIST:
+	(?sY "01" "01")
 		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN START DATE:
 		calendar:gregorianListToDate ?gSD;
 		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
 		calendar:gregorianListToJDN ?sJDN.
-	# SET THE YEAR END DATE LITERAL LIST:
+	# SET THE CENTURY END DATE LITERAL LIST:
+	(?eY "12" "31")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN END DATE:
+		calendar:gregorianListToDate ?gED;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE END JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?eJDN.
+}.
+
+
+{(?eY calendar:gregorianCalendar) calendar:endYearLiteralToCenturyPeriod (?gSD ?gED ?sJDN ?eJDN)}
+<=
+{
+	# CHECK THE GREGORIAN YEAR AFTER THE YEAR OF CHANGE FROM JULIAN CALENDAR:
+	?eY math:greaterThan 1582.
+	# CALCULATE START YEAR OF CENTURY:
+	(?eY "^(\\d\\d)") string:scrape ?s.
+	(?s "00") string:concatenation ?sY.
+	# SET THE CENTURY START DATE LITERAL LIST:
+	(?sY "01" "01")
+		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN START DATE:
+		calendar:gregorianListToDate ?gSD;
+		# INVOKE THE BACKWARD RULE TO CALCULATE THE START JULIAN DAY NUMBER:
+		calendar:gregorianListToJDN ?sJDN.
+	# SET THE CENTURY END DATE LITERAL LIST:
 	(?eY "12" "31")
 		# INVOKE THE BACKWARD RULE TO CONVERT TO THE GREGORIAN END DATE:
 		calendar:gregorianListToDate ?gED;

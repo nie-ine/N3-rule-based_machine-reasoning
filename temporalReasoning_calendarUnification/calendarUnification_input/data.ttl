@@ -1,8 +1,8 @@
-@prefix time: <http://www.e-editiones.ch/ontology/time#>.
-@prefix human: <http://www.e-editiones.ch/ontology/human#>.
-@prefix calendar: <http://www.e-editiones.ch/ontology/calendar#>.
+@prefix time: <http://e-editiones.ch/ontology/time#>.
+@prefix human: <http://e-editiones.ch/ontology/human#>.
+@prefix calendar: <http://e-editiones.ch/ontology/calendar#>.
 
-@prefix projectx: <http://www.e-editiones.ch/project/ontology/projectx#>.
+@prefix projectx: <http://e-editiones.ch/project/ontology/projectx#>.
 
 @prefix data: <#>. # test data with calendrical cases commented
 

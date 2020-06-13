@@ -1,4 +1,4 @@
-# Execution date So Feb 23 19:32:14 CET 2020
+# Execution date Sa Jun 13 11:33:51 CEST 2020
 #Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
         #    using base file:///home/changeme/programs/eye/
         
@@ -6,642 +6,124 @@
 #       notation3.py,v 1.200 2007/12/11 21:18:08 syosi Exp
 
 #   Base was: file:///home/changeme/programs/eye/
-     @prefix : <http://www.e-editiones.ch/data/transitive#> .
-    @prefix concept: <http://www.e-editiones.ch/ontology/concept#> .
-    @prefix creating: <http://www.e-editiones.ch/ontology/creating#> .
-    @prefix document: <http://www.e-editiones.ch/ontology/document#> .
-    @prefix event: <http://www.e-editiones.ch/ontology/event#> .
-    @prefix language: <http://www.e-editiones.ch/ontology/language#> .
-    @prefix literature: <http://www.e-editiones.ch/ontology/literature#> .
-    @prefix math: <http://www.e-editiones.ch/ontology/mathematics#> .
-    @prefix prosodic-structure: <http://www.e-editiones.ch/ontology/prosodic-structure#> .
-    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-    @prefix text: <http://www.e-editiones.ch/ontology/text#> .
-    @prefix text-expression: <http://www.e-editiones.ch/ontology/text-expression#> .
-    @prefix text-structure: <http://www.e-editiones.ch/ontology/text-structure#> .
+     @prefix : <http://e-editiones.ch/data/transitive#> .
+    @prefix concept: <http://e-editiones.ch/ontology/concept#> .
+    @prefix literature: <http://e-editiones.ch/ontology/literature#> .
+    @prefix prosodic-structure: <http://e-editiones.ch/ontology/prosodic-structure#> .
     
-     @forSome <#_g0> .
-    
-    :strophe1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Strophe,
-                prosodic-structure:Structure,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem1,
-                :verseSection1;
+    :strophe1     a prosodic-structure:Strophe,
+                prosodic-structure:Structure;
          concept:isPartOf :versePoem1,
-                :verseSection1;
-         math:hasOrdinalNumeral "1";
-         prosodic-structure:isStropheOfSection :verseSection1;
-         prosodic-structure:stropheHasOrdinalNumeral "1" .
+                :verseSection1 .
     
-    :strophe2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Strophe,
-                prosodic-structure:Structure,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem1,
-                :verseSection1;
+    :strophe2     a prosodic-structure:Strophe,
+                prosodic-structure:Structure;
          concept:isPartOf :versePoem1,
-                :verseSection1;
-         math:hasOrdinalNumeral "2";
-         prosodic-structure:isStropheOfSection :verseSection1;
-         prosodic-structure:stropheHasOrdinalNumeral "2" .
+                :verseSection1 .
     
-    :strophe3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Strophe,
-                prosodic-structure:Structure,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem1,
-                :verseSection2;
+    :strophe3     a prosodic-structure:Strophe,
+                prosodic-structure:Structure;
          concept:isPartOf :versePoem1,
-                :verseSection2;
-         math:hasOrdinalNumeral "3";
-         prosodic-structure:isStropheOfSection :verseSection2;
-         prosodic-structure:stropheHasOrdinalNumeral "3" .
+                :verseSection2 .
     
-    :stropheB1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Strophe,
-                prosodic-structure:Structure,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem2;
-         concept:isPartOf :versePoem2;
-         math:hasOrdinalNumeral "1";
-         prosodic-structure:isStropheOfPoem :versePoem2;
-         prosodic-structure:stropheHasOrdinalNumeral "1" .
+    :stropheB1     a prosodic-structure:Strophe,
+                prosodic-structure:Structure;
+         concept:isPartOf :versePoem2 .
     
-    :stropheB2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Strophe,
-                prosodic-structure:Structure,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem2;
-         concept:isPartOf :versePoem2;
-         math:hasOrdinalNumeral "2";
-         prosodic-structure:isStropheOfPoem :versePoem2;
-         prosodic-structure:stropheHasOrdinalNumeral "2" .
+    :stropheB2     a prosodic-structure:Strophe,
+                prosodic-structure:Structure;
+         concept:isPartOf :versePoem2 .
     
-    :verse1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe1,
-                :versePoem1,
-                :verseSection1;
+    :verse1     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe1,
                 :versePoem1,
-                :verseSection1;
-         math:hasOrdinalNumeral "1";
-         prosodic-structure:isVerseOfStrophe :strophe1;
-         prosodic-structure:verseHasOrdinalNumeral "1" .
+                :verseSection1 .
     
-    :verse2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe1,
-                :versePoem1,
-                :verseSection1;
+    :verse2     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe1,
                 :versePoem1,
-                :verseSection1;
-         math:hasOrdinalNumeral "2";
-         prosodic-structure:isVerseOfStrophe :strophe1;
-         prosodic-structure:verseHasOrdinalNumeral "2" .
+                :verseSection1 .
     
-    :verse3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe1,
-                :versePoem1,
-                :verseSection1;
+    :verse3     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe1,
                 :versePoem1,
-                :verseSection1;
-         math:hasOrdinalNumeral "3";
-         prosodic-structure:isVerseOfStrophe :strophe1;
-         prosodic-structure:verseHasOrdinalNumeral "3" .
+                :verseSection1 .
     
-    :verse4     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe2,
-                :versePoem1,
-                :verseSection1;
+    :verse4     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe2,
                 :versePoem1,
-                :verseSection1;
-         math:hasOrdinalNumeral "4";
-         prosodic-structure:isVerseOfStrophe :strophe2;
-         prosodic-structure:verseHasOrdinalNumeral "4" .
+                :verseSection1 .
     
-    :verse5     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe2,
-                :versePoem1,
-                :verseSection1;
+    :verse5     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe2,
                 :versePoem1,
-                :verseSection1;
-         math:hasOrdinalNumeral "5";
-         prosodic-structure:isVerseOfStrophe :strophe2;
-         prosodic-structure:verseHasOrdinalNumeral "5" .
+                :verseSection1 .
     
-    :verse6     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe2,
-                :versePoem1,
-                :verseSection1;
+    :verse6     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe2,
                 :versePoem1,
-                :verseSection1;
-         math:hasOrdinalNumeral "6";
-         prosodic-structure:isVerseOfStrophe :strophe2;
-         prosodic-structure:verseHasOrdinalNumeral "6" .
+                :verseSection1 .
     
-    :verse7     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe3,
-                :versePoem1,
-                :verseSection2;
+    :verse7     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe3,
                 :versePoem1,
-                :verseSection2;
-         math:hasOrdinalNumeral "7";
-         prosodic-structure:isVerseOfStrophe :strophe3;
-         prosodic-structure:verseHasOrdinalNumeral "7" .
+                :verseSection2 .
     
-    :verse8     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe3,
-                :versePoem1,
-                :verseSection2;
+    :verse8     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe3,
                 :versePoem1,
-                :verseSection2;
-         math:hasOrdinalNumeral "8";
-         prosodic-structure:isVerseOfStrophe :strophe3;
-         prosodic-structure:verseHasOrdinalNumeral "8" .
+                :verseSection2 .
     
-    :verse9     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :strophe3,
-                :versePoem1,
-                :verseSection2;
+    :verse9     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :strophe3,
                 :versePoem1,
-                :verseSection2;
-         math:hasOrdinalNumeral "9";
-         prosodic-structure:isVerseOfStrophe :strophe3;
-         prosodic-structure:verseHasOrdinalNumeral "9" .
+                :verseSection2 .
     
-    :verseB1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :stropheB1,
-                :versePoem2;
+    :verseB1     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :stropheB1,
-                :versePoem2;
-         math:hasOrdinalNumeral "1";
-         prosodic-structure:isVerseOfStrophe :stropheB1;
-         prosodic-structure:verseHasOrdinalNumeral "1" .
+                :versePoem2 .
     
-    :verseB2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :stropheB1,
-                :versePoem2;
+    :verseB2     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :stropheB1,
-                :versePoem2;
-         math:hasOrdinalNumeral "2";
-         prosodic-structure:isVerseOfStrophe :stropheB1;
-         prosodic-structure:verseHasOrdinalNumeral "2" .
+                :versePoem2 .
     
-    :verseB3     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :stropheB2,
-                :versePoem2;
+    :verseB3     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :stropheB2,
-                :versePoem2;
-         math:hasOrdinalNumeral "3";
-         prosodic-structure:isVerseOfStrophe :stropheB2;
-         prosodic-structure:verseHasOrdinalNumeral "3" .
+                :versePoem2 .
     
-    :verseB4     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:Verse,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :stropheB2,
-                :versePoem2;
+    :verseB4     a prosodic-structure:Structure,
+                prosodic-structure:Verse;
          concept:isPartOf :stropheB2,
-                :versePoem2;
-         math:hasOrdinalNumeral "4";
-         prosodic-structure:isVerseOfStrophe :stropheB2;
-         prosodic-structure:verseHasOrdinalNumeral "4" .
+                :versePoem2 .
     
-    :versePoem1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression>,
-                <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:Document,
-                document:Expression,
-                literature:Expression,
+    :versePoem1     a literature:Expression,
                 literature:Poem,
-                literature:VersePoem,
-                text-expression:Expression,
-                rdfs:Resource,
-                <#_g0>;
-         document:expressionHasTitle "Baum";
-         event:outputInvolvesRole :poet1;
-         literature:hasPoet :person1;
-         text:hasText "Baum";
-         text:hasTitle "Baum";
-         text-expression:hasAuthor :person1 .
+                literature:VersePoem;
+         literature:hasPoet :person1 .
     
-    :versePoem2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression>,
-                <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:Document,
-                document:Expression,
-                literature:Expression,
+    :versePoem2     a literature:Expression,
                 literature:Poem,
-                literature:VersePoem,
-                text-expression:Expression,
-                rdfs:Resource,
-                <#_g0>;
-         document:expressionHasTitle "Wolke";
-         event:outputInvolvesRole :poet1;
-         literature:hasPoet :person1;
-         text:hasText "Wolke";
-         text:hasTitle "Wolke";
-         text-expression:hasAuthor :person1 .
+                literature:VersePoem;
+         literature:hasPoet :person1 .
     
-    :verseSection1     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:VerseSection,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem1;
-         concept:isPartOf :versePoem1;
-         math:hasOrdinalNumeral "1";
-         prosodic-structure:isVerseSectionOfPoem :versePoem1;
-         prosodic-structure:verseSectionHasOrdinalNumeral "1";
-         text-structure:isPartOfTextExpression :versePoem1 .
+    :verseSection1     a prosodic-structure:Structure,
+                prosodic-structure:VerseSection;
+         concept:isPartOf :versePoem1 .
     
-    :verseSection2     a <http://iflastandards.info/ns/fr/frbr/frbroo/F6_Concept>,
-                <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object>,
-                <http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object>,
-                concept:ConceptualEntity,
-                concept:Information,
-                concept:PropositionalEntity,
-                concept:SymbolicEntity,
-                creating:Creation,
-                document:ContentStructure,
-                document:Element,
-                document:Structure,
-                language:HumanNaturalLanguageExpression,
-                prosodic-structure:Structure,
-                prosodic-structure:VerseSection,
-                text:Text,
-                text-structure:CompositionalContentStructure,
-                text-structure:CompositionalStructure,
-                text-structure:ContentStructure,
-                text-structure:Structure;
-         <http://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of> :versePoem1;
-         concept:isPartOf :versePoem1;
-         math:hasOrdinalNumeral "2";
-         prosodic-structure:isVerseSectionOfPoem :versePoem1;
-         prosodic-structure:verseSectionHasOrdinalNumeral "2";
-         text-structure:isPartOfTextExpression :versePoem1 .
+    :verseSection2     a prosodic-structure:Structure,
+                prosodic-structure:VerseSection;
+         concept:isPartOf :versePoem1 .
     
 #ENDS

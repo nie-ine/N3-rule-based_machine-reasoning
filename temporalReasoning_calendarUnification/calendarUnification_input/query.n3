@@ -1,9 +1,9 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix time: <http://www.e-editiones.ch/ontology/time#>.
-@prefix event: <http://www.e-editiones.ch/ontology/event#>.
-@prefix human: <http://www.e-editiones.ch/ontology/human#>.
-@prefix calendar: <http://www.e-editiones.ch/ontology/calendar#>.
+@prefix time: <http://e-editiones.ch/ontology/time#>.
+@prefix event: <http://e-editiones.ch/ontology/event#>.
+@prefix human: <http://e-editiones.ch/ontology/human#>.
+@prefix calendar: <http://e-editiones.ch/ontology/calendar#>.
 
 
 {?resource

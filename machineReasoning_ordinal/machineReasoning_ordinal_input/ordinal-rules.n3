@@ -3,14 +3,14 @@
 @prefix func: <http://www.w3.org/2007/rif-builtin-function#>.
 @prefix string: <http://www.w3.org/2000/10/swap/string#>.
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix concept: <http://www.e-editiones.ch/ontology/concept#>.
-@prefix math: <http://www.e-editiones.ch/ontology/mathematics#>.
-@prefix document: <http://www.e-editiones.ch/ontology/document#>.
-@prefix text-expression: <http://www.e-editiones.ch/ontology/text-expression#>.
-@prefix prosodic-structure: <http://www.e-editiones.ch/ontology/prosodic-structure#>.
-@prefix literature: <http://www.e-editiones.ch/ontology/literature#>.
+@prefix creating: <http://e-editiones.ch/ontology/creating#>.
+@prefix concept: <http://e-editiones.ch/ontology/concept#>.
+@prefix math: <http://e-editiones.ch/ontology/mathematics#>.
+@prefix text-expression: <http://e-editiones.ch/ontology/text-expression#>.
+@prefix prosodic-structure: <http://e-editiones.ch/ontology/prosodic-structure#>.
+@prefix literature: <http://e-editiones.ch/ontology/literature#>.
 
-@prefix ordinal: <http://www.e-editiones.ch/rule/ordinal#>.
+@prefix ordinal: <http://e-editiones.ch/rule/ordinal#>.
 
 <http://nie-ine.org/rule/ordinal>
 	dct:issued "2019-11-02"^^xsd:date;
@@ -21,62 +21,51 @@
 #	dct:publisher "Basel University, Switzerland"@en.
 
 
-# Cut the tail numeral of a compound collection-identifier and use it to order: # generalize to document collection
+# CUT THE TAIL NUMERAL OF A COMPOUND COLLECTION-IDENTIFIER TO ORDER: # Generalize to document collection
 {
 	?poemCollection
-		a literature:Collection;
-		document:hasIdentifier ?poemCollectionIdentifier.
-	?poemCollectionIdentifier 
-		concept:hasLiteral ?poemCollectionIdentifierLiteral. # E.g. "AZ1" : AZ = poet's initials, 1 = poem collection
-	(?poemCollectionIdentifierLiteral "(\\d+)$") string:scrape ?scrape
+		a literature:Anthology;
+		concept:hasIdentifierLiteral ?poemCollectionIdentifierLiteral. # E.g. "AZ1" : AZ = poet's initials, 1 = poem collection
+	(?poemCollectionIdentifierLiteral "(\\d+)$") string:scrape ?ordinalNumeral
 }
 =>
 {
-	?poemCollection math:hasOrdinalNumeral ?scrape
+	?poemCollection math:hasOrdinalNumeral ?ordinalNumeral
 }.
 
 
-# Cut the tail numeral of a compound poem-identifier and use it to order: # generalize to document expression
+# CUT THE TAIL NUMERAL OF A COMPOUND POEM-IDENTIFIER TO ORDER: # Generalize to document expression
 {
 	?versePoem
 		a literature:VersePoem;
-		text-expression:hasIdentifier ?versePoemIdentifier.
-	?versePoemIdentifier
-		concept:hasLiteral ?versePoemIdentifierLiteral. # E.g. "AZ1.1" : AZ = poet's initials, 1 = poem collection, 1 = poem
-	# Convert the literal string to a list of its alphanumeric components:
-#	(?versePoemIdentifierLiteral ".") e:stringSplit ?stringList. # E.g. ("AZ1" "1")
-	# Take out the last element of the list:
-#	(?stringList 1) func:get ?lastElement. # E.g. "1"
-	(?versePoemIdentifierLiteral "(\\d+)$") string:scrape ?scrape
+		text-expression:hasIdentifierLiteral ?versePoemIdentifierLiteral. # E.g. "AZ1.1" : AZ = poet's initials, 1 = poem collection, 1 = poem
+	(?versePoemIdentifierLiteral "(\\d+)$") string:scrape ?ordinalNumeral
 }
 =>
 {
-	?versePoem math:hasOrdinalNumeral ?scrape
+	?versePoem math:hasOrdinalNumeral ?ordinalNumeral
 }.
 
 
-# Cut the tail numeral of a compound strophe-identifier and use it to order: # generalize to document content structure
+# CUT THE TAIL NUMERAL OF A COMPOUND STROPHE-IDENTIFIER TO ORDER: # Generalize to document content structure
 {
-	?strophe
-		prosodic-structure:stropheHasIdentifier ?stropheIdentifier.
-	?stropheIdentifier concept:hasLiteral ?stropheIdentifierLiteral. # E.g. "AZ1.1.1" : AZ = poet's initials, 1 = poem collection, 1 = poem, 1 = strophe
-	(?stropheIdentifierLiteral "(\\d+)$") string:scrape ?scrape
+	?strophe prosodic-structure:stropheHasIdentifier ?stropheIdentifier. # Identifier as an example of a reified symbolic entity
+	?stropheIdentifier concept:identifierHasLiteral ?stropheIdentifierLiteral. # E.g. "AZ1.1.1" : AZ = poet's initials, 1 = poem collection, 1 = poem, 1 = strophe
+	(?stropheIdentifierLiteral "(\\d+)$") string:scrape ?ordinalNumeral
 }
 =>
 {
-	?strophe math:hasOrdinalNumeral ?scrape
+	?strophe math:hasOrdinalNumeral ?ordinalNumeral
 }.
 
 
-# Cut the tail literal of a compound verse-identifier and use it to order:
+# CUT THE TAIL NUMERAL OF A COMPOUND VERSE-IDENTIFIER TO ORDER:
 {
-	?verse
-		prosodic-structure:verseHasIdentifier ?verseIdentifier.
-	?verseIdentifier
-		concept:hasLiteral ?verseIdentifierLiteral. # E.g. "AZ1.1.1a" : AZ = poet's initials, 1 = poem collection, 1 = poem, 1 = strophe, a = verse
-	(?verseIdentifierLiteral "([a-z]+)$") string:scrape ?scrape
+	?verse prosodic-structure:verseHasIdentifier ?verseIdentifier.
+	?verseIdentifier concept:identifierHasLiteral ?verseIdentifierLiteral. # E.g. "AZ1.1.1a" : AZ = poet's initials, 1 = poem collection, 1 = poem, 1 = strophe, a = verse
+	(?verseIdentifierLiteral "([a-z]+)$") string:scrape ?ordinalLiteral
 }
 =>
 {
-	?verse math:hasOrdinalLiteral ?scrape
+	?verse math:hasOrdinalLiteral ?ordinalLiteral
 }.

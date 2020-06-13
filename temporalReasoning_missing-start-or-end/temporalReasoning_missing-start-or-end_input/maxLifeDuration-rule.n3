@@ -1,6 +1,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix time: <http://www.e-editiones.ch/ontology/time#>.
-@prefix human: <http://www.e-editiones.ch/ontology/human#>.
+@prefix time: <http://e-editiones.ch/ontology/time#>.
+@prefix human: <http://e-editiones.ch/ontology/human#>.
 
 
 # Rule setting an arbitrary though realistic maximum of a person's life duration.
